@@ -1,0 +1,555 @@
+{
+  "id": "food-senior_known-01",
+  "topic": "食",
+  "scene": "senior_known",
+  "title": "社員食堂で、他部署の部長と相席になった",
+  "situation": "混み合う社員食堂で、たまに顔を合わせる他部署の部長と相席になった。会釈はしたが、そのあとの間が持たない。",
+  "guide": "目上との「食」の雑談。無難で広げやすい一方、距離感(健康・プライベートへの踏み込み)に注意する練習。",
+  "entry": "n1",
+  "nodes": {
+    "n1": {
+      "type": "player_choice",
+      "prompt": "食べ始める前に、一言かけるなら——",
+      "choices": [
+        {
+          "text": "◯◯部長は、お昼いつもこちらなんですか?",
+          "quality": "best",
+          "techniques": ["場の共通話題"],
+          "explanation": "「いつもここ?」はその場に根ざした、答えやすく失礼のない質問。目上への入口は場の共通項から。",
+          "next": "p1"
+        },
+        {
+          "text": "今日、混んでますね。",
+          "quality": "ok",
+          "techniques": ["場の観察"],
+          "explanation": "場の観察の一言は安全だが、はい/いいえで終わりやすい。軽い質問の形にできるとつながりやすい。",
+          "next": "p1"
+        },
+        {
+          "text": "部長、健康診断大丈夫でした? 揚げ物多いですよ(笑)",
+          "quality": "ng",
+          "explanation": "健康の話題は目上に自分から振らないのが原則。冗談でも体型・健康いじりはリスクが高すぎる。",
+          "next": "png1"
+        }
+      ]
+    },
+    "p1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 3,
+          "text": "だいたいここだね。今日の魚定食、なかなかいけるよ。",
+          "next": "n2e"
+        },
+        {
+          "category": "counter",
+          "weight": 2,
+          "text": "そうだね。◯◯さんはいつも何を頼むの?",
+          "next": "n2c"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "うん、まあね。",
+          "next": "n2s"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……(食べるのに集中している様子)",
+          "next": "n2f"
+        }
+      ]
+    },
+    "n2e": {
+      "type": "player_choice",
+      "prompt": "魚定食をすすめられた。",
+      "choices": [
+        {
+          "text": "私は迷って日替わりばかりです。ほかのおすすめもありますか?",
+          "quality": "best",
+          "techniques": ["一問二答", "教わる姿勢"],
+          "explanation": "自分の話を一言足してから「おすすめは?」と教わる姿勢で返す。目上には「教えてもらう」形が話しやすい。",
+          "next": "p2e"
+        },
+        {
+          "text": "魚、おいしそうですね。",
+          "quality": "ok",
+          "explanation": "感想だけでも失礼はないが、会話はそこで止まりやすい。質問を足すともう一往復生まれる。",
+          "next": "p2b"
+        }
+      ]
+    },
+    "p2e": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "金曜のカレーは外さないね。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "うーん、気分次第かな。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "うん。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2c": {
+      "type": "player_choice",
+      "prompt": "逆に聞かれた。どう返すか。",
+      "choices": [
+        {
+          "text": "日替わり多めです。外れも楽しくて。部長は和食派なんですか?",
+          "quality": "best",
+          "techniques": ["一問二答", "お礼+返す"],
+          "explanation": "答え+ひとこと+質問返し。「一問二答」で返すと尋問にならず、会話がラリーになる。",
+          "next": "p2c"
+        },
+        {
+          "text": "日替わりが多いです。",
+          "quality": "ok",
+          "explanation": "答えてはいるが一言で終わると、相手が次の質問を探す羽目になる。+ひとことが目上への気遣いになる。",
+          "next": "p2c2"
+        }
+      ]
+    },
+    "p2c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "和食かな。この歳になると揚げ物が応えるんだよ(笑)。",
+          "next": "n3k"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "そうだね、和食が多いかな。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2c2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "そう。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n3k": {
+      "type": "player_choice",
+      "prompt": "部長のほうから健康ネタ(揚げ物が応える)が出た。乗り方に注意——",
+      "choices": [
+        {
+          "text": "(笑)わかります。でも今日の魚定食は正解ですね。",
+          "quality": "best",
+          "techniques": ["軽く受ける", "話題を食に戻す"],
+          "explanation": "相手が自分から出した健康ネタは、軽く笑って受けるまでがOK。深掘りせず、安全な食の話に戻すのが上級の距離感。",
+          "next": "p3k"
+        },
+        {
+          "text": "そうなんですね。",
+          "quality": "ok",
+          "explanation": "流すのも安全ではあるが、少しそっけない。軽く受けて食の話に戻すと感じが良い。",
+          "next": "p3k2"
+        },
+        {
+          "text": "え、血圧とか大丈夫ですか? 人間ドック行ってます?",
+          "quality": "ng",
+          "explanation": "相手が触れた話題でも、健康の詳細に踏み込むのは行きすぎ。数値や通院の話は雑談の外に置く。",
+          "next": "png2"
+        }
+      ]
+    },
+    "p3k": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "そうそう、魚にしとけば間違いない(笑)。",
+          "next": "n3"
+        }
+      ]
+    },
+    "p3k2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "まあね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2s": {
+      "type": "player_choice",
+      "prompt": "返事は短い。もう一手だけ差し出すなら——",
+      "choices": [
+        {
+          "text": "今日の日替わり、当たりでした。いつも魚と迷うんですよね。",
+          "quality": "best",
+          "techniques": ["自己開示", "情報のギブ"],
+          "explanation": "短い返事のあとは、質問で追わず自分の軽い話を差し出す。乗るかどうかを相手が選べるので、目上にも負担がない。",
+          "next": "p2s"
+        },
+        {
+          "text": "(会釈して食事を続ける)",
+          "quality": "ok",
+          "explanation": "沈黙で食べるのも選択肢のうち。ただ、軽い一言を足した場合に会話が生まれることもある。",
+          "next": "p2s2"
+        }
+      ]
+    },
+    "p2s": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "ほう。日替わり、今日は何だったの?",
+          "next": "n3b"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "そう。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2s2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "……。(静かな食事が続く)",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n3b": {
+      "type": "player_choice",
+      "prompt": "部長が乗ってきた。",
+      "choices": [
+        {
+          "text": "鶏の南蛮漬けです。ここの和食、レベル高くないですか?",
+          "quality": "best",
+          "techniques": ["一問二答"],
+          "explanation": "答え+同意を誘う軽い質問。共通の場(社食)への評価は、立場が違っても対等に話せる話題。",
+          "next": "p3c"
+        },
+        {
+          "text": "南蛮漬けでした。",
+          "quality": "ok",
+          "explanation": "答えだけで終わると、また相手がボールを拾う番になる。ひとこと足すと会話が転がる。",
+          "next": "p3d"
+        }
+      ]
+    },
+    "p3c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "わかる。社食にしては頑張ってるよね。",
+          "next": "n3"
+        }
+      ]
+    },
+    "p3d": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "へえ。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2f": {
+      "type": "player_choice",
+      "prompt": "部長は食事に集中していて、話しかける隙がない。",
+      "choices": [
+        {
+          "text": "(無理に話しかけず、食べ終わりに)お先に失礼します。",
+          "quality": "best",
+          "techniques": ["撤退", "切り上げ"],
+          "explanation": "反応がないときは無理に話しかけないのが正解。去り際の挨拶だけ丁寧にすれば、印象はむしろ良い。",
+          "next": "p2f"
+        },
+        {
+          "text": "部長、今日なんだか元気なくないですか?",
+          "quality": "ng",
+          "explanation": "静かにしていたい人に状態の指摘は逆効果。「今は話さない」も雑談の正しい選択肢のひとつ。",
+          "next": "png3"
+        }
+      ]
+    },
+    "p2f": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "うん、お疲れさま。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "n3": {
+      "type": "player_choice",
+      "prompt": "食の話がいい感じに続いた。食事もそろそろ終わる。",
+      "choices": [
+        {
+          "text": "いい情報もらいました。今度のおすすめ、試してみます。",
+          "quality": "best",
+          "techniques": ["教わったことへのお礼"],
+          "explanation": "「教わったことを実行します」は目上への最高の返し。次に会ったとき「食べましたよ」で再開できる種にもなる。",
+          "next": "p3"
+        },
+        {
+          "text": "なるほど〜。",
+          "quality": "ok",
+          "explanation": "相づちだけだと、会話が自然消滅しやすい。お礼や宣言で軽く締めると印象が残る。",
+          "next": "p3b"
+        }
+      ]
+    },
+    "p3": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "うん、ぜひ。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "p3b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "……。(お茶をすする)",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n_close": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "食べ終わった。席を立つ前に——",
+      "choices": [
+        {
+          "text": "ごちそうさまでした。お話できてよかったです。お先に失礼します。",
+          "quality": "best",
+          "techniques": ["切り上げ"],
+          "explanation": "「お話できてよかった」の一言は、短い雑談を良い記憶に変える。締めの定型句として持っておくと強い。",
+          "next": "p_c"
+        },
+        {
+          "text": "じゃ、お先です。",
+          "quality": "ok",
+          "explanation": "問題はないが、目上にはもう半歩丁寧な締めのほうが安心。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "はい、お疲れさま。",
+          "next": "end_good"
+        }
+      ]
+    },
+    "n3s": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "会話は伸びなかった。食べ終わって席を立つ。",
+      "choices": [
+        {
+          "text": "では、ごゆっくり。お先に失礼します。",
+          "quality": "best",
+          "techniques": ["切り上げ"],
+          "explanation": "会話が伸びなくても、去り際の挨拶が丁寧なら十分合格。雑談は「終わり良ければ」で決まる。",
+          "next": "p_ns"
+        },
+        {
+          "text": "(黙って膳を下げに立つ)",
+          "quality": "ok",
+          "explanation": "無言で立つと、相席の相手にはやや冷たく映ることがある。挨拶一言のコストは小さく、効果は大きい。",
+          "next": "end_quiet"
+        }
+      ]
+    },
+    "p_ns": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "うん、お疲れさま。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "png1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "はは……まあ、ぼちぼちだよ。",
+          "next": "nr1"
+        }
+      ]
+    },
+    "nr1": {
+      "type": "player_choice",
+      "prompt": "苦笑いでかわされた。立て直すなら——",
+      "choices": [
+        {
+          "text": "失礼しました(笑)。それより今日の魚、おいしそうですね。",
+          "quality": "best",
+          "techniques": ["リカバリ", "撤退・話題転換"],
+          "explanation": "まずい話題に気づいたら、即座に安全な話題(目の前の食事)へ切り替える。切り替えの速さがリカバリの質を決める。",
+          "next": "pr1"
+        },
+        {
+          "text": "すみません……。",
+          "quality": "ok",
+          "explanation": "謝って終わると気まずさが固定される。安全な話題への切り替えまでがリカバリ。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "pr1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "そうそう、ここの魚はいけるよ。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "うん、まあね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "png2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "まあまあ、それはいいじゃない(笑)。",
+          "next": "nr2"
+        }
+      ]
+    },
+    "nr2": {
+      "type": "player_choice",
+      "prompt": "やんわり制止された。",
+      "choices": [
+        {
+          "text": "失礼しました。——和食中心、私も見習います。",
+          "quality": "best",
+          "techniques": ["リカバリ", "話題を戻す"],
+          "explanation": "制止されたらすぐ引いて、相手の話(和食派)を肯定する側に回る。引き際の良さで信頼は守れる。",
+          "next": "p3"
+        },
+        {
+          "text": "はい……。",
+          "quality": "ok",
+          "explanation": "引くだけだと会話ごと沈む。相手の話に一言で戻ると空気が回復する。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "png3": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "ん? いや、そんなことないよ。",
+          "next": "nr3"
+        }
+      ]
+    },
+    "nr3": {
+      "type": "player_choice",
+      "prompt": "軽く否定された。これ以上は触れないほうがよさそうだ。",
+      "choices": [
+        {
+          "text": "ならよかったです。ゆっくりしたい時ってありますよね。失礼しました。",
+          "quality": "best",
+          "techniques": ["リカバリ", "撤退"],
+          "explanation": "相手の「そんなことないよ」を額面どおり受けて引く。詮索しない姿勢を見せることが、次の関係につながる。",
+          "next": "p2f"
+        },
+        {
+          "text": "……すみません。",
+          "quality": "ok",
+          "explanation": "謝って沈黙すると、お互い食事の間じゅう気まずい。軽く受けて流すほうが空気は軽くなる。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "end_good": {
+      "type": "end",
+      "text": "「ごちそうさま」の空気が柔らかい。顔見知りから一歩近づけた昼休みだった。",
+      "mood": "good"
+    },
+    "end_neutral": {
+      "type": "end",
+      "text": "無難に、感じよく終えられた。目上との相席はこれで十分。",
+      "mood": "neutral"
+    },
+    "end_quiet": {
+      "type": "end",
+      "text": "失礼はないが、無言のまま終わった。挨拶一言の余地はあった。",
+      "mood": "neutral"
+    },
+    "end_awkward": {
+      "type": "end",
+      "text": "気まずさの残る昼休みになった。次に会ったら、挨拶から仕切り直そう。",
+      "mood": "awkward"
+    }
+  }
+}

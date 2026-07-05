@@ -1,0 +1,504 @@
+{
+  "id": "fashion-first_casual-01",
+  "topic": "衣",
+  "scene": "first_casual",
+  "title": "初対面の集まりで、相手の持ち物を褒める",
+  "situation": "友人の紹介で集まった飲み会。隣の席になった同年代の人とは、まだほとんど話していない。相手は個性的な配色のスニーカーを履いている。",
+  "guide": "持ち物への褒めで会話の糸口を作り、相手の反応タイプ(広がる・返してくる・短い・そっけない)に合わせて次の一手を変える練習。",
+  "entry": "n1",
+  "nodes": {
+    "n1": {
+      "type": "player_choice",
+      "prompt": "乾杯が終わり、少し間ができた。隣の人に話しかけるなら——",
+      "choices": [
+        {
+          "text": "そのスニーカー、いい色ですね。どこで見つけたんですか?",
+          "quality": "best",
+          "techniques": ["褒め+質問"],
+          "explanation": "具体物への褒めに「どこで?」を足すと、相手は事実を答えるだけでよく、話が自然に広がる。褒め+答えやすい質問は入口の定番。",
+          "next": "p1"
+        },
+        {
+          "text": "そのスニーカー、おしゃれですね。",
+          "quality": "ok",
+          "techniques": ["褒め"],
+          "explanation": "褒め自体は良い一手。ただ質問が付いていないので、広げるかどうかが相手任せになる。一言の質問を足せるとさらに良い。",
+          "next": "p1"
+        },
+        {
+          "text": "それ、おいくらだったんですか?",
+          "quality": "ng",
+          "explanation": "初対面でいきなり値段は踏み込みすぎで、値踏みにも聞こえる。褒めるなら色や形など、お金に関わらない切り口で。",
+          "next": "png1"
+        }
+      ]
+    },
+    "p1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 4,
+          "text": "ありがとうございます、実はお気に入りなんです。先月、金沢に旅行したときにたまたま見つけて。",
+          "next": "n2e"
+        },
+        {
+          "category": "counter",
+          "weight": 3,
+          "text": "ありがとうございます。◯◯さんのそのバッグもすてきですね。",
+          "next": "n2c"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "ああ、ありがとうございます。",
+          "next": "n2s"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……ああ、どうも。",
+          "next": "n2f"
+        }
+      ]
+    },
+    "n2e": {
+      "type": "player_choice",
+      "prompt": "相手は「旅行先で見つけた」と話を広げてくれた。",
+      "choices": [
+        {
+          "text": "金沢で見つけたんですね。旅行はよく行かれるんですか?",
+          "quality": "best",
+          "techniques": ["オウム返し", "相手の話題を拾う"],
+          "explanation": "相手が自分から出した話題(旅行)は「もっと話していい」のサイン。キーワードを繰り返して拾うと、自然に次の話題へつながる。",
+          "next": "p2e"
+        },
+        {
+          "text": "旅先で買ったものって、履くたびに思い出せていいですよね。",
+          "quality": "ok",
+          "techniques": ["感想"],
+          "explanation": "共感の感想は好印象。ここに軽い質問まで足せると、会話がもう一歩前に進む。",
+          "next": "p2e"
+        },
+        {
+          "text": "へえ。ところで◯◯さんは、お仕事なにされてるんですか?",
+          "quality": "ng",
+          "explanation": "相手が広げてくれた話題を打ち切って別の話題に飛ぶと「話を聞いていない」印象になる。話題を変えるのは、今の話がひと区切りしてから。",
+          "next": "png2"
+        }
+      ]
+    },
+    "p2e": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 3,
+          "text": "年に2、3回は行きますね。この間は雑貨屋巡りばかりしてました。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "うーん、たまにですね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2c": {
+      "type": "player_choice",
+      "prompt": "褒め返された。ボールはこちらにある。",
+      "choices": [
+        {
+          "text": "ありがとうございます、これ長く使ってて。そのスニーカーは履き心地もいいんですか?",
+          "quality": "best",
+          "techniques": ["一問二答", "自己開示"],
+          "explanation": "褒めは短く受けて一言足し、話題を相手に返すと会話が続く。謙遜しすぎるとせっかくのラリーが止まる。",
+          "next": "p2c"
+        },
+        {
+          "text": "いえいえ、そんな。ありがとうございます。",
+          "quality": "ok",
+          "explanation": "受け取るだけでも失礼ではないが、ボールを持ったまま止まりやすい。「ありがとう+ひとこと」で返すのがコツ。",
+          "next": "p2c2"
+        }
+      ]
+    },
+    "p2c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "履き心地もいいんですよ。歩くのが好きなので、靴だけはこだわってて。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "そうですね、けっこう楽です。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2c2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "いえいえ。(少し間があく)",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2s": {
+      "type": "player_choice",
+      "prompt": "返事は短かった。拒否ではなさそうだが、広がってはいない。",
+      "choices": [
+        {
+          "text": "色がきれいで、つい見ちゃいました。普段からこういう色を選ばれるんですか?",
+          "quality": "best",
+          "techniques": ["感想+質問", "角度を変える"],
+          "explanation": "短い返事は拒否とは限らない。褒めた理由を一言足して、別の角度からもう一手だけ試すのが定石。",
+          "next": "p2s"
+        },
+        {
+          "text": "あ、すみません、急に。おしゃれだなと思って。",
+          "quality": "ok",
+          "explanation": "悪くないが、謝りから入ると会話がしぼみやすい。「感想+質問」で軽くもう一手のほうが前に進む。",
+          "next": "p2s"
+        }
+      ]
+    },
+    "p2s": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "そうですね、派手な色のほうがテンション上がるので。",
+          "next": "n3"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "うーん……特に意識してないですね。",
+          "next": "n2f"
+        }
+      ]
+    },
+    "n2f": {
+      "type": "player_choice",
+      "prompt": "この話題には乗ってこない様子だ。",
+      "choices": [
+        {
+          "text": "そういえば、この店の唐揚げおいしいらしいですよ。もう頼まれました?",
+          "quality": "best",
+          "techniques": ["撤退・話題転換"],
+          "explanation": "乗ってこない話題を深追いすると逆効果。いったん引いて、その場に関する軽い話題(食べ物など)に切り替えるのが安全。",
+          "next": "p2f"
+        },
+        {
+          "text": "すみません、急に話しかけちゃって。",
+          "quality": "ok",
+          "explanation": "引く判断自体は正しい。ただ謝って沈黙に戻るより、軽い話題転換までセットにすると気まずさが残らない。",
+          "next": "p2f"
+        },
+        {
+          "text": "えっ、本当にいい色ですよ。どこのブランドですか?",
+          "quality": "ng",
+          "explanation": "そっけない返事のあとに同じ話題を重ねるのは深追い。相手のペースを尊重して、話題を変えるか引くのが正解。",
+          "next": "png3"
+        }
+      ]
+    },
+    "p2f": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "あ、まだです。唐揚げ有名なんですか?",
+          "next": "n3f"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "へえ、そうなんですね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n3": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "話がいい感じに広がった。そろそろ料理も来る頃だ。",
+      "choices": [
+        {
+          "text": "その話もっと聞きたいです。今度おすすめ、教えてください。",
+          "quality": "best",
+          "techniques": ["次につなげる切り上げ"],
+          "explanation": "盛り上がったまま「今度」につなげて切り上げると、余韻と次のきっかけの両方が残る。雑談は伸ばしすぎないのがコツ。",
+          "next": "p_close_good"
+        },
+        {
+          "text": "いいですね。——あ、料理来ましたね。",
+          "quality": "ok",
+          "techniques": ["切り上げ"],
+          "explanation": "自然な区切りで終えるのも十分あり。一言「あとでまた聞かせてください」を足せると、さらに印象が残る。",
+          "next": "p_close_neutral"
+        }
+      ]
+    },
+    "n3f": {
+      "type": "player_choice",
+      "prompt": "話題転換に乗ってきてくれた。",
+      "choices": [
+        {
+          "text": "紹介してくれた◯◯くんが絶賛してたんです。一緒に頼みません?",
+          "quality": "best",
+          "techniques": ["共通の話題", "小さな提案"],
+          "explanation": "共通の友人やその場の店は、初対面でいちばん安全な共通項。小さな共同行動の提案は距離を縮める。",
+          "next": "p3f"
+        },
+        {
+          "text": "らしいですよ。よかったら試してみてください。",
+          "quality": "ok",
+          "explanation": "情報を渡すだけでも会話としては成立する。「一緒に」まで踏み込むかは場の空気次第で、無理に踏み込まなくてもよい。",
+          "next": "p_close_try"
+        }
+      ]
+    },
+    "p3f": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "いいですね、頼みましょう。すみません、唐揚げひとつー。",
+          "next": "end_good"
+        }
+      ]
+    },
+    "p_close_try": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "はい、ありがとうございます。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "n3s": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "会話は細めのまま。無理に続けるか、区切るか。",
+      "choices": [
+        {
+          "text": "いったん食べましょうか。あとでまた聞かせてください。",
+          "quality": "best",
+          "techniques": ["切り上げ"],
+          "explanation": "反応が薄めのときは無理に続けず、感じよく区切るのが正解。「あとでまた」で余白を残せば、再開のきっかけにもなる。",
+          "next": "p_close_soft"
+        },
+        {
+          "text": "そうですね……。(グラスに手を伸ばす)",
+          "quality": "ok",
+          "explanation": "自然に途切れさせるのもあり。ただ、一言添えて区切るほうがお互いに気まずさが残らない。",
+          "next": "end_quiet"
+        }
+      ]
+    },
+    "p_close_good": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "ぜひぜひ。金沢の雑貨屋リスト、あとで送りますよ。",
+          "next": "end_good"
+        }
+      ]
+    },
+    "p_close_neutral": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ですね。食べましょうか。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_close_soft": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "はい、また後で。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_thin": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "……(相手はグラスに口をつけた)",
+          "next": "n3s"
+        }
+      ]
+    },
+    "png1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 3,
+          "text": "え? ……いくらだったかな。",
+          "next": "nr1"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "あー、そこそこしましたよ(苦笑)。",
+          "next": "nr1"
+        }
+      ]
+    },
+    "nr1": {
+      "type": "player_choice",
+      "prompt": "少し空気が固まった。立て直すなら——",
+      "choices": [
+        {
+          "text": "すみません、つい。色がすごくきれいで気になっちゃって。",
+          "quality": "best",
+          "techniques": ["リカバリ"],
+          "explanation": "踏み込みすぎたと感じたら、すぐ「褒めたかった」という意図に言い直すと空気が戻る。失敗の直後こそ立て直しの一手が効く。",
+          "next": "p1r"
+        },
+        {
+          "text": "変なこと聞いてすみません。",
+          "quality": "ok",
+          "explanation": "謝って引くのは無難。ただ、褒めの意図を言い直すほうが空気は早く戻る。",
+          "next": "p1r"
+        }
+      ]
+    },
+    "p1r": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "ああ、いえいえ。ありがとうございます。",
+          "next": "n2s"
+        },
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "そうですか? 実はお気に入りで、旅行先で見つけたんです。",
+          "next": "n2e"
+        }
+      ]
+    },
+    "png2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "あ、はい……会社員です。",
+          "next": "nr2"
+        }
+      ]
+    },
+    "nr2": {
+      "type": "player_choice",
+      "prompt": "話の流れを切ってしまい、相手が戸惑っている。",
+      "choices": [
+        {
+          "text": "すみません、話を戻しちゃいますが、金沢って雑貨屋さん多いんですか?",
+          "quality": "best",
+          "techniques": ["リカバリ", "相手の話題を拾う"],
+          "explanation": "話を折ってしまったら、相手の話題に戻すのがいちばんのリカバリ。「戻しますが」と一言添えれば不自然にならない。",
+          "next": "p2e"
+        },
+        {
+          "text": "そうなんですね。",
+          "quality": "ok",
+          "explanation": "流れは切れたまま。相手が広げてくれていた話題(旅行・金沢)に戻れると、会話が生き返る。",
+          "next": "p_thin"
+        }
+      ]
+    },
+    "png3": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……どこだったかな。忘れました。",
+          "next": "nr3"
+        }
+      ]
+    },
+    "nr3": {
+      "type": "player_choice",
+      "prompt": "完全に引かれてしまった。",
+      "choices": [
+        {
+          "text": "失礼しました。——あ、料理来ましたね。取り分けましょうか。",
+          "quality": "best",
+          "techniques": ["リカバリ", "撤退・話題転換"],
+          "explanation": "深追いに気づいたら素早く撤退し、その場の行動(取り分け)に切り替える。行動は沈黙を自然に埋めてくれる。",
+          "next": "p_recover3"
+        },
+        {
+          "text": "そうですか……。",
+          "quality": "ok",
+          "explanation": "引くだけだと気まずさが残る。行動や別の軽い話題への切り替えまでできると立て直せる。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "p_recover3": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "あ、ありがとうございます。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "end_good": {
+      "type": "end",
+      "text": "おすすめを教え合う流れになり、そのまま乾杯し直した。第一印象はばっちりだ。",
+      "mood": "good"
+    },
+    "end_neutral": {
+      "type": "end",
+      "text": "会話は自然にひと区切り。感じの良い印象を残せた。",
+      "mood": "neutral"
+    },
+    "end_quiet": {
+      "type": "end",
+      "text": "会話は静かに途切れたが、悪い空気ではない。あとでまた話しかけるチャンスはある。",
+      "mood": "neutral"
+    },
+    "end_awkward": {
+      "type": "end",
+      "text": "気まずい沈黙が流れたところで料理が届いた。次の話題に助けられた形だ。",
+      "mood": "awkward"
+    }
+  }
+}

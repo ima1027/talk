@@ -1,0 +1,425 @@
+{
+  "id": "fashion-senior_known-01",
+  "topic": "衣",
+  "scene": "senior_known",
+  "title": "エレベーター待ちで、課長のネクタイに触れる",
+  "situation": "会議のあと、別部署の課長とエレベーターを待つ間、二人きりになった。普段は挨拶を交わす程度の間柄。課長は今日、明るい色のネクタイをしている。",
+  "guide": "目上の人には「敬意+軽い褒め」で糸口を作る練習。踏み込みすぎず、相手が乗ってきたら一歩だけ深める。",
+  "entry": "n1",
+  "nodes": {
+    "n1": {
+      "type": "player_choice",
+      "prompt": "沈黙のままエレベーターを待つのも気まずい。声をかけるなら——",
+      "choices": [
+        {
+          "text": "そのネクタイ、すてきな色ですね。お似合いです。",
+          "quality": "best",
+          "techniques": ["褒め"],
+          "explanation": "目に入った具体物への短い褒めは、目上にも失礼にならない糸口。質問で詰めず、褒めで止めるのが目上向けの型。",
+          "next": "p1"
+        },
+        {
+          "text": "新しいネクタイですか? いい色ですね。",
+          "quality": "ok",
+          "explanation": "悪くないが「新しい」の当てが外れると微妙な空気になる。事実の推測より「すてきですね」と感想を主語にするほうが安全。",
+          "next": "p1"
+        },
+        {
+          "text": "そのネクタイ、おいくらでした? いいブランドですよね。",
+          "quality": "ng",
+          "explanation": "値段は目上には特に踏み込みすぎ。褒めるなら色・柄・似合っているかどうかまでに留める。",
+          "next": "png1"
+        }
+      ]
+    },
+    "p1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 3,
+          "text": "お、ありがとう。これね、娘が選んでくれたんだよ。",
+          "next": "n2e"
+        },
+        {
+          "category": "counter",
+          "weight": 2,
+          "text": "ありがとう。◯◯さんこそ、いつも身だしなみきちんとしてるね。",
+          "next": "n2c"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "ああ、ありがとう。",
+          "next": "n2s"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "ん? ああ……どうも。(スマホに目を戻す)",
+          "next": "n2f"
+        }
+      ]
+    },
+    "n2e": {
+      "type": "player_choice",
+      "prompt": "課長のほうから「娘」の話が出た。家族の話は自分からは振らないのが原則だが——",
+      "choices": [
+        {
+          "text": "娘さんが! センスいいですね。プレゼントか何かですか?",
+          "quality": "best",
+          "techniques": ["相手の話題を拾う"],
+          "explanation": "家族の話は自分から振らないのが原則。ただし相手から出た場合は「乗ってよい」のサイン。出された範囲で軽く拾うのが正解。",
+          "next": "p2e"
+        },
+        {
+          "text": "そうなんですね。よくお似合いです。",
+          "quality": "ok",
+          "explanation": "失礼はない。ただ、相手がわざわざ出してくれた話題(娘さん)を拾わないのは少しもったいない。",
+          "next": "p2b"
+        },
+        {
+          "text": "娘さん、おいくつなんですか? ご結婚は?",
+          "quality": "ng",
+          "explanation": "相手が出した話題でも、家族構成の詳細へ踏み込むのは行きすぎ。話題の中心(ネクタイとセンス)から離れないこと。",
+          "next": "png2"
+        }
+      ]
+    },
+    "p2e": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "誕生日にもらってね。自分じゃ選ばない色だから新鮮だよ。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "まあ、たまにはいいかなと思ってね。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "p2b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ありがとう。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "n2c": {
+      "type": "player_choice",
+      "prompt": "逆にこちらが褒められた。目上からの褒めにどう返すか。",
+      "choices": [
+        {
+          "text": "ありがとうございます。課長はネクタイ、ご自分で選ばれるんですか?",
+          "quality": "best",
+          "techniques": ["一問二答", "お礼+返す"],
+          "explanation": "目上からの褒めは素直にお礼で受け、軽い質問で話題を返すと会話が続く。過度な謙遜はかえって扱いに困らせる。",
+          "next": "p2c"
+        },
+        {
+          "text": "いえいえ、とんでもないです。",
+          "quality": "ok",
+          "explanation": "謙遜だけで終わるとボールが落ちる。「ありがとうございます+ひとこと」で返すと印象が良い。",
+          "next": "p2c2"
+        }
+      ]
+    },
+    "p2c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "いや、実はこれは娘が選んでくれてね。",
+          "next": "n2e"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "まあ、適当だけどね。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "p2c2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "そう? ならいいけど。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "n2s": {
+      "type": "player_choice",
+      "prompt": "返事は短かった。もう一言だけ足すなら——",
+      "choices": [
+        {
+          "text": "春らしい色で、会議室が明るく見えました。",
+          "quality": "best",
+          "techniques": ["感想"],
+          "explanation": "短い返事のあとは、質問で追わず「感想をもう一言」だけ足すのが目上向け。相手が乗るかどうかは相手に委ねる。",
+          "next": "p2s"
+        },
+        {
+          "text": "(会釈して、そのまま黙る)",
+          "quality": "ok",
+          "explanation": "沈黙も失礼ではない。ただ、感想をもう一言だけ足すと印象に残りやすい。",
+          "next": "p2s2"
+        }
+      ]
+    },
+    "p2s": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "はは、そうかな。たまには明るい色もいいね。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "ありがとう。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "p2s2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "……。(お互いエレベーターの表示を眺める)",
+          "next": "n_close"
+        }
+      ]
+    },
+    "n2f": {
+      "type": "player_choice",
+      "prompt": "課長はスマホに目を戻してしまった。今は話したくない様子だ。",
+      "choices": [
+        {
+          "text": "会議、長丁場でしたね。お疲れさまです。",
+          "quality": "best",
+          "techniques": ["撤退", "ねぎらい"],
+          "explanation": "目上が乗ってこないときは即撤退。ねぎらいの一言だけ置いて引くのが、失礼なく感じも良い定番。",
+          "next": "p2f"
+        },
+        {
+          "text": "あれ、お疲れですか? ご機嫌ななめに見えますよ。",
+          "quality": "ng",
+          "explanation": "相手の機嫌や状態を指摘するのは逆効果。そっけなさは「今は話したくない」のサインとして、そっと流すのが正解。",
+          "next": "png3"
+        }
+      ]
+    },
+    "p2f": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ほんとだね。お疲れさま。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "n3": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "話が少し弾んだ。エレベーターはもうすぐ来る。",
+      "choices": [
+        {
+          "text": "いいお話ですね。私もネクタイ選び、参考にさせてもらいます。",
+          "quality": "best",
+          "techniques": ["次につなげる切り上げ"],
+          "explanation": "小さく持ち上げて締めると、短い雑談でも印象が残る。目上との雑談は「短く、気持ちよく」が鉄則。",
+          "next": "p_close_good"
+        },
+        {
+          "text": "そうなんですね。(エレベーターが来た)",
+          "quality": "ok",
+          "explanation": "自然に区切るのも問題ない。締めの一言があると、なお良い。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_close_good": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "はは、大したもんじゃないけどね。(ドアが開く)お先にどうぞ。",
+          "next": "end_good"
+        }
+      ]
+    },
+    "n_close": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "エレベーターが来た。",
+      "choices": [
+        {
+          "text": "では、お疲れさまでした。失礼します。",
+          "quality": "best",
+          "techniques": ["切り上げ"],
+          "explanation": "雑談はサクッと終えるのが正解。「では」「お疲れさまでした」で気持ちよく切り上げる。",
+          "next": "p_close"
+        },
+        {
+          "text": "(黙って乗り込む)",
+          "quality": "ok",
+          "explanation": "失礼ではないが、終わりの挨拶が一言あるだけで全体の印象が変わる。",
+          "next": "end_quiet"
+        }
+      ]
+    },
+    "p_close": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "うん、お疲れさま。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "png1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "はは……どうだったかな。",
+          "next": "nr1"
+        }
+      ]
+    },
+    "nr1": {
+      "type": "player_choice",
+      "prompt": "はぐらかされた。空気を戻すなら——",
+      "choices": [
+        {
+          "text": "失礼しました。色がきれいだったので、つい。お似合いです。",
+          "quality": "best",
+          "techniques": ["リカバリ"],
+          "explanation": "踏み込みすぎたら、すぐに「褒めたかった」という意図に言い直す。目上相手ほどリカバリは早く、短く。",
+          "next": "p1r"
+        },
+        {
+          "text": "すみません、変なことを聞いてしまって。",
+          "quality": "ok",
+          "explanation": "謝罪で引くのは無難だが、褒めの意図まで言い直すほうが空気は早く戻る。",
+          "next": "p1r"
+        }
+      ]
+    },
+    "p1r": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "いやいや。ありがとう。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "png2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "まあ、それはいいじゃない(笑)。",
+          "next": "nr2"
+        }
+      ]
+    },
+    "nr2": {
+      "type": "player_choice",
+      "prompt": "やんわりかわされた。ここで引き返せるか。",
+      "choices": [
+        {
+          "text": "失礼しました。それにしても、いいプレゼントですね。",
+          "quality": "best",
+          "techniques": ["リカバリ", "話題を戻す"],
+          "explanation": "かわされたら深追いせず、元の話題(ネクタイ)へ戻す。「それにしても」は話題を戻す便利なつなぎ言葉。",
+          "next": "p2b"
+        },
+        {
+          "text": "ですよね、すみません……。",
+          "quality": "ok",
+          "explanation": "謝るだけで終わると気まずさが残る。元の話題に一言で戻れると立て直せる。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "png3": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "いや、そういうわけじゃないけど。",
+          "next": "nr3"
+        }
+      ]
+    },
+    "nr3": {
+      "type": "player_choice",
+      "prompt": "空気が固くなった。",
+      "choices": [
+        {
+          "text": "すみません、余計なことを。——あ、来ましたね。どうぞ。",
+          "quality": "best",
+          "techniques": ["リカバリ", "撤退"],
+          "explanation": "余計な一言に気づいたら、短く謝ってその場の行動(エレベーターを譲る)に切り替える。引き際の良さも礼儀のうち。",
+          "next": "end_neutral"
+        },
+        {
+          "text": "……(気まずい沈黙)",
+          "quality": "ok",
+          "explanation": "何もしないと気まずさだけが残る。短い謝罪+行動への切り替えで立て直せた場面。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "end_good": {
+      "type": "end",
+      "text": "エレベーターの中でも会話が続き、柔らかい表情で「またね」と別れられた。顔見知りから一歩前進だ。",
+      "mood": "good"
+    },
+    "end_neutral": {
+      "type": "end",
+      "text": "短いが感じの良いやり取りで終えられた。目上との雑談はこれで十分合格点。",
+      "mood": "neutral"
+    },
+    "end_quiet": {
+      "type": "end",
+      "text": "失礼はなかったが、印象にも残らない終わり方だった。",
+      "mood": "neutral"
+    },
+    "end_awkward": {
+      "type": "end",
+      "text": "少し気まずい空気のままエレベーターが来た。次に会ったら、普通に挨拶から仕切り直そう。",
+      "mood": "awkward"
+    }
+  }
+}

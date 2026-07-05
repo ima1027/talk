@@ -1,0 +1,529 @@
+{
+  "id": "food-first_casual-01",
+  "topic": "食",
+  "scene": "first_casual",
+  "title": "イベントの休憩時間、お昼の話で距離を縮める",
+  "situation": "趣味のイベント(ボードゲーム会)の休憩時間。さっき同じ卓だった初対面の人と、飲み物コーナーで一緒になった。",
+  "guide": "「食」はもっとも安全な話題。その場に関係する食べ物の話から入り、相手の反応に合わせて広げる練習。",
+  "entry": "n1",
+  "nodes": {
+    "n1": {
+      "type": "player_choice",
+      "prompt": "お茶を注ぎながら、隣に来たさっきの人に——",
+      "choices": [
+        {
+          "text": "このあとお昼どうします? この辺、いい店あるらしいですよ。",
+          "quality": "best",
+          "techniques": ["場の共通話題", "情報のギブ"],
+          "explanation": "「このあとのお昼」はその場の全員に関係する安全な話題。軽い情報のギブ付きだと、相手も返しやすい。",
+          "next": "p1"
+        },
+        {
+          "text": "お腹すきましたね(笑)。",
+          "quality": "ok",
+          "techniques": ["共感"],
+          "explanation": "共感の一言は入口として悪くない。質問まで足すと会話が前に進みやすい。",
+          "next": "p1"
+        },
+        {
+          "text": "◯◯さんって自炊派ですか? 食生活ちゃんとしてます?",
+          "quality": "ng",
+          "explanation": "食の話でも、いきなり相手の生活習慣に入ると答えにくい。まずはその場に関係する食の話(この辺の店・今日のお昼)から。",
+          "next": "png1"
+        }
+      ]
+    },
+    "p1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 4,
+          "text": "実は気になってたんです。駅前に評判のカレー屋があるらしくて。",
+          "next": "n2e"
+        },
+        {
+          "category": "counter",
+          "weight": 3,
+          "text": "どうしようかな。◯◯さんはどうするんですか?",
+          "next": "n2c"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "ああ、まだ決めてないです。",
+          "next": "n2s"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "すみません、僕、午後イチで帰るので……。",
+          "next": "n2f"
+        }
+      ]
+    },
+    "n2e": {
+      "type": "player_choice",
+      "prompt": "カレー屋の話に乗ってきた。",
+      "choices": [
+        {
+          "text": "カレー屋! いいですね。辛いのはお好きなんですか?",
+          "quality": "best",
+          "techniques": ["オウム返し", "相手の話題を拾う"],
+          "explanation": "相手が出したキーワード(カレー屋)を繰り返して、好みを聞く。事実より「好き嫌い」を聞くほうが人柄の話に広がる。",
+          "next": "p2e"
+        },
+        {
+          "text": "へえ、カレーかあ。いいですね。",
+          "quality": "ok",
+          "explanation": "感想だけでも会話は続くが、相手任せになる。好みへの質問を足せると強い。",
+          "next": "p2e"
+        },
+        {
+          "text": "ふーん。それより午後の卓って、もう決まりました?",
+          "quality": "ng",
+          "explanation": "相手が広げてくれた話題を「ふーん」で流して話題を変えると、興味がない印象を与える。話題転換は今の話の区切りを待ってから。",
+          "next": "png2"
+        }
+      ]
+    },
+    "p2e": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 3,
+          "text": "大好きです。スパイスカレーの店巡りが趣味みたいなもので。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "まあ、人並みに、ですかね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2c": {
+      "type": "player_choice",
+      "prompt": "質問を返された。ボールはこちら。",
+      "choices": [
+        {
+          "text": "駅前のカレー屋に行ってみようかと。よかったらご一緒します?",
+          "quality": "best",
+          "techniques": ["一問二答", "自己開示", "小さな提案"],
+          "explanation": "聞かれたら自分の案+ひとことで返す(一問二答)。同じ趣味の集まりなら、軽い誘いは自然に出せる。",
+          "next": "p2c"
+        },
+        {
+          "text": "私もまだ決めてないんですよね。",
+          "quality": "ok",
+          "explanation": "正直だが、ボールを返されたのに情報ゼロで返すと会話が止まりやすい。案や好みを一言足すのがコツ。",
+          "next": "p2c2"
+        }
+      ]
+    },
+    "p2c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "お、いいですね。ご一緒します。",
+          "next": "n_lunch"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "あー、どうしようかな……。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2c2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "そうなんですね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2s": {
+      "type": "player_choice",
+      "prompt": "返事は短め。もう一手だけ差し出すなら——",
+      "choices": [
+        {
+          "text": "この辺ちょっと調べたんですよ。駅前にカレー屋と定食屋があるらしいです。",
+          "quality": "best",
+          "techniques": ["情報のギブ"],
+          "explanation": "反応が薄いときは、質問を重ねるより軽い情報を差し出すほうが動きやすい。受け取るかどうかを相手が選べるので負担が少ない。",
+          "next": "p2s"
+        },
+        {
+          "text": "そうなんですね。",
+          "quality": "ok",
+          "explanation": "相手に合わせて短く返すだけだと、そのまま会話が終わりやすい。情報や感想をひとつ差し出してみる価値はある。",
+          "next": "p2s2"
+        }
+      ]
+    },
+    "p2s": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "お、ありがとうございます。カレー、ちょっといいですね。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ああ、ご丁寧に。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2s2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……(飲み物を注ぎ足している)",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2f": {
+      "type": "player_choice",
+      "prompt": "相手は午後には帰るらしい。",
+      "choices": [
+        {
+          "text": "そうでしたか。午前だけでもご一緒できてよかったです。",
+          "quality": "best",
+          "techniques": ["撤退", "ポジティブな締め"],
+          "explanation": "相手の予定には踏み込まず、「会えてよかった」系の一言で受けるのが正解。押さない気遣いは印象に残る。",
+          "next": "p2f"
+        },
+        {
+          "text": "ええ、もったいない! 午後からが本番ですよ?",
+          "quality": "ng",
+          "explanation": "相手の事情に踏み込んで翻意を促すのは、冗談でも押しつけになりやすい。予定は尊重して締めの一言へ。",
+          "next": "png3"
+        }
+      ]
+    },
+    "p2f": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "こちらこそ。楽しかったです。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "n3": {
+      "type": "player_choice",
+      "prompt": "カレーの話が広がってきた。",
+      "choices": [
+        {
+          "text": "おすすめの一軒、教えてもらえますか? 今度行ってみたくて。",
+          "quality": "best",
+          "techniques": ["教わる姿勢"],
+          "explanation": "「教えてください」は相手の得意分野を立てる強い一手。好きなことを話す時間は相手にとっても心地よい。",
+          "next": "p3"
+        },
+        {
+          "text": "詳しいんですね。",
+          "quality": "ok",
+          "explanation": "持ち上げる一言としては良いが、質問がないと相手は続きを話しにくい。",
+          "next": "p3b"
+        }
+      ]
+    },
+    "p3": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "それなら駅裏の◯◯って店がおすすめです。ランチが特にいいですよ。",
+          "next": "n_close_good"
+        }
+      ]
+    },
+    "p3b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "いやいや、それほどでも。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n_lunch": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "お昼をご一緒することになった。",
+      "choices": [
+        {
+          "text": "やった。じゃあ休憩終わったら、入口で待ち合わせましょう。",
+          "quality": "best",
+          "techniques": ["次につなげる切り上げ"],
+          "explanation": "約束は具体的な段取り(いつ・どこで)まで決めて切り上げると、お互い安心して次に進める。",
+          "next": "p_lunch"
+        },
+        {
+          "text": "あ、はい。じゃあ、なんとなくそんな感じで……。",
+          "quality": "ok",
+          "explanation": "曖昧なまま終えると、実際に合流するときに気まずくなりがち。段取りを一言決めておくとよい。",
+          "next": "p_lunch2"
+        }
+      ]
+    },
+    "p_lunch": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "了解です。楽しみにしてますね。",
+          "next": "end_good"
+        }
+      ]
+    },
+    "p_lunch2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "はい……じゃあ、また。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "n_close_good": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "おすすめの店を教えてもらえた。",
+      "choices": [
+        {
+          "text": "ありがとうございます、行ってみます。午後もよろしくお願いします!",
+          "quality": "best",
+          "techniques": ["切り上げ", "次につなげる"],
+          "explanation": "もらった情報へのお礼+「午後もよろしく」で締めると、感じよく次につながる。",
+          "next": "p_cg"
+        },
+        {
+          "text": "なるほど。じゃ、また午後に。",
+          "quality": "ok",
+          "explanation": "十分だが、お礼を一言先に置くとより丁寧。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_cg": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "ぜひ! 行ったら感想聞かせてください。",
+          "next": "end_good"
+        }
+      ]
+    },
+    "n3s": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "会話は細めのまま、休憩終了が近い。",
+      "choices": [
+        {
+          "text": "お互いいい店に出会えますように(笑)。午後もよろしくです。",
+          "quality": "best",
+          "techniques": ["切り上げ"],
+          "explanation": "無理に盛り上げず、軽いユーモア+挨拶で締める。細い会話でも終わり方が良ければ印象は悪くならない。",
+          "next": "p_ns"
+        },
+        {
+          "text": "……そろそろ戻りますか。",
+          "quality": "ok",
+          "explanation": "区切りとしては十分。ひとこと挨拶を足すと、次に話すハードルが下がる。",
+          "next": "end_quiet"
+        }
+      ]
+    },
+    "p_ns": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "(笑)よろしくお願いします。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "n_close": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "休憩終了のアナウンスが聞こえた。",
+      "choices": [
+        {
+          "text": "では、また機会があればぜひ。お疲れさまでした。",
+          "quality": "best",
+          "techniques": ["切り上げ", "次につなげる"],
+          "explanation": "「また機会があれば」は初対面の締めの定番。社交辞令でも、言われて悪い気はしない。",
+          "next": "p_c"
+        },
+        {
+          "text": "はい……それじゃ。",
+          "quality": "ok",
+          "explanation": "そっけなく聞こえることがある。締めの定型句をひとつ持っておくと楽になる。",
+          "next": "end_quiet"
+        }
+      ]
+    },
+    "p_c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "はい、ぜひ。お疲れさまでした。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "png1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "え? まあ、たまには作りますけど……。",
+          "next": "nr1"
+        }
+      ]
+    },
+    "nr1": {
+      "type": "player_choice",
+      "prompt": "相手が戸惑っている。仕切り直すなら——",
+      "choices": [
+        {
+          "text": "すみません、いきなり(笑)。お昼どうしようかと思ってて。",
+          "quality": "best",
+          "techniques": ["リカバリ"],
+          "explanation": "変な入り方をしたら、笑いに変えて本題(お昼どうする?)に言い直せばやり直せる。失敗は上書きできる。",
+          "next": "p1"
+        },
+        {
+          "text": "ですよね。すみません。",
+          "quality": "ok",
+          "explanation": "謝るだけだと会話が止まる。聞きたかったこと(お昼の話)に言い直すと流れが戻る。",
+          "next": "p_nr1b"
+        }
+      ]
+    },
+    "p_nr1b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "いえいえ……。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "png2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "あ、まだですけど……。(少し戸惑った顔)",
+          "next": "nr2"
+        }
+      ]
+    },
+    "nr2": {
+      "type": "player_choice",
+      "prompt": "話を流してしまったせいで、空気がぎこちない。",
+      "choices": [
+        {
+          "text": "すみません、カレーの話でしたね。辛いのはお好きなんですか?",
+          "quality": "best",
+          "techniques": ["リカバリ", "相手の話題を拾う"],
+          "explanation": "流してしまった相手の話題に戻るのが最善のリカバリ。「〜の話でしたね」と口に出せば自然に戻れる。",
+          "next": "p2e"
+        },
+        {
+          "text": "そうですか。",
+          "quality": "ok",
+          "explanation": "そのままだと会話が途切れる。相手が出してくれた話題(カレー屋)に戻るチャンスだった。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "png3": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "いや、午後はほんとに用事があるので……。",
+          "next": "nr3"
+        }
+      ]
+    },
+    "nr3": {
+      "type": "player_choice",
+      "prompt": "押してしまった。引き返すなら——",
+      "choices": [
+        {
+          "text": "ですよね、失礼しました。午前だけでもご一緒できてよかったです。",
+          "quality": "best",
+          "techniques": ["リカバリ", "ポジティブな締め"],
+          "explanation": "押しに気づいたらすぐ謝って、ポジティブな締めに切り替える。最後の一言が良ければ、押した分は帳消しにできる。",
+          "next": "p2f"
+        },
+        {
+          "text": "……そうですか。",
+          "quality": "ok",
+          "explanation": "引いただけだと気まずさが残る。「ご一緒できてよかった」の一言で締め直せた場面。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "end_good": {
+      "type": "end",
+      "text": "話が弾み、午後の卓もぐっと話しやすくなった。趣味の場の雑談は、次にちゃんとつながる。",
+      "mood": "good"
+    },
+    "end_neutral": {
+      "type": "end",
+      "text": "感じよくひと区切り。午後にまた話すきっかけは残せた。",
+      "mood": "neutral"
+    },
+    "end_quiet": {
+      "type": "end",
+      "text": "静かに終わったが、悪い印象は残っていない。",
+      "mood": "neutral"
+    },
+    "end_awkward": {
+      "type": "end",
+      "text": "会話が途切れ、お互い飲み物に目を落とした。午後、もう一度仕切り直そう。",
+      "mood": "awkward"
+    }
+  }
+}
