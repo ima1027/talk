@@ -1,0 +1,456 @@
+{
+  "id": "news-senior_known-01",
+  "topic": "ニュース",
+  "scene": "senior_known",
+  "title": "義父とリビングで二人、テレビのニュースを入口に",
+  "situation": "配偶者の実家。配偶者は台所に立ってしまい、リビングで義父と二人になった。テレビはスポーツニュースで、有名選手の記録更新を伝えている。",
+  "guide": "気を遣う相手とのニュース話は「テレビ・場にあるもの」を入口に。政治や説教くさい話に踏み込まない練習。",
+  "entry": "n1",
+  "nodes": {
+    "n1": {
+      "type": "player_choice",
+      "prompt": "沈黙が続く。テレビが救いの糸口に見えてきた——",
+      "choices": [
+        {
+          "text": "◯◯選手、また記録更新だそうですね。すごいですね。",
+          "quality": "best",
+          "techniques": ["場の共通話題"],
+          "explanation": "いま二人の目の前に流れているニュースは、最も自然な共通話題。明るいスポーツの話題は立場も分かれない。",
+          "next": "p1"
+        },
+        {
+          "text": "なにか面白いニュース、やってます?",
+          "quality": "ok",
+          "techniques": ["答えやすい質問"],
+          "explanation": "テレビを見ている相手への自然な聞き方。画面の話題に自分から触れると、さらに会話になりやすい。",
+          "next": "p1"
+        },
+        {
+          "text": "今度の選挙、お義父さんはどこを支持してるんですか?",
+          "quality": "ng",
+          "explanation": "政治は家族でも(むしろ家族だからこそ)最大のタブー。義理の関係では絶対に自分から出さない。",
+          "next": "png1"
+        }
+      ]
+    },
+    "p1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 3,
+          "text": "ほう、観たか? 昨日の試合はすごかったぞ。",
+          "next": "n2e"
+        },
+        {
+          "category": "counter",
+          "weight": 2,
+          "text": "ああ。◯◯さんはスポーツ、観るのか?",
+          "next": "n2c"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "ああ、すごいらしいな。",
+          "next": "n2s"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……(テレビを観ている)",
+          "next": "n2f"
+        }
+      ]
+    },
+    "n2e": {
+      "type": "player_choice",
+      "prompt": "「昨日の試合はすごかったぞ」と乗ってきた。",
+      "choices": [
+        {
+          "text": "ハイライトだけ見ました。生で観てた方の解説、聞きたいです(笑)。",
+          "quality": "best",
+          "techniques": ["教わる姿勢"],
+          "explanation": "詳しい相手には「教わる側」に回るのが一番。義父の得意分野を語ってもらう時間は、関係づくりそのもの。",
+          "next": "p2e"
+        },
+        {
+          "text": "いえ、観てないんです。",
+          "quality": "ok",
+          "explanation": "正直で問題ないが、そこで終わると話も終わる。「どんな試合でした?」と続きを促せると良い。",
+          "next": "p2b"
+        },
+        {
+          "text": "でも野球って、試合が長すぎませんか? 途中で飽きちゃって。",
+          "quality": "ng",
+          "explanation": "相手の好きなものへの否定は地雷。興味が持てなくても「良さを教わる側」に回るのが安全で、むしろ話が弾む。",
+          "next": "png2"
+        }
+      ]
+    },
+    "p2e": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "そうかそうか。九回のあの場面はな……(嬉しそうに語り始める)",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ハイライトで十分だぞ(笑)。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "そうか。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2c": {
+      "type": "player_choice",
+      "prompt": "「スポーツ観るのか?」と聞かれた。",
+      "choices": [
+        {
+          "text": "にわかですが大きな大会は観ます。お義父さんは何がお好きですか?",
+          "quality": "best",
+          "techniques": ["一問二答"],
+          "explanation": "「にわかですが」と正直に言いつつ、相手の好みを聞き返す。義父の「好き」を知っておくと今後の話題に困らない。",
+          "next": "p2c"
+        },
+        {
+          "text": "あまり観ないですね……。",
+          "quality": "ok",
+          "explanation": "正直だが、ここで止まると沈黙に戻る。相手の好みへの質問返しをセットにするのがコツ。",
+          "next": "p2c2"
+        }
+      ]
+    },
+    "p2c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "わしは野球一筋だな。昔は球場までよく行ったもんだ。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ほどほどに、な。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2c2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "そうか……。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2s": {
+      "type": "player_choice",
+      "prompt": "「すごいらしいな」で止まった。",
+      "choices": [
+        {
+          "text": "記録もですけど、あの歳まで続けられるのがすごいですよね。",
+          "quality": "best",
+          "techniques": ["感想+質問", "角度を変える"],
+          "explanation": "事実(記録)から人柄・生き方(続けるすごさ)へ角度を変えると、世代を超えて共感できる話になる。",
+          "next": "p2s"
+        },
+        {
+          "text": "(頷く)",
+          "quality": "ok",
+          "explanation": "沈黙も悪くないが、感想を一言足すと会話が生まれることがある。",
+          "next": "p2s2"
+        }
+      ]
+    },
+    "p2s": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "そうだな。ああいうのは体をよほど大事にしとるんだろう。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "うむ。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2s2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "……。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2f": {
+      "type": "player_choice",
+      "prompt": "義父はテレビに集中している様子。",
+      "choices": [
+        {
+          "text": "(無理に話しかけず、CMになったら)お茶、淹れましょうか。",
+          "quality": "best",
+          "techniques": ["撤退", "小さな提案"],
+          "explanation": "会話だけがコミュニケーションではない。行動の気遣いは、無理な雑談より確実に伝わる。タイミングはCMまで待つ。",
+          "next": "p2f"
+        },
+        {
+          "text": "テレビばっかり観てると、体に悪いですよ(笑)。",
+          "quality": "ng",
+          "explanation": "冗談でも説教に聞こえる一言は義理の関係では危険。相手の過ごし方に口を出さない。",
+          "next": "png3"
+        }
+      ]
+    },
+    "p2f": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "お、ああ。頼む。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n3": {
+      "type": "player_choice",
+      "prompt": "義父が楽しそうに話している。",
+      "choices": [
+        {
+          "text": "今度、一緒に観てみたいです。解説付きだと面白そうなので(笑)。",
+          "quality": "best",
+          "techniques": ["次につなげる", "小さな提案"],
+          "explanation": "「一緒に観たい」は義父の得意分野を尊重する提案。実現すれば、義実家の時間の過ごし方がひとつ増える。",
+          "next": "p3"
+        },
+        {
+          "text": "そうなんですね〜。",
+          "quality": "ok",
+          "explanation": "相づちだけだと話が減速する。せっかく相手が乗っている流れは、提案や質問で活かしたい。",
+          "next": "p3b"
+        }
+      ]
+    },
+    "p3": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "お、いいな。今度、一緒に観るか。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "p3b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "……まあ、そんなとこだ。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n_close": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "台所から「ご飯できたよ」の声。",
+      "choices": [
+        {
+          "text": "楽しみにしてます。——ご飯できたみたいですね、行きましょうか。",
+          "quality": "best",
+          "techniques": ["切り上げ", "次につなげる"],
+          "explanation": "約束を確認して、場の動き(食事)で切り上げる。良い流れのまま終えられれば雑談は大成功。",
+          "next": "p_c"
+        },
+        {
+          "text": "(頷いて台所の方を見る)",
+          "quality": "ok",
+          "explanation": "自然な流れだが、約束への一言があると「社交辞令でなく本気」が伝わる。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "おう、そうだな。",
+          "next": "end_good"
+        }
+      ]
+    },
+    "n3s": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "台所から「ご飯できたよ」の声がした。",
+      "choices": [
+        {
+          "text": "——あ、ご飯できたみたいですね。行きましょうか。",
+          "quality": "best",
+          "techniques": ["切り上げ"],
+          "explanation": "会話が伸びない時間も、区切りの声かけを自分からできれば十分。「行きましょうか」の一言が気遣いになる。",
+          "next": "p_ns"
+        },
+        {
+          "text": "(黙ってスマホを見る)",
+          "quality": "ok",
+          "explanation": "沈黙に逃げ込むと、次の沈黙がさらに重くなる。区切りの声かけは自分から。",
+          "next": "end_quiet"
+        }
+      ]
+    },
+    "p_ns": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ああ。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "png1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……その話は、まあ、いいじゃないか。",
+          "next": "nr1"
+        }
+      ]
+    },
+    "nr1": {
+      "type": "player_choice",
+      "prompt": "はっきり遮られた。完全に話題を間違えた。",
+      "choices": [
+        {
+          "text": "そうですね、失礼しました。それより◯◯選手、すごいですね。",
+          "quality": "best",
+          "techniques": ["リカバリ", "撤退・話題転換"],
+          "explanation": "タブーを踏んだら、遮られたことに乗じてすぐ安全な話題(目の前のテレビ)へ。深追いは厳禁。",
+          "next": "p1"
+        },
+        {
+          "text": "すみません……。",
+          "quality": "ok",
+          "explanation": "謝るだけだと重い空気が残る。明るい話題への転換までがリカバリ。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "png2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……まあ、人それぞれだな。",
+          "next": "nr2"
+        }
+      ]
+    },
+    "nr2": {
+      "type": "player_choice",
+      "prompt": "義父の声が一段低くなった。",
+      "choices": [
+        {
+          "text": "すみません(笑)。長いからこそ、じっくり楽しめるんですかね。",
+          "quality": "best",
+          "techniques": ["リカバリ", "教わる姿勢"],
+          "explanation": "否定してしまったら、その要素(長さ)を良さとして聞き直す。「教えてください」の姿勢に切り替われば挽回できる。",
+          "next": "p2e"
+        },
+        {
+          "text": "……。",
+          "quality": "ok",
+          "explanation": "沈黙は否定の印象を固定する。教わる側に回り直すのが正解だった。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "png3": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……ふん。",
+          "next": "nr3"
+        }
+      ]
+    },
+    "nr3": {
+      "type": "player_choice",
+      "prompt": "機嫌を損ねたかもしれない。",
+      "choices": [
+        {
+          "text": "すみません、余計でした。——お茶、淹れてきますね。",
+          "quality": "best",
+          "techniques": ["リカバリ", "小さな提案"],
+          "explanation": "失言のあとは言葉より行動。お茶を淹れる間に空気もリセットできる。",
+          "next": "p2f"
+        },
+        {
+          "text": "……(気まずい沈黙)",
+          "quality": "ok",
+          "explanation": "沈黙で耐えるより、行動で流れを変えるほうが早く立て直せる。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "end_good": {
+      "type": "end",
+      "text": "「今度、一緒に観るか」。義実家で過ごす時間が、少し楽しみになった。",
+      "mood": "good"
+    },
+    "end_neutral": {
+      "type": "end",
+      "text": "無難に間が持てた。食卓には配偶者もいる。上出来だ。",
+      "mood": "neutral"
+    },
+    "end_quiet": {
+      "type": "end",
+      "text": "テレビの音だけが流れる時間に戻った。次はCMのタイミングで一声かけてみよう。",
+      "mood": "neutral"
+    },
+    "end_awkward": {
+      "type": "end",
+      "text": "気まずさの残る時間になった。食卓で配偶者を交えて仕切り直そう。",
+      "mood": "awkward"
+    }
+  }
+}

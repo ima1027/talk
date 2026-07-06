@@ -1,0 +1,452 @@
+{
+  "id": "news-first_casual-01",
+  "topic": "ニュース",
+  "scene": "first_casual",
+  "title": "ランニングイベントの受付列で、地元の明るいニュースを振る",
+  "situation": "地域のランニングイベント。受付の列で、初対面の参加者と隣同士になった。最近、駅前に大型商業施設がオープンするというニュースが地元で話題だ。",
+  "guide": "ニュースを話題にするなら「明るいローカル時事」が安全。政治・事件・災害を入口にしない練習。",
+  "entry": "n1",
+  "nodes": {
+    "n1": {
+      "type": "player_choice",
+      "prompt": "列がなかなか進まない。隣の人に話しかけるなら——",
+      "choices": [
+        {
+          "text": "駅前の新しい施設、来月オープンらしいですね。ご存じでした?",
+          "quality": "best",
+          "techniques": ["場の共通話題", "答えやすい質問"],
+          "explanation": "地元の明るいニュースは、その場の全員に関係があって角が立たない鉄板の時事ネタ。知ってる/知らないのどちらでも会話が始まる。",
+          "next": "p1"
+        },
+        {
+          "text": "今日、人多いですね。人気のイベントなんですね。",
+          "quality": "ok",
+          "techniques": ["場の観察"],
+          "explanation": "場の観察も安全な入り。ニュースネタと合わせて持っておくと入口が増える。",
+          "next": "p1"
+        },
+        {
+          "text": "最近の政治、ひどくないですか? 選挙どこに入れました?",
+          "quality": "ng",
+          "explanation": "政治・宗教・支持政党は初対面の絶対タブー。時事の話をするなら、立場が分かれない明るい話題を選ぶ。",
+          "next": "png1"
+        }
+      ]
+    },
+    "p1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 4,
+          "text": "見ました見ました。映画館も入るらしいですよ。",
+          "next": "n2e"
+        },
+        {
+          "category": "counter",
+          "weight": 2,
+          "text": "まだちゃんと見てなくて。何が入るんでしたっけ?",
+          "next": "n2c"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "ああ、そうらしいですね。",
+          "next": "n2s"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……よく知らないです。",
+          "next": "n2f"
+        }
+      ]
+    },
+    "n2e": {
+      "type": "player_choice",
+      "prompt": "「映画館も入るらしい」と乗ってきた。",
+      "choices": [
+        {
+          "text": "映画館! この辺なかったから助かりますよね。",
+          "quality": "best",
+          "techniques": ["共感・受け止め", "場の共通話題"],
+          "explanation": "「この辺になかった」という地域の共通体験に接続すると、初対面でも一気に地元トークになる。",
+          "next": "p2e"
+        },
+        {
+          "text": "へえ、映画館も入るんですね。",
+          "quality": "ok",
+          "explanation": "受け止めは十分。自分の生活との接点(助かる・行きたい)を足すと会話が温まる。",
+          "next": "p2e"
+        },
+        {
+          "text": "ふーん。ところで今日、タイム狙ってます?",
+          "quality": "ng",
+          "explanation": "相手が広げた話題を「ふーん」で流して話題を変えると、興味がない印象を与える。転換は話の区切りを待つ。",
+          "next": "png2"
+        }
+      ]
+    },
+    "p2e": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 3,
+          "text": "ですよね。今まで隣町まで行ってたので。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ですね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2c": {
+      "type": "player_choice",
+      "prompt": "「何が入るんでしたっけ?」と聞かれた。",
+      "choices": [
+        {
+          "text": "映画館とジムらしいです。ジム、ちょっと気になってて。",
+          "quality": "best",
+          "techniques": ["一問二答", "自己開示"],
+          "explanation": "情報+自分の関心をひとこと。「気になってて」の一言が、相手に次の質問の取っかかりを渡す。",
+          "next": "p2c"
+        },
+        {
+          "text": "映画館らしいですよ。",
+          "quality": "ok",
+          "explanation": "答えとしては十分。自分との接点を足すと会話がラリーになる。",
+          "next": "p2c2"
+        }
+      ]
+    },
+    "p2c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "ジム! ランナーには気になりますね。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "へえ、そうなんですね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2c2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "へえ。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2s": {
+      "type": "player_choice",
+      "prompt": "「そうらしいですね」で止まった。",
+      "choices": [
+        {
+          "text": "オープンしたら、この辺の週末は混みそうですね(笑)。",
+          "quality": "best",
+          "techniques": ["角度を変える", "小さな笑い"],
+          "explanation": "事実の話で伸びなければ、軽い予想・未来話に角度を変える。「混みそう(笑)」は誰でも一言返せる置き球。",
+          "next": "p2s"
+        },
+        {
+          "text": "ですよね。",
+          "quality": "ok",
+          "explanation": "同調で終わると会話も終わる。角度を変えたもう一手を試す価値がある。",
+          "next": "p2s2"
+        }
+      ]
+    },
+    "p2s": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "間違いないですね(笑)。駐車場が心配です。",
+          "next": "n3"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "どうでしょうね。",
+          "next": "n2f"
+        }
+      ]
+    },
+    "p2s2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "……。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2f": {
+      "type": "player_choice",
+      "prompt": "ニュースの話題には乗ってこない。ここは今日の共通項——",
+      "choices": [
+        {
+          "text": "そういえば、このコース走るの初めてですか?",
+          "quality": "best",
+          "techniques": ["撤退・話題転換", "場の共通話題"],
+          "explanation": "ニュースが不発なら、今この場の共通項(大会・コース)へ。参加者同士なら絶対に共有している話題がある。",
+          "next": "p2f"
+        },
+        {
+          "text": "あ、すみません、急に。",
+          "quality": "ok",
+          "explanation": "引くだけより、場の話題への切り替えまでセットにすると気まずくならない。",
+          "next": "p2f"
+        }
+      ]
+    },
+    "p2f": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "二回目です。川沿いの区間が気持ちいいですよ。",
+          "next": "n3f"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "初めてです。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n3f": {
+      "type": "player_choice",
+      "prompt": "コースの話に乗ってきてくれた。",
+      "choices": [
+        {
+          "text": "川沿い、楽しみです。ペース配分のコツあります?(笑)",
+          "quality": "best",
+          "techniques": ["教わる姿勢"],
+          "explanation": "経験者に「教わる姿勢」で聞くと、相手は気持ちよく話せる。大会前の実用情報にもなって一石二鳥。",
+          "next": "p3f"
+        },
+        {
+          "text": "いいですね。",
+          "quality": "ok",
+          "explanation": "受け止めだけだと続かない。質問を足せば経験談を聞けた場面。",
+          "next": "p3f2"
+        }
+      ]
+    },
+    "p3f": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "後半の橋がきついので、前半は抑えめがいいですよ(笑)。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "p3f2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "はい。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n3": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "地元トークがいい感じに続いた。列が進み始めた。",
+      "choices": [
+        {
+          "text": "オープンしたら情報交換しましょう(笑)。今日、頑張りましょうね。",
+          "quality": "best",
+          "techniques": ["次につなげる", "切り上げ"],
+          "explanation": "軽い約束+エール で締める。「頑張りましょう」はイベント会場で万能の切り上げ言葉。",
+          "next": "p_cg"
+        },
+        {
+          "text": "そうですね。(列が進んだ)",
+          "quality": "ok",
+          "explanation": "自然な区切りとして十分。エールの一言があるとより爽やかに終われる。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_cg": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "ぜひ(笑)。お互い頑張りましょう!",
+          "next": "end_good"
+        }
+      ]
+    },
+    "n_close": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "コースのコツまで教えてもらえた。",
+      "choices": [
+        {
+          "text": "いい情報もらいました。じゃあ、スタートでまた!",
+          "quality": "best",
+          "techniques": ["教わったことへのお礼", "切り上げ"],
+          "explanation": "お礼+「また」で締めると、レース後にもう一度話すきっかけが残る。",
+          "next": "p_c"
+        },
+        {
+          "text": "なるほど。じゃ、また。",
+          "quality": "ok",
+          "explanation": "問題ないが、お礼を先に置くとより締まる。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "またぜひ!",
+          "next": "end_good"
+        }
+      ]
+    },
+    "n3s": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "会話は細いまま、受付が近づいた。",
+      "choices": [
+        {
+          "text": "あ、列進みましたね。今日、お互い頑張りましょう!",
+          "quality": "best",
+          "techniques": ["切り上げ"],
+          "explanation": "伸びなかった会話も、エールで締めれば爽やかに終わる。走っている間の気まずさも残らない。",
+          "next": "p_ns"
+        },
+        {
+          "text": "(黙って列に続く)",
+          "quality": "ok",
+          "explanation": "無言でも失礼ではないが、一言で印象がまるで違う。",
+          "next": "end_quiet"
+        }
+      ]
+    },
+    "p_ns": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "頑張りましょう。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "png1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "え……いや、その話はちょっと。",
+          "next": "nr1"
+        }
+      ]
+    },
+    "nr1": {
+      "type": "player_choice",
+      "prompt": "明確に引かれた。話題の選択を間違えた。",
+      "choices": [
+        {
+          "text": "すみません、重い話でした。駅前の新しい施設、楽しみですね。",
+          "quality": "best",
+          "techniques": ["リカバリ", "撤退・話題転換"],
+          "explanation": "タブーを踏んだら即謝罪+明るい話題へ全力で転換。引きずるほど傷が深くなる。",
+          "next": "p1"
+        },
+        {
+          "text": "すみません……。",
+          "quality": "ok",
+          "explanation": "謝罪だけだと気まずさが残る。明るい話題への転換までがリカバリ。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "png2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "え? ああ、いや、完走できれば……。",
+          "next": "nr2"
+        }
+      ]
+    },
+    "nr2": {
+      "type": "player_choice",
+      "prompt": "急な話題転換で相手が戸惑っている。",
+      "choices": [
+        {
+          "text": "すみません、映画館の話でしたね。オープンしたら行きます?",
+          "quality": "best",
+          "techniques": ["リカバリ", "話題を戻す"],
+          "explanation": "折ってしまった話題に「〜の話でしたね」で戻る。相手の話を覚えていたこと自体が誠意になる。",
+          "next": "p2e"
+        },
+        {
+          "text": "そうですか。",
+          "quality": "ok",
+          "explanation": "流すと両方の話題が死ぬ。相手の話題に戻るのが正解だった。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "end_good": {
+      "type": "end",
+      "text": "スタート地点でも隣に並んで話せた。走り終わったらまた話そう。",
+      "mood": "good"
+    },
+    "end_neutral": {
+      "type": "end",
+      "text": "軽く言葉を交わして受付へ。コース上で会釈できる相手ができた。",
+      "mood": "neutral"
+    },
+    "end_quiet": {
+      "type": "end",
+      "text": "静かに受付が進んだ。悪い印象はない。",
+      "mood": "neutral"
+    },
+    "end_awkward": {
+      "type": "end",
+      "text": "相手が少し距離を取った気がする。今日は走りに集中しよう。",
+      "mood": "awkward"
+    }
+  }
+}

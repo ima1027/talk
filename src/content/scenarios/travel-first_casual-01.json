@@ -1,0 +1,505 @@
+{
+  "id": "travel-first_casual-01",
+  "topic": "旅",
+  "scene": "first_casual",
+  "title": "結婚式の同じテーブルで、連休の話をする",
+  "situation": "友人の結婚式。同じテーブルになった初対面の人と歓談タイムになった。ちょうど連休が明けたばかりの時期だ。",
+  "guide": "連休・旅は初対面の鉄板話題。「どうでした?」の曖昧質問を避け、答えやすく聞いて体験を引き出す練習。",
+  "entry": "n1",
+  "nodes": {
+    "n1": {
+      "type": "player_choice",
+      "prompt": "乾杯が済み、隣の人と目が合った。連休の話を振るなら——",
+      "choices": [
+        {
+          "text": "連休はどこか行かれました? 私は近場でのんびりでした。",
+          "quality": "best",
+          "techniques": ["答えやすい質問", "自己開示"],
+          "explanation": "「どこか行った?」+自分の答えを先に添えると、相手は「行った/行ってない」どちらでも答えやすい。先に少し開示するのが呼び水になる。",
+          "next": "p1"
+        },
+        {
+          "text": "連休、あっという間でしたね。",
+          "quality": "ok",
+          "techniques": ["共感・受け止め"],
+          "explanation": "共感の入りは安全。ただ質問がないので、相手が広げてくれるかは相手次第になる。",
+          "next": "p1"
+        },
+        {
+          "text": "連休、どうでした?",
+          "quality": "ng",
+          "explanation": "「〜どうでした?」は答えやすそうで実は何を答えればいいか不明確な曖昧質問。いつ・どこで・何を、のどれかを specify すると答えやすくなる。",
+          "next": "png1"
+        }
+      ]
+    },
+    "p1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 4,
+          "text": "金沢に行ってきました。初めてだったんですけど、すごくよくて。",
+          "next": "n2e"
+        },
+        {
+          "category": "counter",
+          "weight": 2,
+          "text": "近場でのんびり、いいですね。どの辺に行かれたんですか?",
+          "next": "n2c"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "いえ、特にどこも。家にいました。",
+          "next": "n2s"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……仕事でした。",
+          "next": "n2f"
+        }
+      ]
+    },
+    "n2e": {
+      "type": "player_choice",
+      "prompt": "「金沢がすごくよかった」と広げてくれた。",
+      "choices": [
+        {
+          "text": "金沢いいですね! 何がいちばんよかったですか?",
+          "quality": "best",
+          "techniques": ["きっかけを聞く", "相手の話題を拾う"],
+          "explanation": "旅の話は「いちばん◯◯だったのは?」で体験を聞くと相手が気持ちよく話せる。場所の詮索より体験の質問。",
+          "next": "p2e"
+        },
+        {
+          "text": "金沢、人気ですよね。",
+          "quality": "ok",
+          "techniques": ["共感・受け止め"],
+          "explanation": "受け止めとしては十分。体験への質問を足すと相手の「よかった」を引き出せる。",
+          "next": "p2e"
+        },
+        {
+          "text": "へえ。ホテルどこ泊まりました? 一泊いくらでした?",
+          "quality": "ng",
+          "explanation": "宿泊先や値段は初対面には踏み込みすぎ。旅の話は「体験」を聞き、「お金」には触れないのが安全。",
+          "next": "png2"
+        }
+      ]
+    },
+    "p2e": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 3,
+          "text": "朝の市場ですね。海鮮丼が最高でした。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "うーん、全部よかったですよ。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2c": {
+      "type": "player_choice",
+      "prompt": "逆に「どの辺に?」と聞かれた。",
+      "choices": [
+        {
+          "text": "県内の温泉に一泊だけ。逆に空いてて良かったですよ。",
+          "quality": "best",
+          "techniques": ["一問二答"],
+          "explanation": "答え+感想ひとことで返すと会話が転がる。「逆に空いてた」のような小さな発見は良い話の種になる。",
+          "next": "p2c"
+        },
+        {
+          "text": "家の近くをぶらぶらしてただけです。",
+          "quality": "ok",
+          "explanation": "正直で問題ないが、感想や発見をひとこと足すと相手が突っ込みやすくなる。",
+          "next": "p2c2"
+        }
+      ]
+    },
+    "p2c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "あ、いいですね。どこの温泉ですか?",
+          "next": "n3b"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "へえ、いいですね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2c2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "そうなんですね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n3b": {
+      "type": "player_choice",
+      "prompt": "温泉の話に食いついてくれた。",
+      "choices": [
+        {
+          "text": "◯◯温泉です。宿より、帰りに寄った道の駅が当たりで(笑)。",
+          "quality": "best",
+          "techniques": ["自己開示", "小さな笑い"],
+          "explanation": "予想外の小ネタ(道の駅が当たり)は会話の御馳走。かっこいい話より、ゆるい実話のほうが場が和む。",
+          "next": "p3b"
+        },
+        {
+          "text": "◯◯温泉ってところです。",
+          "quality": "ok",
+          "explanation": "答えだけで終わるとまた相手がボールを拾う番になる。ひとこと添えるのがコツ。",
+          "next": "p3b2"
+        }
+      ]
+    },
+    "p3b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "道の駅(笑)。わかります、ああいうのが一番楽しいんですよね。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "p3b2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "知らないなあ。いいですね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2s": {
+      "type": "player_choice",
+      "prompt": "「特にどこも。家にいた」と返ってきた。",
+      "choices": [
+        {
+          "text": "わかります、家がいちばんって時ありますよね。一気見とかですか?",
+          "quality": "best",
+          "techniques": ["“ない”から拾う", "共感・受け止め"],
+          "explanation": "「どこも行ってない」を残念がらず、家時間の中身を軽く聞く。「ない」の中に必ず話の種がある。",
+          "next": "p2s"
+        },
+        {
+          "text": "そうなんですね。",
+          "quality": "ok",
+          "explanation": "ここで終わると話題ごと終わる。家時間に軽く興味を向けると続きが生まれる。",
+          "next": "p2s2"
+        }
+      ]
+    },
+    "p2s": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "そうそう、ドラマを一気見しちゃいました。",
+          "next": "n3"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "まあ、寝てただけです。",
+          "next": "n2f"
+        }
+      ]
+    },
+    "p2s2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "……。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2f": {
+      "type": "player_choice",
+      "prompt": "この話題には乗り気でなさそうだ。",
+      "choices": [
+        {
+          "text": "お疲れさまです……。落ち着いたら行きたい所とかあります?",
+          "quality": "best",
+          "techniques": ["ねぎらい", "角度を変える"],
+          "explanation": "過去(連休)が不発なら未来(行きたい所)に切り替える。願望の話は誰でも答えやすく、暗い流れも変えられる。",
+          "next": "p2f"
+        },
+        {
+          "text": "えー、連休に仕事は大変すぎません? お勤めどちらなんですか?",
+          "quality": "ng",
+          "explanation": "同情のつもりでも、勤め先の詮索につなげると尋問になる。乗り気でない話題は深掘りしない。",
+          "next": "png3"
+        }
+      ]
+    },
+    "p2f": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "温泉でも行きたいですねえ。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "今は考えられないですね(笑)。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n3": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "旅の話がいい感じに続いた。料理が運ばれてきた。",
+      "choices": [
+        {
+          "text": "今度の旅の参考にします(笑)。——あ、お料理来ましたね。",
+          "quality": "best",
+          "techniques": ["次につなげる", "切り上げ"],
+          "explanation": "相手の話を「参考にする」と持ち上げつつ、場の動き(料理)で自然に区切る。余韻の残る切り上げ方。",
+          "next": "p_close_good"
+        },
+        {
+          "text": "いいですね〜。",
+          "quality": "ok",
+          "explanation": "相づちのまま流れると、会話は自然消滅する。区切りの一言があると印象が残る。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_close_good": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "ぜひぜひ。金沢、おすすめです。",
+          "next": "end_good"
+        }
+      ]
+    },
+    "n3s": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "会話は細いまま。会場がざわめき始めた。",
+      "choices": [
+        {
+          "text": "——あ、新郎新婦の入場みたいですね。また後ほど!",
+          "quality": "best",
+          "techniques": ["切り上げ"],
+          "explanation": "式の進行は最高の区切り役。「また後ほど」で次に話すきっかけも残せる。",
+          "next": "p_ns"
+        },
+        {
+          "text": "(グラスに手を伸ばす)",
+          "quality": "ok",
+          "explanation": "無言の区切りも失礼ではないが、一言あるほうが後半に話しやすくなる。",
+          "next": "end_quiet"
+        }
+      ]
+    },
+    "p_ns": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "はい、また。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "n_close": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "道の駅の話でひと笑いできた。",
+      "choices": [
+        {
+          "text": "旅の話、また聞かせてください。式の後半もよろしくです。",
+          "quality": "best",
+          "techniques": ["次につなげる", "切り上げ"],
+          "explanation": "「また聞かせて」は相手の話が面白かったという最高の褒め言葉。次の歓談タイムの布石にもなる。",
+          "next": "p_c"
+        },
+        {
+          "text": "では、また後で。",
+          "quality": "ok",
+          "explanation": "十分だが、相手の話への一言があるとより締まる。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "こちらこそ。温泉と道の駅の続き、あとで聞かせてください(笑)。",
+          "next": "end_good"
+        }
+      ]
+    },
+    "png1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "え? ああ……普通でしたよ。",
+          "next": "nr1"
+        }
+      ]
+    },
+    "nr1": {
+      "type": "player_choice",
+      "prompt": "「普通でした」で止まってしまった。聞き方が漠然としすぎたようだ。",
+      "choices": [
+        {
+          "text": "すみません、ざっくりすぎました(笑)。どこか出かけたりしました?",
+          "quality": "best",
+          "techniques": ["リカバリ", "答えやすい質問"],
+          "explanation": "曖昧質問で止まったら、具体的な聞き直しでやり直せる。「出かけた? 家だった?」レベルまで具体化すると答えやすい。",
+          "next": "p1"
+        },
+        {
+          "text": "ですよね(笑)。",
+          "quality": "ok",
+          "explanation": "同調して終わると会話も終わる。聞き直しのチャンスだった。",
+          "next": "p_nr1b"
+        }
+      ]
+    },
+    "p_nr1b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "png2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "えっと……まあ、普通のビジネスホテルですよ。",
+          "next": "nr2"
+        }
+      ]
+    },
+    "nr2": {
+      "type": "player_choice",
+      "prompt": "お金の話で相手が引いた。",
+      "choices": [
+        {
+          "text": "失礼しました。それより市場、混んでました? 行ってみたくて。",
+          "quality": "best",
+          "techniques": ["リカバリ", "話題を戻す"],
+          "explanation": "まずい質問をしたら、相手が楽しそうに話していた話題(市場)へ戻すのが一番のリカバリ。",
+          "next": "p2e"
+        },
+        {
+          "text": "そうですか。",
+          "quality": "ok",
+          "explanation": "流すと気まずさだけが残る。相手の「よかった話」に戻れば持ち直せた。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "png3": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……まあ、いろいろありまして。",
+          "next": "nr3"
+        }
+      ]
+    },
+    "nr3": {
+      "type": "player_choice",
+      "prompt": "踏み込みすぎた。壁を感じる。",
+      "choices": [
+        {
+          "text": "立ち入ったこと聞いてすみません。ゆっくり休めるといいですね。",
+          "quality": "best",
+          "techniques": ["リカバリ", "ねぎらい"],
+          "explanation": "詮索に気づいたらすぐ謝り、ねぎらいで締める。相手の事情には立ち入らない姿勢を見せることが信頼になる。",
+          "next": "p_nr3"
+        },
+        {
+          "text": "……。",
+          "quality": "ok",
+          "explanation": "沈黙のままだと気まずさが固定される。ねぎらいの一言で軟着陸できた場面。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "p_nr3": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ありがとうございます。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "end_good": {
+      "type": "end",
+      "text": "旅の話で打ち解けて、披露宴の間、話し相手に困らなくなった。",
+      "mood": "good"
+    },
+    "end_neutral": {
+      "type": "end",
+      "text": "感じよくひと区切り。式の後半でまた話せそうだ。",
+      "mood": "neutral"
+    },
+    "end_quiet": {
+      "type": "end",
+      "text": "静かに歓談タイムが過ぎた。悪い印象は残っていない。",
+      "mood": "neutral"
+    },
+    "end_awkward": {
+      "type": "end",
+      "text": "少し気まずい空気の中、司会の声に救われた。後半で仕切り直そう。",
+      "mood": "awkward"
+    }
+  }
+}

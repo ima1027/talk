@@ -1,0 +1,515 @@
+{
+  "id": "travel-senior_known-01",
+  "topic": "旅",
+  "scene": "senior_known",
+  "title": "エレベーターで、休暇明けの課長と二人",
+  "situation": "エレベーターで隣の課の課長と二人になった。課長は先週まで休暇で沖縄に行っていたらしく、チームにお土産が配られていた。",
+  "guide": "目上の旅の話は「お土産・体験へのお礼と感想」から入る練習。詮索にならない範囲で一歩だけ広げる。",
+  "entry": "n1",
+  "nodes": {
+    "n1": {
+      "type": "player_choice",
+      "prompt": "扉が閉まった。声をかけるなら——",
+      "choices": [
+        {
+          "text": "先日はお土産ありがとうございました。沖縄でしたよね。",
+          "quality": "best",
+          "techniques": ["お礼起点", "相手の話題を拾う"],
+          "explanation": "お礼は目上への最強の入口。もらったものへのお礼から入れば、旅の話も自然で失礼がない。",
+          "next": "p1"
+        },
+        {
+          "text": "先週はお休みでしたよね。ゆっくりできました?",
+          "quality": "ok",
+          "techniques": ["答えやすい質問"],
+          "explanation": "はい/いいえで答えられる聞き方で負担がない。お土産のお礼まで添えられるとさらに良い。",
+          "next": "p1"
+        },
+        {
+          "text": "沖縄っておいくらでした? 家族旅行って高いですよね。",
+          "quality": "ng",
+          "explanation": "旅費の詮索は目上には特にNG。旅の話は体験を聞き、お金と家族構成には踏み込まない。",
+          "next": "png1"
+        }
+      ]
+    },
+    "p1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 3,
+          "text": "おお、行ってきたよ。海がきれいでねえ。",
+          "next": "n2e"
+        },
+        {
+          "category": "counter",
+          "weight": 2,
+          "text": "ありがとう。◯◯さんは夏休み、どこか行くの?",
+          "next": "n2c"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "うん、まあなんとか休めたよ。",
+          "next": "n2s"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "ああ……(スマホから目を上げない)",
+          "next": "n2f"
+        }
+      ]
+    },
+    "n2e": {
+      "type": "player_choice",
+      "prompt": "「海がきれいで」と乗ってきた。",
+      "choices": [
+        {
+          "text": "いいですねえ。沖縄は何度目だったんですか?",
+          "quality": "best",
+          "techniques": ["きっかけを聞く"],
+          "explanation": "「何度目?」は答えやすく、初めてでもリピーターでも話が続く便利な質問。体験の入口になる。",
+          "next": "p2e"
+        },
+        {
+          "text": "海、いいですねえ。",
+          "quality": "ok",
+          "techniques": ["共感・受け止め"],
+          "explanation": "受け止めは十分。質問をひとつ足すと、あと一往復ぶん話が持つ。",
+          "next": "p2b"
+        },
+        {
+          "text": "お子さん連れだと、観光どころじゃないんじゃないですか?(笑)",
+          "quality": "ng",
+          "explanation": "家族の話を自分から持ち出し、しかも決めつけるのは二重に危ない。家族は相手が出すまで触れない。",
+          "next": "png2"
+        }
+      ]
+    },
+    "p2e": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "三度目かな。今回は離島まで足を伸ばしてね。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "初めてだよ。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "うん。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2c": {
+      "type": "player_choice",
+      "prompt": "「夏休みどこか行くの?」と聞き返された。",
+      "choices": [
+        {
+          "text": "涼しい方面に行きたくて、長野あたりを。おすすめあります?",
+          "quality": "best",
+          "techniques": ["一問二答", "教わる姿勢"],
+          "explanation": "答え+教わる姿勢のセット。目上には「おすすめを聞く」が一番気持ちよく話してもらえる返し方。",
+          "next": "p2c"
+        },
+        {
+          "text": "いや、特に決めてないです。",
+          "quality": "ok",
+          "explanation": "正直だが会話が止まりやすい。仮の案でも出すと相手が乗ってこられる。",
+          "next": "p2c2"
+        }
+      ]
+    },
+    "p2c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "長野いいね。上高地は外れがないよ。",
+          "next": "n3b"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ほう、いいんじゃない。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2c2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "そうか。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n3b": {
+      "type": "player_choice",
+      "prompt": "おすすめをもらえた。",
+      "choices": [
+        {
+          "text": "上高地、調べてみます。ありがとうございます。",
+          "quality": "best",
+          "techniques": ["教わったことへのお礼"],
+          "explanation": "「調べてみます」は教えがいのある返事。実際に行けば次の雑談の種になる。",
+          "next": "p3b"
+        },
+        {
+          "text": "なるほど〜。",
+          "quality": "ok",
+          "explanation": "相づちだけだと、せっかくのおすすめが流れてしまう。受け取ったことを言葉にすると良い。",
+          "next": "p3b2"
+        }
+      ]
+    },
+    "p3b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "行ったら感想聞かせてよ。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "p3b2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "……。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2s": {
+      "type": "player_choice",
+      "prompt": "「なんとか休めたよ」と短めの返事。",
+      "choices": [
+        {
+          "text": "何よりです。休み明けの一週間って長く感じますよね(笑)。",
+          "quality": "best",
+          "techniques": ["共感・受け止め", "場の共通話題"],
+          "explanation": "休み明けのしんどさは誰もが共有できる安全な共感ネタ。軽い笑いで距離が縮まる。",
+          "next": "p2s"
+        },
+        {
+          "text": "そうですか。",
+          "quality": "ok",
+          "explanation": "そこで終わると沈黙に戻る。共感の一言を足すだけで会話になる。",
+          "next": "p2s2"
+        }
+      ]
+    },
+    "p2s": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "ほんとだよ(笑)。もう沖縄が恋しい。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "まあね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2s2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "……。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2f": {
+      "type": "player_choice",
+      "prompt": "課長はスマホに集中している。",
+      "choices": [
+        {
+          "text": "(今は話しかけず、降り際に)お疲れさまです。",
+          "quality": "best",
+          "techniques": ["撤退", "切り上げ"],
+          "explanation": "目上が乗ってこないときは引くのが正解。降り際の挨拶だけ丁寧にすれば失礼はない。",
+          "next": "p2f"
+        },
+        {
+          "text": "あれ、日焼けしてません? 沖縄満喫しすぎでは(笑)。",
+          "quality": "ng",
+          "explanation": "外見への指摘+いじりは、目上が乗り気でない場面では特に危険。相手のペースを尊重する。",
+          "next": "png3"
+        }
+      ]
+    },
+    "p2f": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "お疲れさま。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "n3": {
+      "type": "player_choice",
+      "prompt": "旅の話がいい感じに続いた。",
+      "choices": [
+        {
+          "text": "聞いてたら行きたくなりました。おすすめ、今度教えてください。",
+          "quality": "best",
+          "techniques": ["次につなげる", "教わる姿勢"],
+          "explanation": "「今度教えて」で話を次に持ち越す。目上との雑談は、種を残して短く終えるのが上策。",
+          "next": "p3"
+        },
+        {
+          "text": "いいですねえ。",
+          "quality": "ok",
+          "explanation": "相づちだけだと、ここで話が減速する。次につながる一言があると関係の資産になる。",
+          "next": "p3_2"
+        }
+      ]
+    },
+    "p3": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "いつでも聞いて。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "p3_2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "うん。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n_close": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "フロアに着いた。",
+      "choices": [
+        {
+          "text": "では、失礼します。お土産、本当においしかったです。",
+          "quality": "best",
+          "techniques": ["切り上げ", "お礼起点"],
+          "explanation": "最後にもう一度お礼で締めると、雑談全体の印象が上がる。お礼で始めてお礼で終わるのは鉄板。",
+          "next": "p_c"
+        },
+        {
+          "text": "では、失礼します。",
+          "quality": "ok",
+          "explanation": "十分丁寧。余裕があればお礼や感想をもう一言。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "はは、それはよかった。",
+          "next": "end_good"
+        }
+      ]
+    },
+    "n3s": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "会話は短めのまま、フロアに着いた。",
+      "choices": [
+        {
+          "text": "では、失礼します。",
+          "quality": "best",
+          "techniques": ["切り上げ"],
+          "explanation": "短い雑談でも、去り際の挨拶で締めれば十分合格。長さより終わり方。",
+          "next": "p_ns"
+        },
+        {
+          "text": "(黙って降りる)",
+          "quality": "ok",
+          "explanation": "無言で別れると、せっかくの雑談の印象が残らない。挨拶一言のコストは小さい。",
+          "next": "end_quiet"
+        }
+      ]
+    },
+    "p_ns": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "うん。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "png1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "まあ……それなりに、ね。",
+          "next": "nr1"
+        }
+      ]
+    },
+    "nr1": {
+      "type": "player_choice",
+      "prompt": "お金の話をはぐらかされた。",
+      "choices": [
+        {
+          "text": "失礼しました。でも沖縄うらやましいです。海、きれいでした?",
+          "quality": "best",
+          "techniques": ["リカバリ", "話題を戻す"],
+          "explanation": "値段から体験へ質問の向きを変えれば会話は戻る。まずい質問は「聞きたかったのはこっち」で上書きする。",
+          "next": "p1r"
+        },
+        {
+          "text": "すみません……。",
+          "quality": "ok",
+          "explanation": "謝って沈黙すると気まずさが残る。体験への質問に切り替えるのが正解だった。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "p1r": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "きれいだったよ〜。写真、見るか?",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "うん、まあね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "png2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "まあ、賑やかではあったけどね(苦笑)。",
+          "next": "nr2"
+        }
+      ]
+    },
+    "nr2": {
+      "type": "player_choice",
+      "prompt": "苦笑いされた。決めつけがまずかった。",
+      "choices": [
+        {
+          "text": "失礼しました。それより海、どの辺りがきれいでした?",
+          "quality": "best",
+          "techniques": ["リカバリ", "話題を戻す"],
+          "explanation": "家族の話から体験の話へすぐ戻す。リカバリは「謝罪は短く、切り替えは早く」。",
+          "next": "p1r"
+        },
+        {
+          "text": "ですよね……。",
+          "quality": "ok",
+          "explanation": "決めつけを引きずると気まずい。話題の向きを変えて仕切り直せた場面。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "png3": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……そうかな。",
+          "next": "nr3"
+        }
+      ]
+    },
+    "nr3": {
+      "type": "player_choice",
+      "prompt": "反応が冷たい。",
+      "choices": [
+        {
+          "text": "すみません、余計でした。お疲れさまです。",
+          "quality": "best",
+          "techniques": ["リカバリ", "撤退"],
+          "explanation": "すべった話は素早く畳んで挨拶へ。引き際の良さでダメージは最小化できる。",
+          "next": "p2f"
+        },
+        {
+          "text": "……(沈黙)",
+          "quality": "ok",
+          "explanation": "沈黙のままだと気まずさが固定される。短く謝って流すのが正解だった。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "end_good": {
+      "type": "end",
+      "text": "「いつでも聞いて」と言ってもらえた。次に会うときの話の種もできた。",
+      "mood": "good"
+    },
+    "end_neutral": {
+      "type": "end",
+      "text": "短く、感じよく終えられた。目上との雑談はこれで十分。",
+      "mood": "neutral"
+    },
+    "end_quiet": {
+      "type": "end",
+      "text": "失礼はないが、また無言のエレベーターになりそうだ。",
+      "mood": "neutral"
+    },
+    "end_awkward": {
+      "type": "end",
+      "text": "気まずいままフロアに着いた。次はお礼の一言から仕切り直そう。",
+      "mood": "awkward"
+    }
+  }
+}

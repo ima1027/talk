@@ -1,5 +1,7 @@
+import { useMemo } from 'react';
 import { scenarios } from '../content';
-import { dailyScenarioId } from '../engine/engine';
+import { recommendDaily } from '../lib/recommend';
+import { loadHistory } from '../lib/storage';
 import { SCENE_LABELS, type Scenario } from '../engine/types';
 
 function todayKey(): string {
@@ -12,11 +14,13 @@ function ScenarioCard({
   onStart,
   onTree,
   highlight,
+  weaknessNote,
 }: {
   scenario: Scenario;
   onStart: () => void;
   onTree: () => void;
   highlight?: boolean;
+  weaknessNote?: string;
 }) {
   return (
     <div
@@ -24,13 +28,17 @@ function ScenarioCard({
         highlight ? 'border-indigo-300 bg-indigo-50' : 'border-slate-200 bg-white'
       }`}
     >
-      <div className="mb-1 flex items-center gap-2 text-xs">
+      <div className="mb-1 flex flex-wrap items-center gap-2 text-xs">
         {highlight && <span className="rounded-full bg-indigo-600 px-2 py-0.5 font-bold text-white">今日の1本</span>}
+        {weaknessNote && (
+          <span className="rounded-full bg-amber-500 px-2 py-0.5 font-bold text-white">苦手対策</span>
+        )}
         <span className="rounded-full bg-slate-800 px-2 py-0.5 text-white">{scenario.topic}</span>
         <span className="rounded-full bg-slate-200 px-2 py-0.5 text-slate-600">{SCENE_LABELS[scenario.scene]}</span>
       </div>
       <div className="font-bold">{scenario.title}</div>
       <p className="mt-1 line-clamp-2 text-sm text-slate-500">{scenario.situation}</p>
+      {weaknessNote && <p className="mt-1 text-xs text-amber-700">{weaknessNote}</p>}
       <div className="mt-3 flex gap-2">
         <button
           onClick={onStart}
@@ -56,12 +64,16 @@ export default function Home({
   onStart: (scenarioId: string) => void;
   onTree: (scenarioId: string) => void;
 }) {
-  const dailyId = dailyScenarioId(
-    scenarios.map((s) => s.id),
-    todayKey(),
+  const recommendation = useMemo(
+    () => recommendDaily(scenarios, loadHistory(), todayKey(), new Date()),
+    [],
   );
-  const daily = scenarios.find((s) => s.id === dailyId)!;
-  const rest = scenarios.filter((s) => s.id !== dailyId);
+  const daily = scenarios.find((s) => s.id === recommendation.scenarioId)!;
+  const rest = scenarios.filter((s) => s.id !== daily.id);
+  const weaknessNote =
+    recommendation.reason === 'weakness' && recommendation.insight
+      ? `${recommendation.insight.message.split('。')[0]}。この1本で集中的に練習できる。`
+      : undefined;
 
   return (
     <div className="space-y-6">
@@ -73,7 +85,13 @@ export default function Home({
       </header>
 
       <section className="space-y-2">
-        <ScenarioCard scenario={daily} onStart={() => onStart(daily.id)} onTree={() => onTree(daily.id)} highlight />
+        <ScenarioCard
+          scenario={daily}
+          onStart={() => onStart(daily.id)}
+          onTree={() => onTree(daily.id)}
+          highlight
+          weaknessNote={weaknessNote}
+        />
       </section>
 
       <section className="space-y-2">

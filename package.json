@@ -8,18 +8,23 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "generate": "tsx tools/generate/generate.ts",
+    "promote": "tsx tools/generate/promote.ts"
   },
   "dependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.110.0",
     "@tailwindcss/vite": "^4.1.7",
+    "@types/node": "^26.1.0",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@vitejs/plugin-react": "^4.5.0",
     "tailwindcss": "^4.1.7",
+    "tsx": "^4.23.0",
     "typescript": "~5.8.3",
     "vite": "^6.3.5",
     "vitest": "^3.1.4"
