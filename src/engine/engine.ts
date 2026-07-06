@@ -23,11 +23,15 @@ export function createSession(scenario: Scenario): Session {
   };
 }
 
-export function pickWeighted(branches: Branch[], rng: Rng): number {
-  const total = branches.reduce((sum, b) => sum + b.weight, 0);
+/** カテゴリごとの重み補正(未体験の反応タイプを出やすくする等)。省略時は1倍 */
+export type CategoryBoost = (category: Branch['category']) => number;
+
+export function pickWeighted(branches: Branch[], rng: Rng, boost?: CategoryBoost): number {
+  const weights = branches.map((b) => b.weight * (boost ? boost(b.category) : 1));
+  const total = weights.reduce((sum, w) => sum + w, 0);
   let r = rng() * total;
   for (let i = 0; i < branches.length; i++) {
-    r -= branches[i].weight;
+    r -= weights[i];
     if (r < 0) return i;
   }
   return branches.length - 1;
@@ -37,7 +41,13 @@ export function pickWeighted(branches: Branch[], rng: Rng): number {
  * プレイヤーの選択を適用し、続く partner_response を消化して
  * 次の player_choice か end で止まった新しいセッションを返す。
  */
-export function applyChoice(scenario: Scenario, session: Session, choiceIndex: number, rng: Rng): Session {
+export function applyChoice(
+  scenario: Scenario,
+  session: Session,
+  choiceIndex: number,
+  rng: Rng,
+  boost?: CategoryBoost,
+): Session {
   const node = scenario.nodes[session.currentNodeId];
   if (session.finished || node.type !== 'player_choice') return session;
   const choice = node.choices[choiceIndex];
@@ -47,7 +57,7 @@ export function applyChoice(scenario: Scenario, session: Session, choiceIndex: n
   while (scenario.nodes[cursor].type === 'partner_response') {
     const partner = scenario.nodes[cursor];
     if (partner.type !== 'partner_response') break;
-    const branchIndex = pickWeighted(partner.branches, rng);
+    const branchIndex = pickWeighted(partner.branches, rng, boost);
     log.push({ kind: 'partner', nodeId: cursor, branchIndex });
     cursor = partner.branches[branchIndex].next;
   }

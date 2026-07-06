@@ -1,31 +1,50 @@
 import { useMemo } from 'react';
 import { scenarios } from '../content';
 import { recommendDaily } from '../lib/recommend';
-import { loadHistory } from '../lib/storage';
-import { SCENE_LABELS, type Scenario } from '../engine/types';
+import { loadHistory, scenarioStats, type ScenarioStats } from '../lib/storage';
+import { CATEGORY_LABELS, SCENE_LABELS, topicStyle, type Category, type Scenario } from '../engine/types';
+
+const ALL_CATEGORIES: Category[] = ['expand', 'counter', 'short', 'flat'];
 
 function todayKey(): string {
   const d = new Date();
   return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
 }
 
+function CategoryDots({ seen }: { seen: Category[] }) {
+  return (
+    <span className="inline-flex items-center gap-1" title="体験した相手の反応タイプ">
+      {ALL_CATEGORIES.map((c) => (
+        <span
+          key={c}
+          title={`${CATEGORY_LABELS[c]}${seen.includes(c) ? ': 体験済み' : ': 未体験'}`}
+          className={`size-2 rounded-full ${seen.includes(c) ? 'bg-indigo-500' : 'bg-slate-200'}`}
+        />
+      ))}
+    </span>
+  );
+}
+
 function ScenarioCard({
   scenario,
+  stats,
   onStart,
   onTree,
   highlight,
   weaknessNote,
 }: {
   scenario: Scenario;
+  stats?: ScenarioStats;
   onStart: () => void;
   onTree: () => void;
   highlight?: boolean;
   weaknessNote?: string;
 }) {
+  const style = topicStyle(scenario.topic);
   return (
     <div
-      className={`w-full rounded-2xl border p-4 shadow-sm ${
-        highlight ? 'border-indigo-300 bg-indigo-50' : 'border-slate-200 bg-white'
+      className={`w-full rounded-2xl border border-l-4 p-4 shadow-sm ${style.border} ${
+        highlight ? 'border-y-indigo-300 border-r-indigo-300 bg-indigo-50' : 'border-y-slate-200 border-r-slate-200 bg-white'
       }`}
     >
       <div className="mb-1 flex flex-wrap items-center gap-2 text-xs">
@@ -33,12 +52,25 @@ function ScenarioCard({
         {weaknessNote && (
           <span className="rounded-full bg-amber-500 px-2 py-0.5 font-bold text-white">苦手対策</span>
         )}
-        <span className="rounded-full bg-slate-800 px-2 py-0.5 text-white">{scenario.topic}</span>
+        <span className={`rounded-full px-2 py-0.5 text-white ${style.chip}`}>
+          {style.emoji} {scenario.topic}
+        </span>
         <span className="rounded-full bg-slate-200 px-2 py-0.5 text-slate-600">{SCENE_LABELS[scenario.scene]}</span>
       </div>
       <div className="font-bold">{scenario.title}</div>
       <p className="mt-1 line-clamp-2 text-sm text-slate-500">{scenario.situation}</p>
       {weaknessNote && <p className="mt-1 text-xs text-amber-700">{weaknessNote}</p>}
+      <div className="mt-2 flex items-center gap-2 text-xs text-slate-400">
+        {stats ? (
+          <>
+            <span>プレイ {stats.plays}回</span>
+            <CategoryDots seen={stats.categoriesSeen} />
+            <span>反応 {stats.categoriesSeen.length}/4</span>
+          </>
+        ) : (
+          <span className="rounded bg-slate-100 px-1.5 py-0.5">未プレイ</span>
+        )}
+      </div>
       <div className="mt-3 flex gap-2">
         <button
           onClick={onStart}
@@ -64,9 +96,11 @@ export default function Home({
   onStart: (scenarioId: string) => void;
   onTree: (scenarioId: string) => void;
 }) {
+  const history = useMemo(() => loadHistory(), []);
+  const stats = useMemo(() => scenarioStats(history), [history]);
   const recommendation = useMemo(
-    () => recommendDaily(scenarios, loadHistory(), todayKey(), new Date()),
-    [],
+    () => recommendDaily(scenarios, history, todayKey(), new Date()),
+    [history],
   );
   const daily = scenarios.find((s) => s.id === recommendation.scenarioId)!;
   const rest = scenarios.filter((s) => s.id !== daily.id);
@@ -80,13 +114,14 @@ export default function Home({
       <header>
         <h1 className="text-2xl font-black tracking-tight">talk</h1>
         <p className="text-sm text-slate-500">
-          雑談シミュレーター — 30秒の雑談を、安全な場所で何度でも練習する。
+          鍛えるのは「相手の反応タイプを見分けて、次の一手を選ぶ」力。地雷さえ避ければ、会話はだいたい何とかなる。
         </p>
       </header>
 
       <section className="space-y-2">
         <ScenarioCard
           scenario={daily}
+          stats={stats.get(daily.id)}
           onStart={() => onStart(daily.id)}
           onTree={() => onTree(daily.id)}
           highlight
@@ -97,7 +132,13 @@ export default function Home({
       <section className="space-y-2">
         <h2 className="text-sm font-bold text-slate-500">シナリオ一覧</h2>
         {rest.map((s) => (
-          <ScenarioCard key={s.id} scenario={s} onStart={() => onStart(s.id)} onTree={() => onTree(s.id)} />
+          <ScenarioCard
+            key={s.id}
+            scenario={s}
+            stats={stats.get(s.id)}
+            onStart={() => onStart(s.id)}
+            onTree={() => onTree(s.id)}
+          />
         ))}
       </section>
 

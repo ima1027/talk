@@ -93,6 +93,12 @@
           "quality": "ng",
           "explanation": "相手の好きなものを軽く否定するのは地雷。興味がなくても「きっかけ」「良さ」を聞く側に回るのが安全。",
           "next": "png2"
+        },
+        {
+          "text": "わかります! 私も週3で、ロウリュが、外気浴が……(語り出す)",
+          "quality": "ng",
+          "explanation": "共感のつもりでも、相手の話題を奪って自分語りにすり替える“かぶせ”は引っ掛け。まず相手に語らせてから。",
+          "next": "png_t"
         }
       ]
     },
@@ -392,6 +398,15 @@
           "quality": "ok",
           "explanation": "無言でも失礼ではないが、一声かけて離れるほうがお互い楽になる。",
           "next": "end_quiet"
+        },
+        {
+          "text": "◯◯(主催)とは、どこで知り合ったんですか?",
+          "quality": "best",
+          "techniques": [
+            "場の共通話題"
+          ],
+          "explanation": "共通の知人は初対面同士の最大の資源。ホスト経由の縁なら、この質問は必ず話が続く。",
+          "next": "p_more"
         }
       ]
     },
@@ -553,6 +568,56 @@
       "type": "end",
       "text": "相手の目が泳いだまま会話が終わった。少し時間を置いて仕切り直そう。",
       "mood": "awkward"
+    },
+    "p_more": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "大学の同期です。付き合い長いんですよ。",
+          "next": "end_good"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "職場の元同僚です。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "png_t": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "あ、はい……お詳しいんですね。",
+          "next": "nr_t"
+        }
+      ]
+    },
+    "nr_t": {
+      "type": "player_choice",
+      "prompt": "相手が一歩引いた。ボールを奪ってしまった——",
+      "choices": [
+        {
+          "text": "すみません、つい(笑)。◯◯さんはどこ派ですか?",
+          "quality": "best",
+          "techniques": [
+            "リカバリ",
+            "話題を戻す"
+          ],
+          "explanation": "奪ってしまったボールは、質問で相手に返せば戻せる。気づいた時点ですぐ返すのがコツ。",
+          "next": "p2e"
+        },
+        {
+          "text": "……いいですよね、サウナ。",
+          "quality": "ok",
+          "explanation": "かぶせの後の薄い相づちでは、相手は話す気をなくす。ボールを返す質問が必要だった。",
+          "next": "end_awkward"
+        }
+      ]
     }
   }
 }

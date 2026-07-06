@@ -385,6 +385,16 @@
           "quality": "ok",
           "explanation": "区切りとしては十分。ひとこと挨拶を足すと、次に話すハードルが下がる。",
           "next": "end_quiet"
+        },
+        {
+          "text": "そういえば、午後の卓ってもう決めました?",
+          "quality": "best",
+          "techniques": [
+            "撤退・話題転換",
+            "場の共通話題"
+          ],
+          "explanation": "食の話が伸びなくても、共有している場(大会・卓)の話なら仕切り直せる。相手の話を折って振るのはNGだが、話が途切れた今なら適切。",
+          "next": "p_more"
         }
       ]
     },
@@ -429,7 +439,7 @@
           "category": "short",
           "weight": 1,
           "text": "はい、ぜひ。お疲れさまでした。",
-          "next": "end_neutral"
+          "next": "end_farewell"
         }
       ]
     },
@@ -538,7 +548,7 @@
           "text": "……そうですか。",
           "quality": "ok",
           "explanation": "引いただけだと気まずさが残る。「ご一緒できてよかった」の一言で締め直せた場面。",
-          "next": "end_awkward"
+          "next": "end_awkward_leave"
         }
       ]
     },
@@ -561,6 +571,33 @@
       "type": "end",
       "text": "会話が途切れ、お互い飲み物に目を落とした。午後、もう一度仕切り直そう。",
       "mood": "awkward"
+    },
+    "end_farewell": {
+      "type": "end",
+      "text": "感じよく見送れた。「また機会があれば」が社交辞令で終わらなそうな別れ際だった。",
+      "mood": "neutral"
+    },
+    "end_awkward_leave": {
+      "type": "end",
+      "text": "気まずい空気のまま。せめて去り際の挨拶だけは丁寧にしよう。",
+      "mood": "awkward"
+    },
+    "p_more": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "あ、まだなんです。おすすめあります?",
+          "next": "end_good"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "一応決めてます。",
+          "next": "end_neutral"
+        }
+      ]
     }
   }
 }

@@ -17,7 +17,8 @@ export function buildSystemPrompt(): string {
 # データ形式
 出力は次のTypeScript型に適合するJSONオブジェクト1個のみ:
 
-- Scenario: { id, topic, scene, title, situation, guide, entry, nodes }
+- Scenario: { id, topic, scene, title, situation, guide, partnerNote?, entry, nodes }
+- partnerNote は「相手について事前に知っていること」(顔見知り場面 senior_known ではほぼ必須。初対面では省略)
 - nodes は id→ノードのオブジェクト。ノードは3種:
   - player_choice: { type:"player_choice", prompt?, closing?, choices:[{ text, quality:"best"|"ok"|"ng", techniques?:string[], explanation, next }] }
   - partner_response: { type:"partner_response", branches:[{ category:"expand"|"counter"|"short"|"flat", weight:正数, text, next }] }
@@ -30,6 +31,13 @@ export function buildSystemPrompt(): string {
 - short=短く終わる(整列するが最小限)
 - flat=そっけない(間・最小化・言い訳の目印を付けて書く)
 最初の分岐点では4カテゴリすべてを出すこと。flatの出現重みは全体の1〜2割目安。
+
+# 設計思想: 複数正解
+- 「唯一の正解探し」にしない。✕(地雷・引っ掛け)さえ避ければ、◎でも○でも会話は生きて続く設計にする
+- ◎と○は優劣ではなく「特に効く一手/これもあり」。○の遷移先を◎より痩せた行き止まりにしない
+- 会話が細くなる合流点(切り上げ前)には、「場の共通話題でもう一手」の◎選択肢を置き、そこから良い終わりに復活できるルートを必ず用意する
+- ✕には2種類: 明白な地雷(タブー直撃)と、一見良さそうな引っ掛け(かぶせ自分語り・決めつけ・話の腰折り)。引っ掛けを1つ以上入れる
+- 合流ノードの発話は文脈非依存にする。特定の分岐(「もう帰る」「用事がある」等)の制約と矛盾する発話(「また後で」「ご一緒に」等)に合流させない。制約のある分岐には専用の終了ノードを用意する
 
 # 必須要件(自動検証される)
 1. 全終端は end ノード。そこに至る直前に closing:true の player_choice(きれいな切り上げの練習)を必ず通る
@@ -150,7 +158,9 @@ export async function generateWithRetries(
 export const REVIEW_CHECKLIST = `人の監修チェックリスト(通ったら promote で昇格):
   [ ] 会話が日本語として自然(機械っぽい言い回し・不自然な敬語がない)
   [ ] 場面×話題の適合マトリクス(requirements 付録A)に反していない
-  [ ] NG選択肢が「わざとらしすぎない、やりがちな失敗」になっている
+  [ ] NG選択肢が「わざとらしすぎない、やりがちな失敗」になっている(引っ掛けが1つ以上あるか)
+  [ ] ○を選んでも会話が生きて続くか(○の先が行き止まりになっていないか)
+  [ ] 制約のある分岐(帰る・用事がある等)の下流に、矛盾する発話(また後で・ご一緒に等)がないか
   [ ] 解説が原則として使い回せる形で書かれている
   [ ] 相手の返答がカテゴリの性格(expand=広がる/flat=そっけない)を体現している
   [ ] 既存ツリーと状況・フレーズが被りすぎていない`;

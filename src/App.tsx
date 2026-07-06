@@ -60,7 +60,7 @@ export default function App() {
         />
       )}
       {view.screen === 'zukan' && <Zukan />}
-      {view.screen === 'history' && <History />}
+      {view.screen === 'history' && <History onStart={(scenarioId) => setView({ screen: 'play', scenarioId })} />}
       {view.screen === 'tree' && (
         <TreeView
           scenario={getScenario(view.scenarioId)}

@@ -1,10 +1,12 @@
 import type { Session } from '../engine/engine';
+import { computeTurningPoint } from '../lib/review';
 import {
   CATEGORY_LABELS,
+  MOOD_EMOJI,
   MOOD_LABELS,
   QUALITY_LABELS,
   SCENE_LABELS,
-  type Choice,
+  topicStyle,
   type Quality,
   type Scenario,
 } from '../engine/types';
@@ -36,27 +38,6 @@ function TechniqueChips({ techniques }: { techniques?: string[] }) {
   );
 }
 
-interface TakenChoice {
-  nodeId: string;
-  choice: Choice;
-  alternatives: Choice[];
-}
-
-/** ふりかえりの総評: ポジティブ2+改善1(調査済みの 2:1 比率、requirements §F3) */
-function buildFeedback(taken: TakenChoice[]) {
-  const ranked = [...taken].sort((a, b) => {
-    const order: Record<Quality, number> = { best: 0, ok: 1, ng: 2 };
-    return order[a.choice.quality] - order[b.choice.quality];
-  });
-  const positives = ranked
-    .filter((t) => t.choice.quality !== 'ng')
-    .slice(0, 2)
-    .map((t) => t.choice);
-  const worst = [...taken].reverse().find((t) => t.choice.quality === 'ng') ?? taken.find((t) => t.choice.quality === 'ok');
-  const improvement = worst && worst.choice.quality !== 'best' ? worst : undefined;
-  return { positives, improvement };
-}
-
 export default function Review({
   scenario,
   session,
@@ -72,26 +53,31 @@ export default function Review({
 }) {
   const endNode = scenario.nodes[session.currentNodeId];
   const mood = endNode.type === 'end' ? endNode.mood : 'neutral';
+  const style = topicStyle(scenario.topic);
 
-  const taken: TakenChoice[] = [];
+  const taken: { quality: Quality; text: string }[] = [];
   for (const entry of session.log) {
     if (entry.kind !== 'player') continue;
     const node = scenario.nodes[entry.nodeId];
     if (node.type !== 'player_choice') continue;
-    taken.push({
-      nodeId: entry.nodeId,
-      choice: node.choices[entry.choiceIndex],
-      alternatives: node.choices.filter((_, i) => i !== entry.choiceIndex),
-    });
+    const c = node.choices[entry.choiceIndex];
+    taken.push({ quality: c.quality, text: c.text });
   }
-
   const counts = { best: 0, ok: 0, ng: 0 } as Record<Quality, number>;
-  for (const t of taken) counts[t.choice.quality]++;
+  for (const t of taken) counts[t.quality]++;
 
-  const { positives, improvement } = buildFeedback(taken);
+  const turningPoint = computeTurningPoint(scenario, session);
+  const goodMoves = taken.filter((t) => t.quality === 'best').slice(0, 2);
+
   const tryPhrase =
-    taken.find((t) => t.choice.quality === 'best')?.choice ??
     (() => {
+      for (const entry of session.log) {
+        if (entry.kind !== 'player') continue;
+        const node = scenario.nodes[entry.nodeId];
+        if (node.type !== 'player_choice') continue;
+        const c = node.choices[entry.choiceIndex];
+        if (c.quality === 'best') return c;
+      }
       const entryNode = scenario.nodes[scenario.entry];
       return entryNode.type === 'player_choice' ? entryNode.choices.find((c) => c.quality === 'best') : undefined;
     })();
@@ -100,50 +86,46 @@ export default function Review({
     <div className="space-y-5 pb-8">
       <header>
         <div className="mb-1 flex items-center gap-2 text-xs">
-          <span className="rounded-full bg-slate-800 px-2 py-0.5 text-white">{scenario.topic}</span>
+          <span className={`rounded-full px-2 py-0.5 text-white ${style.chip}`}>
+            {style.emoji} {scenario.topic}
+          </span>
           <span className="rounded-full bg-slate-200 px-2 py-0.5 text-slate-600">{SCENE_LABELS[scenario.scene]}</span>
         </div>
-        <h1 className="text-xl font-black">ふりかえり</h1>
+        <h1 className="text-xl font-black">
+          {MOOD_EMOJI[mood]} ふりかえり
+        </h1>
         <p className="text-sm text-slate-500">
-          {scenario.title} — {MOOD_LABELS[mood]}(ベスト{counts.best}・あり{counts.ok}・NG{counts.ng})
+          {MOOD_LABELS[mood]} ・ ◎{counts.best} ○{counts.ok} ✕{counts.ng}
         </p>
       </header>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-        <h2 className="mb-2 font-bold">総評</h2>
-        <ul className="space-y-2 text-sm">
-          {positives.map((c, i) => (
-            <li key={i} className="flex gap-2">
-              <span className="shrink-0 text-emerald-600">◎</span>
-              <span>
-                「{c.text}」 — {c.explanation}
-              </span>
-            </li>
-          ))}
-          {positives.length === 0 && (
-            <li className="flex gap-2">
-              <span className="shrink-0 text-emerald-600">◎</span>
-              <span>最後まで会話を終えられたこと自体が収穫。下のNG解説がそのまま伸びしろになる。</span>
-            </li>
-          )}
-          {improvement ? (
-            <li className="flex gap-2">
-              <span className="shrink-0 text-rose-500">▲</span>
-              <span>
-                「{improvement.choice.text}」 — {improvement.choice.explanation}
-              </span>
-            </li>
-          ) : (
-            <li className="flex gap-2">
-              <span className="shrink-0 text-slate-400">—</span>
-              <span>今回の選択に大きな改善点なし。別の返答パターンが来た場合のルートも覗いてみよう。</span>
-            </li>
-          )}
-        </ul>
-      </section>
+      {goodMoves.length > 0 && (
+        <p className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2.5 text-sm text-emerald-900">
+          ◎ {goodMoves.map((m) => `「${m.text}」`).join(' ')} が効いていた。
+        </p>
+      )}
+
+      {turningPoint && turningPoint.kind !== 'flat-luck' && (
+        <section className="rounded-2xl border border-amber-300 bg-amber-50 p-4">
+          <h2 className="mb-1 text-sm font-bold text-amber-800">
+            {turningPoint.kind === 'ng' ? 'ここが分かれ目だった' : 'もっと広がる一手があった'}
+          </h2>
+          <p className="text-sm text-amber-900">
+            <span className="line-through opacity-60">「{turningPoint.taken.text}」</span>
+            <br />
+            <span className="font-bold">→「{turningPoint.better.text}」</span>
+          </p>
+          <p className="mt-1 text-xs text-amber-800">{turningPoint.better.explanation}</p>
+        </section>
+      )}
+      {turningPoint?.kind === 'flat-luck' && (
+        <section className="rounded-2xl border border-slate-200 bg-white p-4 text-sm text-slate-600">
+          今回は相手がそっけなかっただけで、打ち手は悪くない。無理に盛り上げず引けたなら、それも成功。もう一度やると別の反応パターンに当たる。
+        </section>
+      )}
 
       <section className="space-y-3">
-        <h2 className="text-sm font-bold text-slate-500">たどったルート</h2>
+        <h2 className="text-sm font-bold text-slate-500">たどったルート(別の選択肢・別の反応も開ける)</h2>
         {session.log.map((entry, i) => {
           const node = scenario.nodes[entry.nodeId];
           if (entry.kind === 'player' && node.type === 'player_choice') {
@@ -217,7 +199,9 @@ export default function Review({
         })}
         {endNode.type === 'end' && (
           <div className="rounded-2xl border border-slate-200 bg-white p-4 text-sm text-slate-600 shadow-sm">
-            <span className="font-bold">{MOOD_LABELS[endNode.mood]}: </span>
+            <span className="font-bold">
+              {MOOD_EMOJI[endNode.mood]} {MOOD_LABELS[endNode.mood]}:{' '}
+            </span>
             {endNode.text}
           </div>
         )}
@@ -238,7 +222,7 @@ export default function Review({
           onClick={onRetry}
           className="rounded-xl bg-indigo-600 px-4 py-3 font-bold text-white shadow-sm transition hover:bg-indigo-700"
         >
-          もう一度(別ルートを引く)
+          もう一度(未体験の反応が出やすくなる)
         </button>
         <div className="flex gap-2">
           <button

@@ -5,6 +5,7 @@
   "title": "習い事の帰り道、先生と駅まで一緒に",
   "situation": "月2回通っている書道教室の帰り。先生と駅まで同じ方向になった。日が落ちて、少し肌寒い。",
   "guide": "目上との沈黙を「季節の体感」で埋める練習。天気は安全だが、一言で終わらせず半歩だけ広げる。",
+  "partnerNote": "書道教室の先生。物腰は柔らかいが、教室の後は疲れている日もある。",
   "entry": "n1",
   "nodes": {
     "n1": {
@@ -311,6 +312,15 @@
           "quality": "ok",
           "explanation": "失礼ではないが、月2回会う相手にはお礼の一言を習慣にしたい。",
           "next": "end_quiet"
+        },
+        {
+          "text": "来週の教室って、課題は続きからでしたっけ?",
+          "quality": "best",
+          "techniques": [
+            "場の共通話題"
+          ],
+          "explanation": "共通の場(教室)の実務は、目上との沈黙を破るいちばん自然な話題。確認ついでに会話になる。",
+          "next": "p_more"
         }
       ]
     },
@@ -452,6 +462,23 @@
       "type": "end",
       "text": "気まずさの残る別れ際になった。次回は挨拶から仕切り直そう。",
       "mood": "awkward"
+    },
+    "p_more": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "そうよ。◯◯さんのは仕上がりが楽しみね。",
+          "next": "end_good"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ええ、続きからよ。",
+          "next": "end_neutral"
+        }
+      ]
     }
   }
 }

@@ -139,6 +139,31 @@ export function computeInsight(history: HistoryEntry[]): Insight | null {
   return worst;
 }
 
+// ---- シナリオ別の統計(ホームの制覇ドット・未体験優先に使う) ----
+
+export interface ScenarioStats {
+  plays: number;
+  lastAt: string | null;
+  /** このシナリオで実際に体験した相手の返答カテゴリ */
+  categoriesSeen: Category[];
+}
+
+export function scenarioStats(history: HistoryEntry[]): Map<string, ScenarioStats> {
+  const map = new Map<string, ScenarioStats>();
+  for (const entry of history) {
+    const stats = map.get(entry.scenarioId) ?? { plays: 0, lastAt: null, categoriesSeen: [] };
+    stats.plays++;
+    if (!stats.lastAt || entry.endedAt > stats.lastAt) stats.lastAt = entry.endedAt;
+    for (const c of entry.choices) {
+      if (c.context !== 'opener' && !stats.categoriesSeen.includes(c.context)) {
+        stats.categoriesSeen.push(c.context);
+      }
+    }
+    map.set(entry.scenarioId, stats);
+  }
+  return map;
+}
+
 // ---- パターン図鑑 (F5) ----
 
 export interface ZukanState {

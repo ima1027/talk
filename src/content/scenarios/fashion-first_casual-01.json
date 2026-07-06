@@ -327,7 +327,7 @@
           "techniques": [
             "切り上げ"
           ],
-          "explanation": "反応が薄めのときは無理に続けず、感じよく区切るのが正解。「あとでまた」で余白を残せば、再開のきっかけにもなる。",
+          "explanation": "反応が薄めのときは、感じよく区切るのも正解。「あとでまた」で余白を残せば再開のきっかけになる。",
           "next": "p_close_soft"
         },
         {
@@ -335,6 +335,16 @@
           "quality": "ok",
           "explanation": "自然に途切れさせるのもあり。ただ、一言添えて区切るほうがお互いに気まずさが残らない。",
           "next": "end_quiet"
+        },
+        {
+          "text": "そういえば、この店よく来るんですか?",
+          "quality": "best",
+          "techniques": [
+            "場の共通話題",
+            "角度を変える"
+          ],
+          "explanation": "話題がひとつ痩せても、場の共通項に切り替えればいくらでも仕切り直せる。切り上げだけが正解ではない。",
+          "next": "p_more"
         }
       ]
     },
@@ -533,6 +543,23 @@
       "type": "end",
       "text": "気まずい沈黙が流れたところで料理が届いた。次の話題に助けられた形だ。",
       "mood": "awkward"
+    },
+    "p_more": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "初めてです。いい店ですよね。また来たいなあ。",
+          "next": "end_good"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "たまに、ですね。",
+          "next": "end_neutral"
+        }
+      ]
     }
   }
 }
