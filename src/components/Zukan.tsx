@@ -1,11 +1,16 @@
 import { useMemo, useState } from 'react';
 import { scenarios } from '../content';
-import { loadZukan, zukanUniverse } from '../lib/storage';
+import { loadHistory, loadMedals, loadZukan, scenarioStats, zukanUniverse } from '../lib/storage';
+import { BADGES, buildRewardAgg } from '../lib/rewards';
 import { QUALITY_LABELS } from '../engine/types';
 
 export default function Zukan() {
   const state = useMemo(() => loadZukan(), []);
   const universe = useMemo(() => zukanUniverse(scenarios), []);
+  const rewardAgg = useMemo(() => {
+    const history = loadHistory();
+    return buildRewardAgg(history, scenarioStats(history), scenarios.map((s) => s.id), loadMedals().length);
+  }, []);
   const collected = useMemo(() => new Set(state.phrases), [state]);
   const allTechniques = useMemo(
     () => [...new Set(universe.flatMap((i) => i.choice.techniques ?? []))].sort(),
@@ -38,6 +43,28 @@ export default function Zukan() {
         <p className="mt-2 text-xs text-slate-500">
           出会った技法: {state.techniques.length > 0 ? state.techniques.join('、') : 'まだなし — まずは1プレイ!'}
         </p>
+      </section>
+
+      <section>
+        <h2 className="mb-2 text-sm font-bold text-slate-500">実績</h2>
+        <ul className="grid grid-cols-2 gap-2">
+          {BADGES.map((badge) => {
+            const achieved = badge.achieved(rewardAgg);
+            return (
+              <li
+                key={badge.id}
+                className={`rounded-xl border p-2.5 ${
+                  achieved ? 'border-yellow-300 bg-yellow-50' : 'border-dashed border-slate-200 bg-slate-50 opacity-70'
+                }`}
+              >
+                <p className={`text-sm font-bold ${achieved ? 'text-yellow-900' : 'text-slate-400'}`}>
+                  <span className={achieved ? '' : 'grayscale opacity-50'}>{badge.emoji}</span> {badge.name}
+                </p>
+                <p className={`mt-0.5 text-xs ${achieved ? 'text-yellow-700' : 'text-slate-400'}`}>{badge.desc}</p>
+              </li>
+            );
+          })}
+        </ul>
       </section>
 
       <div className="flex flex-wrap gap-1.5">

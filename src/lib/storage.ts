@@ -44,6 +44,8 @@ export interface HistoryEntry {
   mood: Mood;
   counts: Record<Quality, number>;
   choices: HistoryChoice[];
+  /** このプレイで使った技法タグ(選んだ選択肢のもの。重複あり=使用回数)。旧データには無い */
+  techniques?: string[];
 }
 
 export function loadHistory(): HistoryEntry[] {
@@ -58,12 +60,14 @@ export function loadHistory(): HistoryEntry[] {
 export function buildHistoryEntry(scenario: Scenario, session: Session, endedAt: string): HistoryEntry {
   const counts: Record<Quality, number> = { best: 0, ok: 0, ng: 0 };
   const choices: HistoryChoice[] = [];
+  const techniques: string[] = [];
   session.log.forEach((entry, i) => {
     if (entry.kind !== 'player') return;
     const node = scenario.nodes[entry.nodeId];
     if (node.type !== 'player_choice') return;
     const choice = node.choices[entry.choiceIndex];
     counts[choice.quality]++;
+    techniques.push(...(choice.techniques ?? []));
     const prev = session.log[i - 1];
     let context: ChoiceContext = 'opener';
     if (prev?.kind === 'partner') {
@@ -79,6 +83,7 @@ export function buildHistoryEntry(scenario: Scenario, session: Session, endedAt:
     mood: endNode.type === 'end' ? endNode.mood : 'neutral',
     counts,
     choices,
+    techniques,
   };
 }
 
@@ -146,14 +151,22 @@ export interface ScenarioStats {
   lastAt: string | null;
   /** このシナリオで実際に体験した相手の返答カテゴリ */
   categoriesSeen: Category[];
+  /** 回収したエンディングのムード */
+  moodsSeen: Mood[];
+  /** ✕を一度も踏まずにクリアした回数 */
+  cleanClears: number;
 }
 
 export function scenarioStats(history: HistoryEntry[]): Map<string, ScenarioStats> {
   const map = new Map<string, ScenarioStats>();
   for (const entry of history) {
-    const stats = map.get(entry.scenarioId) ?? { plays: 0, lastAt: null, categoriesSeen: [] };
+    const stats =
+      map.get(entry.scenarioId) ??
+      ({ plays: 0, lastAt: null, categoriesSeen: [], moodsSeen: [], cleanClears: 0 } as ScenarioStats);
     stats.plays++;
     if (!stats.lastAt || entry.endedAt > stats.lastAt) stats.lastAt = entry.endedAt;
+    if (entry.counts.ng === 0) stats.cleanClears++;
+    if (!stats.moodsSeen.includes(entry.mood)) stats.moodsSeen.push(entry.mood);
     for (const c of entry.choices) {
       if (c.context !== 'opener' && !stats.categoriesSeen.includes(c.context)) {
         stats.categoriesSeen.push(c.context);
@@ -162,6 +175,56 @@ export function scenarioStats(history: HistoryEntry[]): Map<string, ScenarioStat
     map.set(entry.scenarioId, stats);
   }
   return map;
+}
+
+// ---- 実会話メダルとチャレンジ(般化=最上位の報酬) ----
+
+const MEDALS_KEY = 'talk.medals.v1';
+const CHALLENGE_KEY = 'talk.challenge.v1';
+
+export interface Medal {
+  phrase: string;
+  scenarioId: string;
+  at: string;
+}
+
+/** 現在の実会話チャレンジ(直近のふりかえりで提示された「試す一手」) */
+export interface TryChallenge {
+  phrase: string;
+  scenarioId: string;
+  setAt: string;
+}
+
+export function loadMedals(): Medal[] {
+  try {
+    const raw = read(MEDALS_KEY);
+    return raw ? (JSON.parse(raw) as Medal[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+export function addMedal(medal: Medal): Medal[] {
+  const medals = [medal, ...loadMedals()].slice(0, 500);
+  write(MEDALS_KEY, JSON.stringify(medals));
+  return medals;
+}
+
+export function loadChallenge(): TryChallenge | null {
+  try {
+    const raw = read(CHALLENGE_KEY);
+    return raw ? (JSON.parse(raw) as TryChallenge) : null;
+  } catch {
+    return null;
+  }
+}
+
+export function setChallenge(challenge: TryChallenge): void {
+  write(CHALLENGE_KEY, JSON.stringify(challenge));
+}
+
+export function clearChallenge(): void {
+  write(CHALLENGE_KEY, JSON.stringify(null));
 }
 
 // ---- パターン図鑑 (F5) ----

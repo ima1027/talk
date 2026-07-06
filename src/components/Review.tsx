@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react';
 import type { Session } from '../engine/engine';
 import { computeTurningPoint } from '../lib/review';
+import { addMedal, clearChallenge, setChallenge } from '../lib/storage';
 import {
   CATEGORY_LABELS,
   MOOD_EMOJI,
@@ -69,6 +71,8 @@ export default function Review({
   const turningPoint = computeTurningPoint(scenario, session);
   const goodMoves = taken.filter((t) => t.quality === 'best').slice(0, 2);
 
+  const [medalClaimed, setMedalClaimed] = useState(false);
+
   const tryPhrase =
     (() => {
       for (const entry of session.log) {
@@ -81,6 +85,21 @@ export default function Review({
       const entryNode = scenario.nodes[scenario.entry];
       return entryNode.type === 'player_choice' ? entryNode.choices.find((c) => c.quality === 'best') : undefined;
     })();
+
+  // 「試す一手」を実会話チャレンジとして登録(ホームからいつでもメダル化できる)
+  useEffect(() => {
+    if (tryPhrase && !medalClaimed) {
+      setChallenge({ phrase: tryPhrase.text, scenarioId: scenario.id, setAt: new Date().toISOString() });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scenario.id]);
+
+  const claimMedal = () => {
+    if (!tryPhrase || medalClaimed) return;
+    addMedal({ phrase: tryPhrase.text, scenarioId: scenario.id, at: new Date().toISOString() });
+    clearChallenge();
+    setMedalClaimed(true);
+  };
 
   return (
     <div className="space-y-5 pb-8">
@@ -209,11 +228,23 @@ export default function Review({
 
       {tryPhrase && (
         <section className="rounded-2xl border border-indigo-200 bg-indigo-50 p-4">
-          <h2 className="mb-1 text-sm font-bold text-indigo-800">今日どこかで試す一手</h2>
+          <h2 className="mb-1 text-sm font-bold text-indigo-800">🏅 今日どこかで試す一手(実会話チャレンジ)</h2>
           <p className="font-medium text-indigo-900">「{tryPhrase.text}」</p>
           <p className="mt-1 text-xs text-indigo-700">
-            そのままでなくていい。この「型」をひとつ、実際の会話で試せたら今日は合格。
+            そのままでなくていい。この「型」を実際の会話で試せたら、ホームからいつでもメダル化できる。
           </p>
+          {medalClaimed ? (
+            <p className="mt-2 rounded-lg bg-yellow-100 py-2 text-center text-sm font-black text-yellow-800">
+              🏅 実会話メダル獲得! (+20XP)
+            </p>
+          ) : (
+            <button
+              onClick={claimMedal}
+              className="mt-2 w-full rounded-lg border border-yellow-400 bg-yellow-50 py-2 text-sm font-bold text-yellow-800 transition hover:bg-yellow-100"
+            >
+              もう実際に試せた(メダル獲得)
+            </button>
+          )}
         </section>
       )}
 

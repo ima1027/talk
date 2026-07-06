@@ -1,8 +1,34 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { scenarios } from '../content';
 import { recommendDaily } from '../lib/recommend';
-import { loadHistory, scenarioStats, type ScenarioStats } from '../lib/storage';
-import { CATEGORY_LABELS, SCENE_LABELS, topicStyle, type Category, type Scenario } from '../engine/types';
+import {
+  addMedal,
+  clearChallenge,
+  loadChallenge,
+  loadHistory,
+  loadMedals,
+  scenarioStats,
+  type ScenarioStats,
+} from '../lib/storage';
+import {
+  completionPercent,
+  computeRank,
+  computeXp,
+  currentTitle,
+  nextTitle,
+  titleProgress,
+  RANK_STYLES,
+  ALL_MOODS,
+} from '../lib/rewards';
+import {
+  CATEGORY_LABELS,
+  MOOD_EMOJI,
+  MOOD_LABELS,
+  SCENE_LABELS,
+  topicStyle,
+  type Category,
+  type Scenario,
+} from '../engine/types';
 
 const ALL_CATEGORIES: Category[] = ['expand', 'counter', 'short', 'flat'];
 
@@ -25,6 +51,18 @@ function CategoryDots({ seen }: { seen: Category[] }) {
   );
 }
 
+function MoodCollection({ seen }: { seen: string[] }) {
+  return (
+    <span className="inline-flex items-center gap-0.5" title="回収したエンディング">
+      {ALL_MOODS.map((m) => (
+        <span key={m} title={MOOD_LABELS[m]} className={seen.includes(m) ? '' : 'opacity-20 grayscale'}>
+          {MOOD_EMOJI[m]}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 function ScenarioCard({
   scenario,
   stats,
@@ -41,6 +79,7 @@ function ScenarioCard({
   weaknessNote?: string;
 }) {
   const style = topicStyle(scenario.topic);
+  const rank = computeRank(stats);
   return (
     <div
       className={`w-full rounded-2xl border border-l-4 p-4 shadow-sm ${style.border} ${
@@ -56,6 +95,11 @@ function ScenarioCard({
           {style.emoji} {scenario.topic}
         </span>
         <span className="rounded-full bg-slate-200 px-2 py-0.5 text-slate-600">{SCENE_LABELS[scenario.scene]}</span>
+        {rank && (
+          <span className={`rounded-full px-2 py-0.5 font-black ${RANK_STYLES[rank]}`} title="攻略ランク(✕なしクリアでB、反応4種でA、全エンディングでS)">
+            {rank}
+          </span>
+        )}
       </div>
       <div className="font-bold">{scenario.title}</div>
       <p className="mt-1 line-clamp-2 text-sm text-slate-500">{scenario.situation}</p>
@@ -66,6 +110,7 @@ function ScenarioCard({
             <span>プレイ {stats.plays}回</span>
             <CategoryDots seen={stats.categoriesSeen} />
             <span>反応 {stats.categoriesSeen.length}/4</span>
+            <MoodCollection seen={stats.moodsSeen} />
           </>
         ) : (
           <span className="rounded bg-slate-100 px-1.5 py-0.5">未プレイ</span>
@@ -96,12 +141,21 @@ export default function Home({
   onStart: (scenarioId: string) => void;
   onTree: (scenarioId: string) => void;
 }) {
-  const history = useMemo(() => loadHistory(), []);
+  const [tick, setTick] = useState(0);
+  const history = useMemo(() => loadHistory(), [tick]);
   const stats = useMemo(() => scenarioStats(history), [history]);
+  const medals = useMemo(() => loadMedals(), [tick]);
+  const challenge = useMemo(() => loadChallenge(), [tick]);
   const recommendation = useMemo(
     () => recommendDaily(scenarios, history, todayKey(), new Date()),
     [history],
   );
+
+  const xp = computeXp(history, medals.length);
+  const title = currentTitle(xp);
+  const next = nextTitle(xp);
+  const completion = completionPercent(stats, scenarios.map((s) => s.id));
+
   const daily = scenarios.find((s) => s.id === recommendation.scenarioId)!;
   const rest = scenarios.filter((s) => s.id !== daily.id);
   const weaknessNote =
@@ -109,14 +163,65 @@ export default function Home({
       ? `${recommendation.insight.message.split('。')[0]}。この1本で集中的に練習できる。`
       : undefined;
 
+  const claimMedal = () => {
+    if (!challenge) return;
+    addMedal({ phrase: challenge.phrase, scenarioId: challenge.scenarioId, at: new Date().toISOString() });
+    clearChallenge();
+    setTick((t) => t + 1);
+  };
+
   return (
     <div className="space-y-6">
       <header>
-        <h1 className="text-2xl font-black tracking-tight">talk</h1>
+        <div className="flex items-baseline justify-between gap-2">
+          <h1 className="text-2xl font-black tracking-tight">talk</h1>
+          <span className="text-xs text-slate-400" title="実会話メダル">
+            🏅 ×{medals.length}
+          </span>
+        </div>
         <p className="text-sm text-slate-500">
           鍛えるのは「相手の反応タイプを見分けて、次の一手を選ぶ」力。地雷さえ避ければ、会話はだいたい何とかなる。
         </p>
+        <div className="mt-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+          <div className="flex items-baseline justify-between text-sm">
+            <span className="font-black">{title.name}</span>
+            <span className="text-xs text-slate-400">
+              {xp} XP{next ? ` / 次の称号「${next.name}」まであと ${next.xp - xp}` : '(最高位)'}
+            </span>
+          </div>
+          <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-slate-100">
+            <div
+              className="h-full rounded-full bg-indigo-500 transition-all"
+              style={{ width: `${Math.round(titleProgress(xp) * 100)}%` }}
+            />
+          </div>
+          <div className="mt-2 flex items-center justify-between text-xs text-slate-400">
+            <span>シナリオ攻略度(全{scenarios.length}本、Sランクで満点)</span>
+            <span className="font-bold text-slate-600">{completion}%</span>
+          </div>
+          <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-slate-100">
+            <div
+              className="h-full rounded-full bg-yellow-400 transition-all"
+              style={{ width: `${completion}%` }}
+            />
+          </div>
+        </div>
       </header>
+
+      {challenge && (
+        <section className="rounded-2xl border border-yellow-300 bg-yellow-50 p-4">
+          <h2 className="text-sm font-bold text-yellow-800">🏅 実会話チャレンジ</h2>
+          <p className="mt-1 text-sm text-yellow-900">
+            「{challenge.phrase}」——この型を、実際の会話のどこかで。
+          </p>
+          <button
+            onClick={claimMedal}
+            className="mt-2 w-full rounded-lg bg-yellow-400 py-2 text-sm font-black text-yellow-950 transition hover:bg-yellow-500"
+          >
+            試せた!(メダル獲得 +20XP)
+          </button>
+        </section>
+      )}
 
       <section className="space-y-2">
         <ScenarioCard
