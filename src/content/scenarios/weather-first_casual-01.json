@@ -1,0 +1,445 @@
+{
+  "id": "weather-first_casual-01",
+  "topic": "天気・季節",
+  "scene": "first_casual",
+  "title": "勉強会の開場待ちで、隣の人に声をかける",
+  "situation": "土曜の勉強会。開場待ちの列で、隣に並んだ同年代の人と目が合って会釈した。外は夏の始まりのような陽気。",
+  "guide": "いちばん安全な「天気・季節」で声をかけ、相手の話題(暑さ・この会のことなど)へ半歩だけ広げる練習。",
+  "entry": "n1",
+  "nodes": {
+    "n1": {
+      "type": "player_choice",
+      "prompt": "会釈のあと、沈黙が続いている。声をかけるなら——",
+      "choices": [
+        {
+          "text": "もう夏ですね。並んでるだけで汗かきそうです(笑)。",
+          "quality": "best",
+          "techniques": [
+            "季節の体感",
+            "自己開示"
+          ],
+          "explanation": "天気は最安全の入口。体感+自分のこと(汗かきそう)を半歩足すと、相手は同意でも自分の話でも返せる。",
+          "next": "p1"
+        },
+        {
+          "text": "暑いですね……。",
+          "quality": "ok",
+          "techniques": [
+            "季節の体感"
+          ],
+          "explanation": "定番で失礼もないが、一言だけだと会釈と同じで終わりやすい。観察や自分のことを半歩足すと会話になる。",
+          "next": "p1"
+        },
+        {
+          "text": "今年の夏って、どうなると思います?",
+          "quality": "ng",
+          "explanation": "天気の話でも、漠然と意見を求める質問は答えに困る(曖昧質問)。目の前の体感レベルが答えやすい。",
+          "next": "png1"
+        }
+      ]
+    },
+    "p1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 4,
+          "text": "ほんとですね。私、駅から歩いてきたのでもう汗だくで。",
+          "next": "n2e"
+        },
+        {
+          "category": "counter",
+          "weight": 2,
+          "text": "ですね。あ、この勉強会って初めてですか?",
+          "next": "n2c"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "ですね。",
+          "next": "n2s"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……ええ、まあ。(スマホを見ている)",
+          "next": "n2f"
+        }
+      ]
+    },
+    "n2e": {
+      "type": "player_choice",
+      "prompt": "「歩いてきて汗だく」と広げてくれた。",
+      "choices": [
+        {
+          "text": "歩きは暑いですよね。駅からだと結構ありました?",
+          "quality": "best",
+          "techniques": [
+            "相手の話題を拾う"
+          ],
+          "explanation": "相手が出した情報(駅から歩いた)を拾って軽く質問。事実を答えるだけでいい質問は、初対面でも負担がない。",
+          "next": "p2e"
+        },
+        {
+          "text": "わかります、今日は湿気もすごいですし。",
+          "quality": "ok",
+          "techniques": [
+            "共感・受け止め"
+          ],
+          "explanation": "共感は会話の潤滑油。質問を足すと、さらにもう一往復生まれる。",
+          "next": "p2e"
+        },
+        {
+          "text": "へえ。ところで今日の講師って有名な人なんですか?",
+          "quality": "ng",
+          "explanation": "相手の話を「へえ」で流して話題を変えると、聞いていない印象になる。話題転換は今の話の区切りを待ってから。",
+          "next": "png2"
+        }
+      ]
+    },
+    "p2e": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 3,
+          "text": "15分くらいですかね。夏の間は日傘を買おうか迷ってます。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "まあ、それなりに。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2c": {
+      "type": "player_choice",
+      "prompt": "逆に「初めてですか?」と聞かれた。",
+      "choices": [
+        {
+          "text": "初めてです。早めに来ちゃいました。◯◯さんは常連なんですか?",
+          "quality": "best",
+          "techniques": [
+            "一問二答"
+          ],
+          "explanation": "答え+ひとこと+質問返し。聞かれたら情報をひとつ足して返すと、尋問ではなくラリーになる。",
+          "next": "p2c"
+        },
+        {
+          "text": "あ、はい。初めてです。",
+          "quality": "ok",
+          "explanation": "答えだけで終わると、相手が次の質問を考える番になってしまう。ひとこと足すのがコツ。",
+          "next": "p2c2"
+        }
+      ]
+    },
+    "p2c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "私は2回目です。前回すごくよかったですよ。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "いえ、私もほぼ初めてです。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2c2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "そうなんですね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2s": {
+      "type": "player_choice",
+      "prompt": "「ですね」で終わった。角度を変えるなら——",
+      "choices": [
+        {
+          "text": "この時間から並ぶってことは、人気なんですかね、この会。",
+          "quality": "best",
+          "techniques": [
+            "場の共通話題",
+            "角度を変える"
+          ],
+          "explanation": "天気で伸びなければ、いま二人が共有している場(行列・会)の観察に切り替える。共通の状況は次に安全な話題。",
+          "next": "p2s"
+        },
+        {
+          "text": "……(前に向き直る)",
+          "quality": "ok",
+          "explanation": "無理に続けない判断もあり。ただ、場の観察でもう一手だけ試すと会話が生まれることも多い。",
+          "next": "p2s2"
+        }
+      ]
+    },
+    "p2s": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "みたいですね。前回は満席だったらしいです。",
+          "next": "n3"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "どうでしょう。",
+          "next": "n2f"
+        }
+      ]
+    },
+    "p2s2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "……。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2f": {
+      "type": "player_choice",
+      "prompt": "乗ってこない。今は話したくなさそうだ。",
+      "choices": [
+        {
+          "text": "(深追いせず待つ。ドアが開いたら)お先にどうぞ。",
+          "quality": "best",
+          "techniques": [
+            "撤退・話題転換"
+          ],
+          "explanation": "反応が薄いときは引くのが正解。去り際や譲り合いの一言だけ丁寧なら、印象はむしろ良い。",
+          "next": "p2f"
+        },
+        {
+          "text": "静かですね? もしかして緊張してます?(笑)",
+          "quality": "ng",
+          "explanation": "相手の状態の指摘+いじりは初対面では危険。話したくなさそうなら、そっと流すのが正解。",
+          "next": "png3"
+        }
+      ]
+    },
+    "p2f": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "あ、どうも。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "n3": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "少し話が続いた。列が動き出しそうだ。",
+      "choices": [
+        {
+          "text": "中、涼しいといいですね(笑)。会場でもよろしくお願いします。",
+          "quality": "best",
+          "techniques": [
+            "切り上げ",
+            "次につなげる"
+          ],
+          "explanation": "季節ネタに戻して軽く笑い、「よろしく」で締める。短い雑談は「感じよく終える」だけで目的達成。",
+          "next": "p_close_good"
+        },
+        {
+          "text": "そうなんですね。(列が動き出した)",
+          "quality": "ok",
+          "explanation": "自然な区切りとして十分。ひとこと挨拶を足すと、会場内でも話しかけやすくなる。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_close_good": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "こちらこそ。席近かったら、ぜひ。",
+          "next": "end_good"
+        }
+      ]
+    },
+    "n3s": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "会話は伸びなかった。列が動き出した。",
+      "choices": [
+        {
+          "text": "あ、動き出しましたね。では、会場でもよろしくお願いします。",
+          "quality": "best",
+          "techniques": [
+            "切り上げ"
+          ],
+          "explanation": "伸びなかった会話も、締めの挨拶があれば「感じのいい人」で終われる。終わり方がすべてを決める。",
+          "next": "p_ns"
+        },
+        {
+          "text": "(黙って列に続く)",
+          "quality": "ok",
+          "explanation": "失礼ではないが、挨拶一言のコストは小さく効果は大きい。",
+          "next": "end_quiet"
+        }
+      ]
+    },
+    "p_ns": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "よろしくお願いします。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "png1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "え? うーん、どうでしょうね……。",
+          "next": "nr1"
+        }
+      ]
+    },
+    "nr1": {
+      "type": "player_choice",
+      "prompt": "答えに困らせてしまった。",
+      "choices": [
+        {
+          "text": "すみません、変な質問でした(笑)。それにしても今日は暑いですね。",
+          "quality": "best",
+          "techniques": [
+            "リカバリ"
+          ],
+          "explanation": "答えにくい質問をしたら、笑いに変えて答えやすい体感の話に言い直す。「それにしても」は仕切り直しの便利な接続語。",
+          "next": "p1"
+        },
+        {
+          "text": "ですよね。",
+          "quality": "ok",
+          "explanation": "流して終わると会話も終わる。答えやすい形に言い直すチャンスだった。",
+          "next": "p_nr1"
+        }
+      ]
+    },
+    "p_nr1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……(会話が途切れた)",
+          "next": "n3s"
+        }
+      ]
+    },
+    "png2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "あ、どうなんでしょう。詳しくは知らなくて……。",
+          "next": "nr2"
+        }
+      ]
+    },
+    "nr2": {
+      "type": "player_choice",
+      "prompt": "話を飛ばしてしまい、ぎこちなくなった。",
+      "choices": [
+        {
+          "text": "すみません、話が飛びました。歩いてくると大変ですよね、この暑さ。",
+          "quality": "best",
+          "techniques": [
+            "リカバリ",
+            "相手の話題を拾う"
+          ],
+          "explanation": "飛ばしてしまった相手の話題(歩いてきた)に戻る。「すみません、話が飛びました」と言えば素直に戻れる。",
+          "next": "p2e"
+        },
+        {
+          "text": "そうですか。",
+          "quality": "ok",
+          "explanation": "そのままだと会話が途切れる。相手の話に戻るのが一番のリカバリだった。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "png3": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……いえ、別に。",
+          "next": "nr3"
+        }
+      ]
+    },
+    "nr3": {
+      "type": "player_choice",
+      "prompt": "空気が冷えた。",
+      "choices": [
+        {
+          "text": "失礼しました。——あ、開場みたいですね。どうぞ。",
+          "quality": "best",
+          "techniques": [
+            "リカバリ",
+            "撤退・話題転換"
+          ],
+          "explanation": "余計な一言に気づいたら短く謝り、場の動き(開場)に切り替える。引き際の良さは次の接点を守る。",
+          "next": "end_neutral"
+        },
+        {
+          "text": "……(気まずい沈黙)",
+          "quality": "ok",
+          "explanation": "何もしないと気まずさが固定される。短い謝罪+場の動きへの切り替えで流せた場面。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "end_good": {
+      "type": "end",
+      "text": "開場後、近くの席に座って続きを話せた。初対面の壁がひとつ消えた。",
+      "mood": "good"
+    },
+    "end_neutral": {
+      "type": "end",
+      "text": "軽く言葉を交わして開場。会場で会釈できる人がひとり増えた。",
+      "mood": "neutral"
+    },
+    "end_quiet": {
+      "type": "end",
+      "text": "そのまま静かに開場。悪印象はないが、接点も残らなかった。",
+      "mood": "neutral"
+    },
+    "end_awkward": {
+      "type": "end",
+      "text": "気まずいまま列が動いた。会場では少し離れた席にしようか……。",
+      "mood": "awkward"
+    }
+  }
+}

@@ -1,0 +1,558 @@
+{
+  "id": "hobby-first_casual-01",
+  "topic": "道楽",
+  "scene": "first_casual",
+  "title": "ホームパーティーで「ハマってるもの」を聞く",
+  "situation": "友人宅のホームパーティー。友人の別グループの初対面の人と、料理を取るテーブルで隣になった。",
+  "guide": "「ご趣味は?」と聞かずに道楽の話を引き出す練習。「趣味」という言葉はプレッシャーを生むので、言い換えがカギ。",
+  "entry": "n1",
+  "nodes": {
+    "n1": {
+      "type": "player_choice",
+      "prompt": "取り皿を持ったまま、隣の人と目が合った。話しかけるなら——",
+      "choices": [
+        {
+          "text": "最近なにかハマってるもの、あります?",
+          "quality": "best",
+          "techniques": [
+            "ハマってるもの型"
+          ],
+          "explanation": "「趣味は?」の言い換え定番。「ハマってるもの」なら動画でもお菓子でも答えられて、相手にプレッシャーを与えない。",
+          "next": "p1"
+        },
+        {
+          "text": "休みの日って、アクティブ派ですか? インドア派ですか?",
+          "quality": "ok",
+          "techniques": [
+            "答えやすい質問"
+          ],
+          "explanation": "二択は答えやすい良い聞き方。「ハマってるもの」型と併せて持っておくと、道楽の話の入口に困らない。",
+          "next": "p1"
+        },
+        {
+          "text": "ご趣味は何ですか?",
+          "quality": "ng",
+          "explanation": "「趣味」という言葉は“ちゃんとした特別な活動”を連想させ、無趣味の人を追い詰める定番NG。「最近ハマってるもの」に言い換えるだけで答えやすくなる。",
+          "next": "png1"
+        }
+      ]
+    },
+    "p1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 4,
+          "text": "最近はもっぱらサウナですね。週2で通ってます。",
+          "next": "n2e"
+        },
+        {
+          "category": "counter",
+          "weight": 3,
+          "text": "うーん、なんだろう。◯◯さんは何かあります?",
+          "next": "n2c"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "特にないですね……強いて言えばスマホ見てるくらいで。",
+          "next": "n2s"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "いや、特に。",
+          "next": "n2f"
+        }
+      ]
+    },
+    "n2e": {
+      "type": "player_choice",
+      "prompt": "「サウナ週2」と出てきた。",
+      "choices": [
+        {
+          "text": "週2はガチですね(笑)。何がきっかけだったんですか?",
+          "quality": "best",
+          "techniques": [
+            "きっかけを聞く"
+          ],
+          "explanation": "好きなものには必ず「きっかけ」の物語がある。きっかけ・良さを聞くと、相手は気持ちよく話せる。",
+          "next": "p2e"
+        },
+        {
+          "text": "サウナ、流行ってますよね。",
+          "quality": "ok",
+          "techniques": [
+            "共感・受け止め"
+          ],
+          "explanation": "受け止めとしては十分。きっかけや良さへの質問を足すと、相手の「好き」が引き出せる。",
+          "next": "p2e"
+        },
+        {
+          "text": "サウナって、結局は我慢大会じゃないですか?",
+          "quality": "ng",
+          "explanation": "相手の好きなものを軽く否定するのは地雷。興味がなくても「きっかけ」「良さ」を聞く側に回るのが安全。",
+          "next": "png2"
+        }
+      ]
+    },
+    "p2e": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 3,
+          "text": "同僚に連れられて行ったら、「整う」ってこれか! と(笑)。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "なんとなく、ですかね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2c": {
+      "type": "player_choice",
+      "prompt": "逆に聞かれた。ここで「私も特にない」と返すと話題が死ぬ——",
+      "choices": [
+        {
+          "text": "最近はコーヒーですね。豆から挽き始めたら止まらなくなって。",
+          "quality": "best",
+          "techniques": [
+            "自己開示"
+          ],
+          "explanation": "小さくても具体的な自己開示は、相手も出しやすくする(自己開示の返報性)。大層な趣味である必要はない。",
+          "next": "p2c"
+        },
+        {
+          "text": "いやー、私も特にはないんですけどね。",
+          "quality": "ok",
+          "explanation": "お互い「ない」で止まると話題が死ぬ。小ネタひとつの自己開示が突破口になる。",
+          "next": "p2c2"
+        }
+      ]
+    },
+    "p2c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "え、いいですね。ハンドドリップってやつですか?",
+          "next": "n3c"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "へえ、コーヒーかあ。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2c2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ですよね(笑)。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n3c": {
+      "type": "player_choice",
+      "prompt": "こちらの話に食いついてくれた。",
+      "choices": [
+        {
+          "text": "そうです、沼ですよ(笑)。今度おすすめの豆、持ってきますよ。",
+          "quality": "best",
+          "techniques": [
+            "次につなげる",
+            "小さな提案"
+          ],
+          "explanation": "食いついてくれたら、小さな約束の種をまく。「今度◯◯しますよ」は再会の口実になる。",
+          "next": "p3c"
+        },
+        {
+          "text": "そうです、形から入るタイプで(笑)。",
+          "quality": "ok",
+          "explanation": "自虐で受けるのも感じが良い。余裕があれば次につながる一言まで。",
+          "next": "p3d"
+        }
+      ]
+    },
+    "p3c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "ぜひぜひ。楽しみにしてます。",
+          "next": "end_good"
+        }
+      ]
+    },
+    "p3d": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "いいですね(笑)。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2s": {
+      "type": "player_choice",
+      "prompt": "「特にない、スマホくらい」と返ってきた。実はここに種がある——",
+      "choices": [
+        {
+          "text": "わかります(笑)。ちなみに最近よく見ちゃうのって何系ですか?",
+          "quality": "best",
+          "techniques": [
+            "“ない”から拾う"
+          ],
+          "explanation": "「特にない」の中にも必ず種がある。スマホで何を見るかは立派な道楽の話。共感してから軽く掘る。",
+          "next": "p2s"
+        },
+        {
+          "text": "そうですよね、休みってあっという間ですし。",
+          "quality": "ok",
+          "techniques": [
+            "共感・受け止め"
+          ],
+          "explanation": "共感で受けるのは良いが、そこで終わると話題も終わる。「ない」の中から拾う質問が使える場面。",
+          "next": "p2s2"
+        }
+      ]
+    },
+    "p2s": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "最近は料理動画ばっかり見てます。作らないのに(笑)。",
+          "next": "n3"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "うーん、ニュースとか、普通のですよ。",
+          "next": "n2f"
+        }
+      ]
+    },
+    "p2s2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ほんとですよね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2f": {
+      "type": "player_choice",
+      "prompt": "この話題は広がらなそうだ。目の前には友人の手料理——",
+      "choices": [
+        {
+          "text": "この唐揚げ、◯◯の得意料理らしいですよ。絶品だとか。",
+          "quality": "best",
+          "techniques": [
+            "撤退・話題転換",
+            "場の共通話題"
+          ],
+          "explanation": "道楽で乗ってこなければ、その場の共通項(友人・料理)に切り替える。ホームパーティーなら主催者の話が一番安全。",
+          "next": "p2f"
+        },
+        {
+          "text": "ですよね、急に聞かれても困りますよね(笑)。",
+          "quality": "ok",
+          "explanation": "自分の質問を軽く畳むのは悪くない。そのあと場の話題に切り替えられるとなお良い。",
+          "next": "p2f"
+        }
+      ]
+    },
+    "p2f": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "え、そうなんですか。じゃあ、いただこうかな。",
+          "next": "n3f"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "あ、はい。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n3f": {
+      "type": "player_choice",
+      "prompt": "料理の話には乗ってきた。",
+      "choices": [
+        {
+          "text": "◯◯の料理、年々本格化してるんですよ(笑)。",
+          "quality": "best",
+          "techniques": [
+            "場の共通話題"
+          ],
+          "explanation": "共通の友人の話は、初対面同士の一番の資源。友人を立てる話なら聞く側も安心して笑える。",
+          "next": "p3f"
+        },
+        {
+          "text": "(取り分けて渡す)どうぞ。",
+          "quality": "ok",
+          "explanation": "行動の気遣いも立派なコミュニケーション。ひとこと添えると会話にもなる。",
+          "next": "p3f2"
+        }
+      ]
+    },
+    "p3f": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "へえ(笑)。……あ、ほんとだ、おいしい。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "p3f2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "あ、どうも。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n3": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "好きなものの話でいい感じに温まった。",
+      "choices": [
+        {
+          "text": "いいですね、それ。今度詳しく教えてください。",
+          "quality": "best",
+          "techniques": [
+            "次につなげる"
+          ],
+          "explanation": "「今度教えて」は、盛り上がりを保存して次に持ち越す締め。パーティー中の再会の口実にもなる。",
+          "next": "p_close_good"
+        },
+        {
+          "text": "へえ、そうなんですね。(料理を取り終えた)",
+          "quality": "ok",
+          "explanation": "区切りとしては自然。「あとでまた」を一言足すと余韻が残る。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_close_good": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "いつでも(笑)。あっちでゆっくり話しましょう。",
+          "next": "end_good"
+        }
+      ]
+    },
+    "n3s": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "会話は細いまま。皿もいっぱいになった。",
+      "choices": [
+        {
+          "text": "じゃ、私あっちで飲み物取ってきますね。またあとで!",
+          "quality": "best",
+          "techniques": [
+            "切り上げ"
+          ],
+          "explanation": "パーティーでは動きながらの切り上げが自然。「またあとで」は本当に後で話しかける口実にもなる。",
+          "next": "p_ns"
+        },
+        {
+          "text": "……(料理を黙って取る)",
+          "quality": "ok",
+          "explanation": "無言でも失礼ではないが、一声かけて離れるほうがお互い楽になる。",
+          "next": "end_quiet"
+        }
+      ]
+    },
+    "p_ns": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "はーい。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "n_close": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "料理の話でひと笑いできた。",
+      "choices": [
+        {
+          "text": "おすすめ情報、また交換しましょう。あとでまた!",
+          "quality": "best",
+          "techniques": [
+            "切り上げ",
+            "次につなげる"
+          ],
+          "explanation": "軽い約束で締めると、パーティーの後半にもう一度話すきっかけが残る。",
+          "next": "p_c"
+        },
+        {
+          "text": "では。(皿を持って移動する)",
+          "quality": "ok",
+          "explanation": "十分だが、「また」の一言があると次につながる。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "ぜひ。あっちのテーブルにもおすすめありますよ。",
+          "next": "end_good"
+        }
+      ]
+    },
+    "png1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "趣味……いや、これといってないんですよね……。",
+          "next": "nr1"
+        }
+      ]
+    },
+    "nr1": {
+      "type": "player_choice",
+      "prompt": "相手が気まずそうに目を伏せた。",
+      "choices": [
+        {
+          "text": "あ、大げさな話じゃなくて。最近よく見ちゃう動画とかでも(笑)。",
+          "quality": "best",
+          "techniques": [
+            "リカバリ",
+            "ハードルを下げる"
+          ],
+          "explanation": "「趣味」で追い詰めたら、すぐハードルを下げて言い直す。「動画でもお菓子でも」と例を出すと答えやすくなる。",
+          "next": "p_nr1"
+        },
+        {
+          "text": "そうですか、すみません。",
+          "quality": "ok",
+          "explanation": "謝るより、質問のハードルを下げて言い直すほうが会話が生き返る。",
+          "next": "p_nr1b"
+        }
+      ]
+    },
+    "p_nr1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "それなら……最近は料理動画ばっかり見てます(笑)。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ああ、それなら、まあ……。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p_nr1b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "いえ……。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "png2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "まあ……人それぞれですかね。",
+          "next": "nr2"
+        }
+      ]
+    },
+    "nr2": {
+      "type": "player_choice",
+      "prompt": "明らかに気分を害してしまった。",
+      "choices": [
+        {
+          "text": "すみません、偏見でした(笑)。「整う」って実際どんな感じなんですか?",
+          "quality": "best",
+          "techniques": [
+            "リカバリ",
+            "きっかけを聞く"
+          ],
+          "explanation": "否定してしまったら、素直に認めて「教わる側」に回るのが最善。好きな人に語ってもらうのが一番の関係修復。",
+          "next": "p2e"
+        },
+        {
+          "text": "ですよね。",
+          "quality": "ok",
+          "explanation": "流すと否定の印象だけが残る。教わる側に回れば挽回できた場面。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "end_good": {
+      "type": "end",
+      "text": "好きなものの話で盛り上がり、「またあとで」が社交辞令じゃなくなった。",
+      "mood": "good"
+    },
+    "end_neutral": {
+      "type": "end",
+      "text": "軽く言葉を交わしてテーブルを離れた。パーティー中にまた話すきっかけはできた。",
+      "mood": "neutral"
+    },
+    "end_quiet": {
+      "type": "end",
+      "text": "静かに料理を取り終えた。悪くはないが、次のきっかけは残らなかった。",
+      "mood": "neutral"
+    },
+    "end_awkward": {
+      "type": "end",
+      "text": "相手の目が泳いだまま会話が終わった。少し時間を置いて仕切り直そう。",
+      "mood": "awkward"
+    }
+  }
+}

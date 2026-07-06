@@ -7,11 +7,20 @@ function todayKey(): string {
   return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
 }
 
-function ScenarioCard({ scenario, onStart, highlight }: { scenario: Scenario; onStart: () => void; highlight?: boolean }) {
+function ScenarioCard({
+  scenario,
+  onStart,
+  onTree,
+  highlight,
+}: {
+  scenario: Scenario;
+  onStart: () => void;
+  onTree: () => void;
+  highlight?: boolean;
+}) {
   return (
-    <button
-      onClick={onStart}
-      className={`w-full rounded-2xl border p-4 text-left shadow-sm transition hover:shadow-md ${
+    <div
+      className={`w-full rounded-2xl border p-4 shadow-sm ${
         highlight ? 'border-indigo-300 bg-indigo-50' : 'border-slate-200 bg-white'
       }`}
     >
@@ -22,11 +31,31 @@ function ScenarioCard({ scenario, onStart, highlight }: { scenario: Scenario; on
       </div>
       <div className="font-bold">{scenario.title}</div>
       <p className="mt-1 line-clamp-2 text-sm text-slate-500">{scenario.situation}</p>
-    </button>
+      <div className="mt-3 flex gap-2">
+        <button
+          onClick={onStart}
+          className="flex-1 rounded-lg bg-indigo-600 py-2 text-sm font-bold text-white transition hover:bg-indigo-700"
+        >
+          練習する
+        </button>
+        <button
+          onClick={onTree}
+          className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-bold text-slate-500 transition hover:bg-slate-50"
+        >
+          ツリー
+        </button>
+      </div>
+    </div>
   );
 }
 
-export default function Home({ onStart }: { onStart: (scenarioId: string) => void }) {
+export default function Home({
+  onStart,
+  onTree,
+}: {
+  onStart: (scenarioId: string) => void;
+  onTree: (scenarioId: string) => void;
+}) {
   const dailyId = dailyScenarioId(
     scenarios.map((s) => s.id),
     todayKey(),
@@ -44,13 +73,13 @@ export default function Home({ onStart }: { onStart: (scenarioId: string) => voi
       </header>
 
       <section className="space-y-2">
-        <ScenarioCard scenario={daily} onStart={() => onStart(daily.id)} highlight />
+        <ScenarioCard scenario={daily} onStart={() => onStart(daily.id)} onTree={() => onTree(daily.id)} highlight />
       </section>
 
       <section className="space-y-2">
         <h2 className="text-sm font-bold text-slate-500">シナリオ一覧</h2>
         {rest.map((s) => (
-          <ScenarioCard key={s.id} scenario={s} onStart={() => onStart(s.id)} />
+          <ScenarioCard key={s.id} scenario={s} onStart={() => onStart(s.id)} onTree={() => onTree(s.id)} />
         ))}
       </section>
 

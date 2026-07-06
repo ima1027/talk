@@ -61,11 +61,13 @@ export default function Review({
   scenario,
   session,
   onRetry,
+  onTree,
   onHome,
 }: {
   scenario: Scenario;
   session: Session;
   onRetry: () => void;
+  onTree: () => void;
   onHome: () => void;
 }) {
   const endNode = scenario.nodes[session.currentNodeId];
@@ -231,19 +233,27 @@ export default function Review({
         </section>
       )}
 
-      <div className="flex gap-2">
+      <div className="flex flex-col gap-2">
         <button
           onClick={onRetry}
-          className="flex-1 rounded-xl bg-indigo-600 px-4 py-3 font-bold text-white shadow-sm transition hover:bg-indigo-700"
+          className="rounded-xl bg-indigo-600 px-4 py-3 font-bold text-white shadow-sm transition hover:bg-indigo-700"
         >
           もう一度(別ルートを引く)
         </button>
-        <button
-          onClick={onHome}
-          className="flex-1 rounded-xl border border-slate-300 bg-white px-4 py-3 font-bold text-slate-600 shadow-sm transition hover:bg-slate-50"
-        >
-          ホームへ
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={onTree}
+            className="flex-1 rounded-xl border border-slate-300 bg-white px-4 py-3 font-bold text-slate-600 shadow-sm transition hover:bg-slate-50"
+          >
+            全ルートを見る
+          </button>
+          <button
+            onClick={onHome}
+            className="flex-1 rounded-xl border border-slate-300 bg-white px-4 py-3 font-bold text-slate-600 shadow-sm transition hover:bg-slate-50"
+          >
+            ホームへ
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getScenario } from '../content';
+import { getScenario, scenarios } from '../content';
 import { applyChoice, createSession, dailyScenarioId, pickWeighted, shuffledIndices } from './engine';
 import type { Branch } from './types';
 
@@ -38,12 +38,7 @@ describe('applyChoice', () => {
   });
 
   it('どのシナリオも best 選択+先頭ブランチをたどれば end に到達する', () => {
-    for (const id of [
-      'fashion-first_casual-01',
-      'fashion-senior_known-01',
-      'food-first_casual-01',
-      'food-senior_known-01',
-    ]) {
+    for (const { id } of scenarios) {
       const scenario = getScenario(id);
       let session = createSession(scenario);
       let guard = 0;

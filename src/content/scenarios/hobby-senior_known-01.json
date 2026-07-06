@@ -1,0 +1,591 @@
+{
+  "id": "hobby-senior_known-01",
+  "topic": "道楽",
+  "scene": "senior_known",
+  "title": "外回りの帰りの電車で、上司と隣同士",
+  "situation": "上司と二人で外回りの帰り、電車で隣に座った。降りる駅まであと20分。仕事の話はもう済んでしまった。",
+  "guide": "目上に「休日の過ごし方」を軽く尋ねて話を持たせる練習。詮索にならない距離感と、相手の話を引き出す返しがポイント。",
+  "entry": "n1",
+  "nodes": {
+    "n1": {
+      "type": "player_choice",
+      "prompt": "沈黙が続いて2分。窓の外を見るのにも限界がある——",
+      "choices": [
+        {
+          "text": "◯◯さんって、休みの日は何してることが多いんですか?",
+          "quality": "best",
+          "techniques": [
+            "ハマってるもの型"
+          ],
+          "explanation": "「趣味は?」より答えやすい定番の聞き方。「何してることが多い?」なら寝てるでも散歩でも答えられる。",
+          "next": "p1"
+        },
+        {
+          "text": "今週もあっという間ですね。",
+          "quality": "ok",
+          "techniques": [
+            "場の共通話題"
+          ],
+          "explanation": "無難な入り。ここから休日の話に振れると会話が続く。",
+          "next": "p1"
+        },
+        {
+          "text": "休日はご家族と何してるんですか? お子さん、いましたっけ?",
+          "quality": "ng",
+          "explanation": "家族構成は相手から出るまで触れないのが原則。休日の話は「ご本人」の範囲で聞くのが安全。",
+          "next": "png1"
+        }
+      ]
+    },
+    "p1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 3,
+          "text": "最近はもっぱら釣りだね。先週も朝から行ってきたよ。",
+          "next": "n2e"
+        },
+        {
+          "category": "counter",
+          "weight": 2,
+          "text": "うーん、寝てるかな(笑)。◯◯さんは?",
+          "next": "n2c"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "まあ、のんびりしてるよ。",
+          "next": "n2s"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……ん? ああ、特に何も。(窓の外を見る)",
+          "next": "n2f"
+        }
+      ]
+    },
+    "n2e": {
+      "type": "player_choice",
+      "prompt": "「釣り、先週も朝から」と出てきた。",
+      "choices": [
+        {
+          "text": "釣り! 朝からって本格的ですね。何が釣れるんですか?",
+          "quality": "best",
+          "techniques": [
+            "きっかけを聞く",
+            "教わる姿勢"
+          ],
+          "explanation": "目上の道楽には「教わる側」で乗るのが一番。魚・場所・季節など、話が広がる方向に質問する。",
+          "next": "p2e"
+        },
+        {
+          "text": "へえ、釣りですか。いいですね。",
+          "quality": "ok",
+          "techniques": [
+            "共感・受け止め"
+          ],
+          "explanation": "受け止めは十分。質問を足すと、相手の「好き」が引き出せてもう何駅分か話が持つ。",
+          "next": "p2e"
+        },
+        {
+          "text": "釣りって、道具にいくらぐらいかかるんですか?",
+          "quality": "ng",
+          "explanation": "趣味の話でも金額の詮索は品がない印象に。魚・場所・きっかけなど、話が広がる方向で聞く。",
+          "next": "png2"
+        }
+      ]
+    },
+    "p2e": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "今の時期はアジだね。夜明けの海は気持ちいいよ。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "まあ、大したもんは釣れないけどね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2c": {
+      "type": "player_choice",
+      "prompt": "「寝てるかな(笑)。君は?」と返ってきた。",
+      "choices": [
+        {
+          "text": "いいですね(笑)。私は最近ラーメン屋巡りで、昨日も並びました。",
+          "quality": "best",
+          "techniques": [
+            "一問二答",
+            "自己開示"
+          ],
+          "explanation": "相手の答えを軽く肯定してから、自分の小ネタを具体的に。具体は突っ込みどころになり、会話が転がる。",
+          "next": "p2c"
+        },
+        {
+          "text": "私も寝てます(笑)。",
+          "quality": "ok",
+          "explanation": "合わせる返しで悪くないが、そこで終わると沈黙に戻る。自分の小ネタをひとつ足すのがコツ。",
+          "next": "p2c2"
+        }
+      ]
+    },
+    "p2c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "ほう、ラーメン。このへんでうまい店あるの?",
+          "next": "n3r"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "若いねえ(笑)。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2c2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "だよね(笑)。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n3r": {
+      "type": "player_choice",
+      "prompt": "上司が食いついた。",
+      "choices": [
+        {
+          "text": "駅北の◯◯がおすすめです。今度の外回りの帰り、寄ります?(笑)",
+          "quality": "best",
+          "techniques": [
+            "小さな提案",
+            "次につなげる"
+          ],
+          "explanation": "食いつかれたら小さな提案まで。仕事の合間の楽しみを共有できると、上司との距離は一気に縮まる。",
+          "next": "p3r"
+        },
+        {
+          "text": "駅北の◯◯って店がおいしいです。",
+          "quality": "ok",
+          "explanation": "情報を渡すだけでも十分良い返し。提案まで踏み込むかは関係次第。",
+          "next": "p3r2"
+        }
+      ]
+    },
+    "p3r": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "いいね、それ。次の外回りの楽しみができた。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "p3r2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "へえ、覚えとくよ。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "n2s": {
+      "type": "player_choice",
+      "prompt": "「のんびりしてるよ」で止まった。",
+      "choices": [
+        {
+          "text": "いいですね。私は最近、近所のパン屋巡りにハマってます。",
+          "quality": "best",
+          "techniques": [
+            "自己開示"
+          ],
+          "explanation": "相手が出さないときは、自分の小ネタを置いて相手に選ばせる。質問攻めより自己開示のほうが目上には楽。",
+          "next": "p2s"
+        },
+        {
+          "text": "そうですか。",
+          "quality": "ok",
+          "explanation": "会話が終わる相づち。自分の話をひとつ置くと、意外と拾ってもらえる。",
+          "next": "p2s2"
+        }
+      ]
+    },
+    "p2s": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "ほう、パン屋。今度おすすめ教えてよ。",
+          "next": "n3b"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "へえ、そうなんだ。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2s2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "……。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n3b": {
+      "type": "player_choice",
+      "prompt": "拾ってもらえた。",
+      "choices": [
+        {
+          "text": "駅前の細い路地の店が絶品です。今度差し入れしますね。",
+          "quality": "best",
+          "techniques": [
+            "次につなげる",
+            "小さな提案"
+          ],
+          "explanation": "「今度◯◯します」は次の接点の種。実行すれば信頼になり、しなくても会話としては十分成立する。",
+          "next": "p3b"
+        },
+        {
+          "text": "機会があればぜひ。",
+          "quality": "ok",
+          "explanation": "無難だが具体がないと流れて終わる。店名や場所をひとつ出すと記憶に残る。",
+          "next": "p3b2"
+        }
+      ]
+    },
+    "p3b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "お、楽しみにしてるよ。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "p3b2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "うん。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2f": {
+      "type": "player_choice",
+      "prompt": "上司は窓の外を見ている。今は雑談の気分ではなさそうだ。",
+      "choices": [
+        {
+          "text": "(無理に続けず、少ししてから)今日の先方、感じよかったですね。",
+          "quality": "best",
+          "techniques": [
+            "撤退・話題転換",
+            "話題を戻す"
+          ],
+          "explanation": "プライベートの話に乗ってこないときは、共有している仕事の軽い話題(今日の商談の印象)に戻すのが安全な退路。",
+          "next": "p2f"
+        },
+        {
+          "text": "(黙って景色を見る)",
+          "quality": "ok",
+          "explanation": "沈黙に付き合うのも選択肢。目上との移動では、無理に埋めない判断も立派な社会的スキル。",
+          "next": "p2f2"
+        }
+      ]
+    },
+    "p2f": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "ああ、あそこはやりやすいね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2f2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "……。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n3": {
+      "type": "player_choice",
+      "prompt": "「夜明けの海は気持ちいい」と楽しそうだ。",
+      "choices": [
+        {
+          "text": "夜明けの海、いいですね。今度写真見せてください。",
+          "quality": "best",
+          "techniques": [
+            "次につなげる",
+            "教わる姿勢"
+          ],
+          "explanation": "「写真見せて」は好きな人が一番喜ぶお願いのひとつ。次に会うときの話題も確保できる。",
+          "next": "p3"
+        },
+        {
+          "text": "そうなんですね〜。",
+          "quality": "ok",
+          "explanation": "相づちだけだと話が減速する。感想+お願い・質問で、相手の「好き」を続けてもらう。",
+          "next": "p3_2"
+        }
+      ]
+    },
+    "p3": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "おう、いいのがあるよ(笑)。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "p3_2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "まあ、そんな感じだね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n3s": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "そろそろ降りる駅が近い。",
+      "choices": [
+        {
+          "text": "もうすぐ駅ですね。今日はありがとうございました。",
+          "quality": "best",
+          "techniques": [
+            "切り上げ"
+          ],
+          "explanation": "移動の終わりに合わせてお礼で締める。会話が伸びなかった日も、締めの一言で印象は保てる。",
+          "next": "p_ns"
+        },
+        {
+          "text": "(黙ってスマホを見る)",
+          "quality": "ok",
+          "explanation": "失礼ではないが、降り際の一言があると締まる。",
+          "next": "end_quiet"
+        }
+      ]
+    },
+    "p_ns": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "うん、お疲れさま。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "n_close": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "いい流れのまま、駅に着きそうだ。",
+      "choices": [
+        {
+          "text": "じゃあ次の外回り、楽しみにしてます。今日もありがとうございました。",
+          "quality": "best",
+          "techniques": [
+            "切り上げ",
+            "次につなげる"
+          ],
+          "explanation": "「次の楽しみ」に言及して締めると、雑談が一回きりで終わらず関係の資産になる。",
+          "next": "p_c"
+        },
+        {
+          "text": "では、お疲れさまでした。",
+          "quality": "ok",
+          "explanation": "十分丁寧。せっかく盛り上がったので「次」への一言があるとなお良い。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "こちらこそ、お疲れさま。",
+          "next": "end_good"
+        }
+      ]
+    },
+    "png1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ん? まあ、家族と適当に、ね。(少し引いた様子)",
+          "next": "nr1"
+        }
+      ]
+    },
+    "nr1": {
+      "type": "player_choice",
+      "prompt": "踏み込みすぎた空気を感じる。",
+      "choices": [
+        {
+          "text": "失礼しました。◯◯さんご自身は、最近のマイブームとかあります?",
+          "quality": "best",
+          "techniques": [
+            "リカバリ",
+            "ハマってるもの型"
+          ],
+          "explanation": "家族に踏み込んだら、すぐ「ご本人」の範囲に質問を引き戻す。聞く範囲の修正がそのままリカバリになる。",
+          "next": "p1r"
+        },
+        {
+          "text": "すみません、立ち入ったことを。",
+          "quality": "ok",
+          "explanation": "謝罪だけだと空気が固まる。質問の範囲を本人に戻して聞き直すほうが自然に流れる。",
+          "next": "p_nr1b"
+        }
+      ]
+    },
+    "p1r": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "マイブームか(笑)。最近は釣りだね。",
+          "next": "n2e"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "うーん、特にないなあ。",
+          "next": "n2s"
+        }
+      ]
+    },
+    "p_nr1b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "いや、いいんだけどね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "png2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "まあ……ピンキリだよ。",
+          "next": "nr2"
+        }
+      ]
+    },
+    "nr2": {
+      "type": "player_choice",
+      "prompt": "露骨に濁された。",
+      "choices": [
+        {
+          "text": "すみません、無粋でした。釣った魚って、食べるんですか?",
+          "quality": "best",
+          "techniques": [
+            "リカバリ",
+            "きっかけを聞く"
+          ],
+          "explanation": "お金の話から、話が広がる方向(釣った魚をどうするか)へ質問を切り替える。質問の向きを直せば会話は戻る。",
+          "next": "pr2"
+        },
+        {
+          "text": "そうですか……。",
+          "quality": "ok",
+          "explanation": "引くだけだと気まずさが残る。質問の向きを変えてもう一手が正解だった。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "pr2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "食べるよ。自分で釣ったアジのフライは格別でね。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "まあ、たまにね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "end_good": {
+      "type": "end",
+      "text": "「次の外回りの楽しみ」ができた。移動時間がもう苦にならなそうだ。",
+      "mood": "good"
+    },
+    "end_neutral": {
+      "type": "end",
+      "text": "無難に間が持てた。上司との電車も、思ったより怖くない。",
+      "mood": "neutral"
+    },
+    "end_quiet": {
+      "type": "end",
+      "text": "沈黙のまま到着。失礼はないが、20分は長く感じた。",
+      "mood": "neutral"
+    },
+    "end_awkward": {
+      "type": "end",
+      "text": "気まずい空気のまま電車に揺られた。降りたら普通に挨拶して仕切り直そう。",
+      "mood": "awkward"
+    }
+  }
+}

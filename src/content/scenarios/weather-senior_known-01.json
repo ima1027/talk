@@ -1,0 +1,457 @@
+{
+  "id": "weather-senior_known-01",
+  "topic": "天気・季節",
+  "scene": "senior_known",
+  "title": "習い事の帰り道、先生と駅まで一緒に",
+  "situation": "月2回通っている書道教室の帰り。先生と駅まで同じ方向になった。日が落ちて、少し肌寒い。",
+  "guide": "目上との沈黙を「季節の体感」で埋める練習。天気は安全だが、一言で終わらせず半歩だけ広げる。",
+  "entry": "n1",
+  "nodes": {
+    "n1": {
+      "type": "player_choice",
+      "prompt": "並んで歩き始めた。沈黙を破るなら——",
+      "choices": [
+        {
+          "text": "日が沈むと、まだ少し冷えますね。先生は駅までですか?",
+          "quality": "best",
+          "techniques": [
+            "季節の体感",
+            "答えやすい質問"
+          ],
+          "explanation": "体感の共有+答えやすい質問のセット。目上には「私は冷える」と自分を主語にした体感が角が立たない。",
+          "next": "p1"
+        },
+        {
+          "text": "寒くなってきましたね。",
+          "quality": "ok",
+          "techniques": [
+            "季節の体感"
+          ],
+          "explanation": "安全な定番。ただ一言だけだと「そうね」で終わりやすい。質問か自分の話を半歩足すとよい。",
+          "next": "p1"
+        },
+        {
+          "text": "先生、その上着で寒くないんですか? ずいぶん薄着ですね。",
+          "quality": "ng",
+          "explanation": "服装や体感への指摘は、目上には「いじり」に聞こえるリスクがある。体感は自分を主語に話すのが安全。",
+          "next": "png1"
+        }
+      ]
+    },
+    "p1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 3,
+          "text": "ええ、駅まで。夜はもう春物じゃ心もとないわね。",
+          "next": "n2e"
+        },
+        {
+          "category": "counter",
+          "weight": 2,
+          "text": "そうねえ。◯◯さんは通うの、遠くないの?",
+          "next": "n2c"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "そうですね。",
+          "next": "n2s"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "ええ。(少し疲れた様子)",
+          "next": "n2f"
+        }
+      ]
+    },
+    "n2e": {
+      "type": "player_choice",
+      "prompt": "「春物じゃ心もとない」と乗ってきてくれた。",
+      "choices": [
+        {
+          "text": "ですね。教室も、冬は道具を持つ手がかじかみそうです(笑)。",
+          "quality": "best",
+          "techniques": [
+            "場の共通話題",
+            "季節の体感"
+          ],
+          "explanation": "季節の話を、二人の共通の場(教室)につなげる。共有している場面の話は、目上とも対等に話せる。",
+          "next": "p2e"
+        },
+        {
+          "text": "そうですね、上着に悩む時期です。",
+          "quality": "ok",
+          "techniques": [
+            "共感・受け止め"
+          ],
+          "explanation": "同意で受けるのは無難。共通の場の話につなげると、もう一往復生まれる。",
+          "next": "p2b"
+        },
+        {
+          "text": "先生っておいくつでしたっけ? 寒さがこたえる歳ですか(笑)。",
+          "quality": "ng",
+          "explanation": "年齢いじりは目上への最悪の一手。冗談でも年齢・体力の話は自分から出さない。",
+          "next": "png2"
+        }
+      ]
+    },
+    "p2e": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "そうそう。だから冬は早めに来て、お湯で手を温めるのよ。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ふふ、そうね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ええ。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2c": {
+      "type": "player_choice",
+      "prompt": "「通うの遠くないの?」と聞かれた。",
+      "choices": [
+        {
+          "text": "自転車で15分です。この時期は帰りが気持ちよくて。先生はお近くですか?",
+          "quality": "best",
+          "techniques": [
+            "一問二答"
+          ],
+          "explanation": "答え+季節の感想+質問返し。目上からの質問は、会話を続けたいサインとして丁寧に返す。",
+          "next": "p2c"
+        },
+        {
+          "text": "いえ、近いです。",
+          "quality": "ok",
+          "explanation": "短い答えだけだと、先生がまた次の質問を探すことになる。ひとこと足すのが気遣い。",
+          "next": "p2c2"
+        }
+      ]
+    },
+    "p2c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "あら、いいわね。私は二駅先から来てるの。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "そう、それは何より。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2c2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "そう。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2s": {
+      "type": "player_choice",
+      "prompt": "「そうですね」で終わった。もう半歩だけ——",
+      "choices": [
+        {
+          "text": "来週はもう衣替えですかね。教室の皆さんも長袖でした。",
+          "quality": "best",
+          "techniques": [
+            "場の共通話題",
+            "季節の体感"
+          ],
+          "explanation": "季節+教室の観察でもう一手。質問で詰めず、相手が乗るかどうか選べる形の「置き球」が目上向け。",
+          "next": "p2s"
+        },
+        {
+          "text": "……(並んで歩く)",
+          "quality": "ok",
+          "explanation": "沈黙も悪くない。ただ、置き球をひとつ足すと会話が生まれることがある。",
+          "next": "p2s2"
+        }
+      ]
+    },
+    "p2s": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "ほんとね。今年は季節が進むのが早い気がするわ。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "そうかもね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2s2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "……。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2f": {
+      "type": "player_choice",
+      "prompt": "先生は少しお疲れの様子。",
+      "choices": [
+        {
+          "text": "(静かに歩調を合わせ、駅に着いたら)今日もありがとうございました。",
+          "quality": "best",
+          "techniques": [
+            "撤退・話題転換",
+            "切り上げ"
+          ],
+          "explanation": "疲れている様子なら、沈黙に付き合うのも気遣い。別れ際のお礼だけ丁寧にすれば十分感じが良い。",
+          "next": "p2f"
+        },
+        {
+          "text": "先生、お疲れですか? 顔色がよくないですよ。",
+          "quality": "ng",
+          "explanation": "体調の指摘は善意でも重い。目上には特に、本人が言い出すまで体調には触れないのが無難。",
+          "next": "png3"
+        }
+      ]
+    },
+    "p2f": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "はい、お疲れさま。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "n3": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "話が続いた。駅が見えてきた。",
+      "choices": [
+        {
+          "text": "今度真似します(笑)。今日もありがとうございました。",
+          "quality": "best",
+          "techniques": [
+            "切り上げ",
+            "教わる姿勢"
+          ],
+          "explanation": "相手の話を「いただく」形で締めると、目上は気持ちよく終われる。お礼で締めるのは万能の切り上げ。",
+          "next": "p_close_good"
+        },
+        {
+          "text": "そうなんですね。(駅に着いた)",
+          "quality": "ok",
+          "explanation": "自然な終わりだが、ひとことお礼を足すと締まる。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_close_good": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "ふふ。それじゃ、また来週ね。",
+          "next": "end_good"
+        }
+      ]
+    },
+    "n3s": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "駅に着いた。改札の方向が違う。",
+      "choices": [
+        {
+          "text": "では、私はこちらなので。今日もありがとうございました。",
+          "quality": "best",
+          "techniques": [
+            "切り上げ"
+          ],
+          "explanation": "会話が伸びなくても、去り際のお礼が丁寧なら関係は保たれる。雑談は「終わり良ければ」。",
+          "next": "p_ns"
+        },
+        {
+          "text": "(会釈だけして別れる)",
+          "quality": "ok",
+          "explanation": "失礼ではないが、月2回会う相手にはお礼の一言を習慣にしたい。",
+          "next": "end_quiet"
+        }
+      ]
+    },
+    "p_ns": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "はい、気をつけてね。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "png1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "え? ……そうかしら。",
+          "next": "nr1"
+        }
+      ]
+    },
+    "nr1": {
+      "type": "player_choice",
+      "prompt": "微妙な空気になった。",
+      "choices": [
+        {
+          "text": "あ、いえ、私が寒がりなだけです(笑)。夜は冷えますね。",
+          "quality": "best",
+          "techniques": [
+            "リカバリ"
+          ],
+          "explanation": "相手への指摘に聞こえたら、すぐ自分の話に置き換える。「私が◯◯なだけ」は便利な軟着陸フレーズ。",
+          "next": "p1"
+        },
+        {
+          "text": "すみません。",
+          "quality": "ok",
+          "explanation": "謝るだけより、自分を主語にした言い直しのほうが空気が早く戻る。",
+          "next": "p_nr1b"
+        }
+      ]
+    },
+    "p_nr1b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "いいのよ。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "png2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "あら、失礼ね(笑)。",
+          "next": "nr2"
+        }
+      ]
+    },
+    "nr2": {
+      "type": "player_choice",
+      "prompt": "笑ってはくれたが、確実に一線を越えた。",
+      "choices": [
+        {
+          "text": "すみません(笑)。私が寒がりなだけでした。冬は厚着で行きます。",
+          "quality": "best",
+          "techniques": [
+            "リカバリ"
+          ],
+          "explanation": "すぐ謝って自分の話に置き換え、元の季節の話に戻す。冗談で受けてもらえたうちに引き返す。",
+          "next": "p2e"
+        },
+        {
+          "text": "すみません……。",
+          "quality": "ok",
+          "explanation": "重く謝るとかえって空気が固まる。軽く謝って話を戻すのが正解だった。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "png3": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "そう? いつも通りよ。",
+          "next": "nr3"
+        }
+      ]
+    },
+    "nr3": {
+      "type": "player_choice",
+      "prompt": "軽くかわされた。これ以上は触れないほうがいい。",
+      "choices": [
+        {
+          "text": "ならよかったです。すみません、余計なことを。",
+          "quality": "best",
+          "techniques": [
+            "リカバリ",
+            "撤退・話題転換"
+          ],
+          "explanation": "相手の「いつも通り」を額面どおり受けて引く。詮索しない姿勢が信頼を守る。",
+          "next": "p2f"
+        },
+        {
+          "text": "……(黙って歩く)",
+          "quality": "ok",
+          "explanation": "沈黙で流すより、短く受けて引くほうが気まずさが残らない。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "end_good": {
+      "type": "end",
+      "text": "「また来週ね」の声が、いつもより柔らかかった。",
+      "mood": "good"
+    },
+    "end_neutral": {
+      "type": "end",
+      "text": "静かだが感じの良い帰り道になった。",
+      "mood": "neutral"
+    },
+    "end_quiet": {
+      "type": "end",
+      "text": "失礼はないが、次も沈黙の帰り道になりそうだ。",
+      "mood": "neutral"
+    },
+    "end_awkward": {
+      "type": "end",
+      "text": "気まずさの残る別れ際になった。次回は挨拶から仕切り直そう。",
+      "mood": "awkward"
+    }
+  }
+}
