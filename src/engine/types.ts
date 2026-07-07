@@ -1,6 +1,6 @@
 // コンテンツデータの型定義。docs/requirements.md §3.4, §6 に対応する。
 
-export type Scene = 'first_formal' | 'first_casual' | 'senior_known';
+export type Scene = 'first_formal' | 'first_casual' | 'senior_known' | 'peer_known';
 
 export type Quality = 'best' | 'ok' | 'ng';
 
@@ -60,6 +60,10 @@ export interface Scenario {
   guide: string;
   /** 相手について事前に知っていること(顔見知り場面用)。選択の前提として画面に表示する */
   partnerNote?: string;
+  /** 継続キャラクターのID(src/content/characters.ts)。続編を持つシナリオで設定 */
+  characterId?: string;
+  /** 同じキャラクターの何話目か(1始まり)。第2話以降は前話の✕なしクリアで解禁 */
+  chapter?: number;
   entry: string;
   nodes: Record<string, ScenarioNode>;
 }
@@ -68,6 +72,7 @@ export const SCENE_LABELS: Record<Scene, string> = {
   first_formal: '初対面・フォーマル',
   first_casual: '初対面・カジュアル',
   senior_known: '顔見知りの目上',
+  peer_known: '顔見知り・対等',
 };
 
 export const CATEGORY_LABELS: Record<Category, string> = {
@@ -121,4 +126,5 @@ export const SCENE_AVATARS: Record<Scene, string> = {
   first_formal: '🧑‍💼',
   first_casual: '🙂',
   senior_known: '👔',
+  peer_known: '😊',
 };

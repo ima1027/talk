@@ -2,14 +2,23 @@ import { useMemo, useState } from 'react';
 import { scenarios } from '../content';
 import { loadHistory, loadMedals, loadZukan, scenarioStats, zukanUniverse } from '../lib/storage';
 import { BADGES, buildRewardAgg } from '../lib/rewards';
+import { allCharacterProgress, LEVEL_LABELS } from '../lib/relationship';
 import { QUALITY_LABELS } from '../engine/types';
+
+const MAX_LEVEL = LEVEL_LABELS.length - 1;
 
 export default function Zukan() {
   const state = useMemo(() => loadZukan(), []);
   const universe = useMemo(() => zukanUniverse(scenarios), []);
   const rewardAgg = useMemo(() => {
     const history = loadHistory();
-    return buildRewardAgg(history, scenarioStats(history), scenarios.map((s) => s.id), loadMedals().length);
+    const stats = scenarioStats(history);
+    const progresses = allCharacterProgress(scenarios, stats);
+    const relationship = {
+      sequelsUnlocked: progresses.filter((p) => p.unlockedCount > 1).length,
+      maxedRelationships: progresses.filter((p) => p.level >= MAX_LEVEL).length,
+    };
+    return buildRewardAgg(history, stats, scenarios.map((s) => s.id), loadMedals().length, relationship);
   }, []);
   const collected = useMemo(() => new Set(state.phrases), [state]);
   const allTechniques = useMemo(

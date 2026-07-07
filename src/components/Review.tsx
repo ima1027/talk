@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { Session } from '../engine/engine';
+import { scenarios } from '../content';
 import { computeTurningPoint } from '../lib/review';
-import { addMedal, clearChallenge, setChallenge } from '../lib/storage';
+import { relationshipEventNow } from '../lib/relationship';
+import { addMedal, clearChallenge, loadHistory, setChallenge } from '../lib/storage';
 import {
   CATEGORY_LABELS,
   MOOD_EMOJI,
@@ -46,16 +48,21 @@ export default function Review({
   onRetry,
   onTree,
   onHome,
+  onStart,
 }: {
   scenario: Scenario;
   session: Session;
   onRetry: () => void;
   onTree: () => void;
   onHome: () => void;
+  onStart: (scenarioId: string) => void;
 }) {
   const endNode = scenario.nodes[session.currentNodeId];
   const mood = endNode.type === 'end' ? endNode.mood : 'neutral';
   const style = topicStyle(scenario.topic);
+
+  // 関係レベルが上がったか(直近プレイ=履歴の先頭)。ふりかえりの解禁演出に使う
+  const relEvent = useMemo(() => relationshipEventNow(scenario, scenarios, loadHistory()), [scenario, session]);
 
   const taken: { quality: Quality; text: string }[] = [];
   for (const entry of session.log) {
@@ -117,6 +124,30 @@ export default function Review({
           {MOOD_LABELS[mood]} ・ ◎{counts.best} ○{counts.ok} ✕{counts.ng}
         </p>
       </header>
+
+      {relEvent && (
+        <section className="rounded-2xl border border-rose-300 bg-gradient-to-b from-rose-50 to-white p-4 text-center">
+          <p className="text-2xl">{relEvent.character.emoji}💗</p>
+          <h2 className="mt-1 text-sm font-black text-rose-700">
+            {relEvent.character.name}との仲が深まった —「{relEvent.label}」に
+          </h2>
+          {relEvent.unlockedSequel ? (
+            <>
+              <p className="mt-1 text-xs text-rose-600">
+                続編「{relEvent.unlockedSequel.title}」が解禁されました。
+              </p>
+              <button
+                onClick={() => onStart(relEvent.unlockedSequel!.id)}
+                className="mt-3 w-full rounded-lg bg-rose-500 py-2 text-sm font-black text-white transition hover:bg-rose-600"
+              >
+                続編をプレイする →
+              </button>
+            </>
+          ) : (
+            <p className="mt-1 text-xs text-rose-600">この相手とは、いちばん気安い仲になった。</p>
+          )}
+        </section>
+      )}
 
       {goodMoves.length > 0 && (
         <p className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2.5 text-sm text-emerald-900">

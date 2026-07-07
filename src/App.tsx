@@ -83,6 +83,7 @@ export default function App() {
           onRetry={() => setView({ screen: 'play', scenarioId: view.scenarioId })}
           onTree={() => setView({ screen: 'tree', scenarioId: view.scenarioId })}
           onHome={() => setView({ screen: 'home' })}
+          onStart={(scenarioId) => setView({ screen: 'play', scenarioId })}
         />
       )}
     </div>

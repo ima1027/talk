@@ -1,0 +1,538 @@
+{
+  "id": "food-peer_known-02",
+  "topic": "食",
+  "scene": "peer_known",
+  "characterId": "curry-gamer",
+  "chapter": 2,
+  "title": "続・ボドゲ会。あのカレー好きと、次の休憩で再会",
+  "situation": "翌月のボードゲーム会。受付で顔を見つけて会釈すると、向こうも覚えていてくれた。休憩時間、また飲み物コーナーで一緒になった。",
+  "guide": "「二度目」は初対面より一歩踏み込める。前回の話(カレー屋)を覚えていること、名前ではなく話題で相手を思い出すこと、の練習。対等な相手なので敬語は柔らかめ。",
+  "partnerNote": "月1のボードゲーム会で会う人。スパイスカレーの店巡りが趣味。前回、駅裏のカレー屋を教えてくれた。同年代で話しやすい。",
+  "entry": "n1",
+  "nodes": {
+    "n1": {
+      "type": "player_choice",
+      "prompt": "飲み物を注ぎながら、隣に来たあの人に——",
+      "choices": [
+        {
+          "text": "この前教わったカレー屋、行ってきましたよ! おいしかったです。",
+          "quality": "best",
+          "techniques": [
+            "相手の話題を拾う",
+            "お礼起点"
+          ],
+          "explanation": "前回もらった情報の「その後」を報告するのは、二度目の会話で最強の入り。「覚えてて実行した」が伝わり、一気に距離が縮む。",
+          "next": "p1"
+        },
+        {
+          "text": "お久しぶりです。また来られてたんですね。",
+          "quality": "ok",
+          "techniques": [
+            "場の共通話題"
+          ],
+          "explanation": "再会の挨拶として自然。前回の話題(カレー)に触れると、「覚えていてくれた」感が出てもっと良い。",
+          "next": "p1"
+        },
+        {
+          "text": "えーと、前回もいましたよね? お名前なんでしたっけ?",
+          "quality": "ng",
+          "explanation": "「名前忘れた」を先に出すと、相手は少し寂しい。名前が出てこなくても、共通の話題(カレー・ボドゲ)から入れば自然に会話は始まる。",
+          "next": "png1"
+        }
+      ]
+    },
+    "p1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 4,
+          "text": "ほんとですか! うれしいな。どのメニュー食べました?",
+          "next": "n2e"
+        },
+        {
+          "category": "counter",
+          "weight": 2,
+          "text": "覚えててくれたんですね(笑)。最近はどこか開拓しました?",
+          "next": "n2c"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "あ、どうも。行ったんですね。",
+          "next": "n2s"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……あー、はい。(名前が出てこない様子で少し曖昧)",
+          "next": "n2f"
+        }
+      ]
+    },
+    "n2e": {
+      "type": "player_choice",
+      "prompt": "「どのメニュー?」と食いついてきた。",
+      "choices": [
+        {
+          "text": "看板のチキンにしました。スパイスの効きがすごくて。◯◯さんは定番どれです?",
+          "quality": "best",
+          "techniques": [
+            "一問二答",
+            "教わる姿勢"
+          ],
+          "explanation": "具体的な感想+相手の定番を聞き返す。具体は突っ込みどころになり、詳しい相手はいくらでも語ってくれる。",
+          "next": "p2e"
+        },
+        {
+          "text": "定番っぽいのを頼みました。おいしかったです。",
+          "quality": "ok",
+          "explanation": "受け答えとして十分。メニュー名まで具体に出すと、相手が「わかる!」と乗ってきやすい。",
+          "next": "p2e"
+        },
+        {
+          "text": "正直、カレーはどこも同じかなって思っちゃいました。",
+          "quality": "ng",
+          "explanation": "教えてもらった店の感想としては冷や水。相手の「好き」を否定する形になる。違いが分からなくても「教わりたい」側に回るのが得。",
+          "next": "png2"
+        }
+      ]
+    },
+    "p2e": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 3,
+          "text": "チキンいいですよね! 僕はラムがおすすめ。実はもう一軒、隠れた名店があって……",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "定番、間違いないですよね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2c": {
+      "type": "player_choice",
+      "prompt": "「最近どこか開拓した?」と聞かれた。",
+      "choices": [
+        {
+          "text": "まだあの一軒だけです(笑)。おすすめもう一軒、教えてもらえません?",
+          "quality": "best",
+          "techniques": [
+            "一問二答",
+            "教わる姿勢"
+          ],
+          "explanation": "背伸びせず正直に返して、教わる側に回る。「あなたに教わりたい」は、好きなことがある人には最高の誘い水。",
+          "next": "p2c"
+        },
+        {
+          "text": "いや、まだそこだけですね。",
+          "quality": "ok",
+          "explanation": "正直でよいが、そこで止まると相手も広げにくい。「次どこ行けば?」と聞き返すと会話が転がる。",
+          "next": "p2c2"
+        }
+      ]
+    },
+    "p2c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "待ってました(笑)。実は最近ハマってる店があって……",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "うーん、次は……ちょっと考えときますね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2c2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ですよね。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2s": {
+      "type": "player_choice",
+      "prompt": "反応は控えめ。今日は乗り気じゃないのかも。",
+      "choices": [
+        {
+          "text": "今日の午前の卓、面白かったですね。◯◯さんもやってました?",
+          "quality": "best",
+          "techniques": [
+            "撤退・話題転換",
+            "場の共通話題"
+          ],
+          "explanation": "カレーの話が伸びなければ、二人が今いる場(ボドゲ会)の話に切り替える。共通の場は、話題が尽きたときの安全地帯。",
+          "next": "p2s"
+        },
+        {
+          "text": "そうですか……。",
+          "quality": "ok",
+          "explanation": "引くのも手だが、共通の場(今日のゲーム)に振ればもう一手打てる。相手が乗る話題はひとつじゃない。",
+          "next": "p2s2"
+        }
+      ]
+    },
+    "p2s": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "やってました! あれ、終盤の逆転がすごくて。",
+          "next": "n3g"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "あー、別の卓でした。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2s2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……(飲み物を注いでいる)",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2f": {
+      "type": "player_choice",
+      "prompt": "相手は少し曖昧な様子。もしかすると、こちらを思い出せていない。",
+      "choices": [
+        {
+          "text": "先月、同じ卓でしたよね。カレー屋を教えてもらった者です(笑)。",
+          "quality": "best",
+          "techniques": [
+            "場の共通話題",
+            "ハードルを下げる"
+          ],
+          "explanation": "相手が思い出せていなそうなら、責めずに手がかり(いつ・何の話)を自分から差し出す。思い出す助けは、優しさになる。",
+          "next": "p2ff"
+        },
+        {
+          "text": "……覚えてないですよね、すみません。",
+          "quality": "ok",
+          "explanation": "引いてしまうと相手も気まずい。手がかりを出して「あの時の人か!」と思い出させるほうが、二人とも救われる。",
+          "next": "p2f2"
+        }
+      ]
+    },
+    "p2ff": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "あー! カレーの! そうだ、思い出しました。行きました?",
+          "next": "n2e"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ああ、あの時の。どうも。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2f2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "いえいえ、なんとなく。えっと……カレーの?",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n3": {
+      "type": "player_choice",
+      "prompt": "「隠れた名店」の話に熱が入ってきた。",
+      "choices": [
+        {
+          "text": "それ気になります。今度一緒に行きません? 一人だと入りにくくて。",
+          "quality": "best",
+          "techniques": [
+            "小さな提案",
+            "次につなげる"
+          ],
+          "explanation": "共通の趣味があるなら、二度目は「一緒に行こう」まで踏み込める。会う場所がボドゲ会の外に広がると、関係が一段進む。",
+          "next": "p3"
+        },
+        {
+          "text": "へえ、いいですね。メモしときます。",
+          "quality": "ok",
+          "explanation": "情報を受け取るだけでも十分。ただ、同じ趣味の相手には「一緒に」の一言が次につながる。",
+          "next": "p3b"
+        }
+      ]
+    },
+    "p3": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "いいですね! じゃあ連絡先だけ交換しときましょうか。",
+          "next": "n_close_good"
+        }
+      ]
+    },
+    "p3b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "ぜひぜひ。損はしないですよ。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n3g": {
+      "type": "player_choice",
+      "prompt": "今日のゲームの話で盛り上がってきた。",
+      "choices": [
+        {
+          "text": "あの逆転、しびれましたよね。次の卓もご一緒できたらいいな。",
+          "quality": "best",
+          "techniques": [
+            "共感・受け止め",
+            "次につなげる"
+          ],
+          "explanation": "同じ体験への共感+「また一緒に」。ゲーム会という共通の場は、次に会う約束を自然に作れる。",
+          "next": "p3g"
+        },
+        {
+          "text": "ですよね〜。",
+          "quality": "ok",
+          "explanation": "共感の相づちは悪くないが、「また同卓で」の一言があると次につながる。",
+          "next": "p3b"
+        }
+      ]
+    },
+    "p3g": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "いいですね! 午後、同じ卓に入りましょうよ。",
+          "next": "n_close_good"
+        }
+      ]
+    },
+    "n_close_good": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "次につながる約束ができた。休憩終了のアナウンスが鳴った。",
+      "choices": [
+        {
+          "text": "やった、楽しみにしてます。じゃあ午後もよろしくお願いします!",
+          "quality": "best",
+          "techniques": [
+            "切り上げ",
+            "次につなげる"
+          ],
+          "explanation": "約束を確認して、場の区切り(休憩終了)で締める。良い流れのまま終えれば、次に会うのが楽しみになる。",
+          "next": "p_cg"
+        },
+        {
+          "text": "はい、じゃあまた後で。",
+          "quality": "ok",
+          "explanation": "十分だが、約束への一言があると「本気で楽しみ」が伝わる。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_cg": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "はい! じゃあ午後、あの卓で。",
+          "next": "end_good"
+        }
+      ]
+    },
+    "n3s": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "会話は細めのまま、休憩終了が近づいた。",
+      "choices": [
+        {
+          "text": "じゃ、午後もよろしくです。またカレーの話、聞かせてください。",
+          "quality": "best",
+          "techniques": [
+            "切り上げ",
+            "次につなげる"
+          ],
+          "explanation": "細い会話でも、「また話そう」の一言で次への糸を残せる。二度目があったなら、三度目も作れる。",
+          "next": "p_ns"
+        },
+        {
+          "text": "……そろそろ戻りますね。",
+          "quality": "ok",
+          "explanation": "区切りとしては十分。次につながる一言を足すと、次回また声をかけやすい。",
+          "next": "end_quiet"
+        },
+        {
+          "text": "そういえば、この会って毎月来られてるんですか?",
+          "quality": "best",
+          "techniques": [
+            "場の共通話題",
+            "答えやすい質問"
+          ],
+          "explanation": "話が細っても、共通の場(この会)への質問は仕切り直しの定番。「次も会えるか」を確かめる自然な聞き方でもある。",
+          "next": "p_more"
+        }
+      ]
+    },
+    "p_ns": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "はい、ぜひ。では後で。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_more": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "だいたい毎月来てますよ。じゃあまた来月も会えますね。",
+          "next": "end_good"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "来られる時だけですね。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "png1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……あ、はい。(少し寂しそうに名乗る)",
+          "next": "nr1"
+        }
+      ]
+    },
+    "nr1": {
+      "type": "player_choice",
+      "prompt": "名前から入って、少し他人行儀になってしまった。",
+      "choices": [
+        {
+          "text": "あ、カレー屋教えてくれた方だ! あれ、行ってきたんですよ。",
+          "quality": "best",
+          "techniques": [
+            "リカバリ",
+            "相手の話題を拾う"
+          ],
+          "explanation": "名前より「あの話をした人」で思い出したと示すほうが、相手はうれしい。共通の話題に切り替えれば距離は戻る。",
+          "next": "p1"
+        },
+        {
+          "text": "すみません、覚えが悪くて……。",
+          "quality": "ok",
+          "explanation": "謝るほど気まずくなる。名前は忘れても「話した内容」を覚えていれば、それで十分つながれる。",
+          "next": "p_nr1b"
+        }
+      ]
+    },
+    "p_nr1b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "いえいえ、こちらこそ。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "png2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……あー、まあ、好みは人それぞれですもんね。(少しトーンが下がる)",
+          "next": "nr2"
+        }
+      ]
+    },
+    "nr2": {
+      "type": "player_choice",
+      "prompt": "相手の「好き」に水を差してしまった。",
+      "choices": [
+        {
+          "text": "あ、でも自分がまだ違いを分かってないだけかも。おすすめの食べ方あります?",
+          "quality": "best",
+          "techniques": [
+            "リカバリ",
+            "教わる姿勢"
+          ],
+          "explanation": "「同じかも」と言ってしまったら、「自分が分かってないだけ」と引き取って教わる側へ。相手の得意分野を立て直せば挽回できる。",
+          "next": "p2e"
+        },
+        {
+          "text": "あ、いや、おいしかったですよ、はい。",
+          "quality": "ok",
+          "explanation": "取り繕うだけだと空気が戻りきらない。「もっと知りたい」と踏み込むほうが、相手の熱が戻ってくる。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "end_good": {
+      "type": "end",
+      "text": "「また来月」「午後も一緒に」——次の約束ができた。二度目の会話は、三度目の入口になる。",
+      "mood": "good"
+    },
+    "end_neutral": {
+      "type": "end",
+      "text": "感じよくひと区切り。顔を覚えてもらえている相手が一人いる。それだけで会に来るのが少し楽になる。",
+      "mood": "neutral"
+    },
+    "end_quiet": {
+      "type": "end",
+      "text": "静かに戻ることになったが、悪い印象は残っていない。次に会えば、また続きから話せる。",
+      "mood": "neutral"
+    },
+    "end_awkward": {
+      "type": "end",
+      "text": "少しぎこちなく終わった。次は、相手の「好き」に乗っかるところから始めよう。",
+      "mood": "awkward"
+    }
+  }
+}

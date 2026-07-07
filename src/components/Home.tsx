@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
 import { scenarios } from '../content';
 import { recommendDaily } from '../lib/recommend';
+import { allCharacterProgress, isUnlocked } from '../lib/relationship';
+import CharacterSection from './CharacterSection';
 import {
   addMedal,
   clearChallenge,
@@ -146,9 +148,13 @@ export default function Home({
   const stats = useMemo(() => scenarioStats(history), [history]);
   const medals = useMemo(() => loadMedals(), [tick]);
   const challenge = useMemo(() => loadChallenge(), [tick]);
+  const characterProgresses = useMemo(() => allCharacterProgress(scenarios, stats), [stats]);
+
+  // 続編(未解禁)は「今日の1本」の候補から外す
+  const playable = useMemo(() => scenarios.filter((s) => isUnlocked(s, scenarios, stats)), [stats]);
   const recommendation = useMemo(
-    () => recommendDaily(scenarios, history, todayKey(), new Date()),
-    [history],
+    () => recommendDaily(playable, history, todayKey(), new Date()),
+    [playable, history],
   );
 
   const xp = computeXp(history, medals.length);
@@ -157,7 +163,8 @@ export default function Home({
   const completion = completionPercent(stats, scenarios.map((s) => s.id));
 
   const daily = scenarios.find((s) => s.id === recommendation.scenarioId)!;
-  const rest = scenarios.filter((s) => s.id !== daily.id);
+  // キャラクター続編を持つシナリオはキャラ欄に集約し、一覧からは外す
+  const rest = scenarios.filter((s) => s.id !== daily.id && !s.characterId);
   const weaknessNote =
     recommendation.reason === 'weakness' && recommendation.insight
       ? `${recommendation.insight.message.split('。')[0]}。この1本で集中的に練習できる。`
@@ -233,6 +240,13 @@ export default function Home({
           weaknessNote={weaknessNote}
         />
       </section>
+
+      <CharacterSection
+        progresses={characterProgresses}
+        statsMap={stats}
+        onStart={onStart}
+        onTree={onTree}
+      />
 
       <section className="space-y-2">
         <h2 className="text-sm font-bold text-slate-500">シナリオ一覧</h2>

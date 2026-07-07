@@ -1,6 +1,6 @@
 import type { Scenario } from './types';
 
-const SCENES = ['first_formal', 'first_casual', 'senior_known'];
+const SCENES = ['first_formal', 'first_casual', 'senior_known', 'peer_known'];
 const QUALITIES = ['best', 'ok', 'ng'];
 const CATEGORIES = ['expand', 'counter', 'short', 'flat'];
 const MOODS = ['good', 'neutral', 'awkward'];
@@ -26,6 +26,18 @@ export function validateScenario(raw: unknown): string[] {
     }
   }
   if (!SCENES.includes(s.scene as string)) err(`scene が不正: ${String(s.scene)}`);
+  // 続編フィールド: chapter は characterId とセットで、1以上の整数
+  if (s.chapter !== undefined) {
+    if (typeof s.chapter !== 'number' || !Number.isInteger(s.chapter) || s.chapter < 1) {
+      err(`chapter は1以上の整数: ${String(s.chapter)}`);
+    }
+    if (typeof s.characterId !== 'string' || s.characterId.length === 0) {
+      err('chapter があるのに characterId がない');
+    }
+  }
+  if (typeof s.characterId === 'string' && s.chapter === undefined) {
+    err('characterId があるのに chapter がない');
+  }
   if (typeof s.nodes !== 'object' || s.nodes === null) {
     err('nodes がオブジェクトでない');
     return errors;

@@ -135,6 +135,16 @@ export interface RewardAgg {
   totalScenarios: number;
   medals: number;
   sRanks: number;
+  /** 続編を1話以上解禁したキャラクター数(関係性の報酬) */
+  sequelsUnlocked: number;
+  /** 「気安い仲」(関係レベル最大)まで育てたキャラクター数 */
+  maxedRelationships: number;
+}
+
+/** キャラクター関係の集計(呼び出し側で relationship.ts から算出して渡す) */
+export interface RelationshipAgg {
+  sequelsUnlocked: number;
+  maxedRelationships: number;
 }
 
 export function buildRewardAgg(
@@ -142,6 +152,7 @@ export function buildRewardAgg(
   statsMap: Map<string, ScenarioStats>,
   scenarioIds: string[],
   medalCount: number,
+  relationship: RelationshipAgg = { sequelsUnlocked: 0, maxedRelationships: 0 },
 ): RewardAgg {
   let sRanks = 0;
   for (const id of scenarioIds) if (computeRank(statsMap.get(id)) === 'S') sRanks++;
@@ -151,6 +162,8 @@ export function buildRewardAgg(
     totalScenarios: scenarioIds.length,
     medals: medalCount,
     sRanks,
+    sequelsUnlocked: relationship.sequelsUnlocked,
+    maxedRelationships: relationship.maxedRelationships,
   };
 }
 
@@ -182,4 +195,18 @@ export const BADGES: BadgeDef[] = [
   },
   { id: 'firstmedal', emoji: '🏅', name: '現場デビュー', desc: '実会話メダルを1つ獲得', achieved: (a) => a.medals >= 1 },
   { id: 'srank', emoji: '👑', name: '完全攻略', desc: 'Sランクのシナリオを1つ作る', achieved: (a) => a.sRanks >= 1 },
+  {
+    id: 'sequel',
+    emoji: '🔓',
+    name: '続きがある人',
+    desc: '同じ相手の続編を1つ解禁',
+    achieved: (a) => a.sequelsUnlocked >= 1,
+  },
+  {
+    id: 'bond',
+    emoji: '💗',
+    name: '気を許される人',
+    desc: '誰か1人と「気安い仲」になる',
+    achieved: (a) => a.maxedRelationships >= 1,
+  },
 ];

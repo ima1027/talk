@@ -8,6 +8,7 @@ export const SCENE_DESCRIPTIONS: Record<Scene, string> = {
   first_formal: '初対面・フォーマル(仕事の顔合わせ、取引先との待ち時間など。敬語)',
   first_casual: '初対面・カジュアル(友人の紹介、イベント、飲み会など。丁寧だが柔らかい話し言葉)',
   senior_known: '顔見知りの目上・気を遣う相手(別部署の上司、義家族、習い事の先生など。敬語)',
+  peer_known: '顔見知り・対等(何度か会っている同年代、趣味の集まりの常連など。丁寧だが柔らかい話し言葉)',
 };
 
 /** 制作ルール。docs/requirements.md §3.4, §5.2, §5.3 を生成用に凝縮したもの */

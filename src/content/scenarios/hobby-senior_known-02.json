@@ -1,0 +1,540 @@
+{
+  "id": "hobby-senior_known-02",
+  "topic": "道楽",
+  "scene": "senior_known",
+  "characterId": "baseball-father",
+  "chapter": 2,
+  "title": "続・義実家。義父と、ナイター中継を観ながら",
+  "situation": "配偶者の実家。義父が「おい、始まるぞ」とリビングに呼んでくれた。前に話していた野球中継だ。配偶者は買い物に出ていて、しばらく二人になる。",
+  "guide": "並んで何かを観る時間は、視線が合わないぶん実は話しやすい。実況に乗る・教わる側に回る・沈黙を怖がらない、の練習。",
+  "partnerNote": "配偶者の父。野球好きで口数は少なめ。前回、テレビのニュースをきっかけに初めて話が続いた。今日は向こうから誘ってくれた。",
+  "entry": "n1",
+  "nodes": {
+    "n1": {
+      "type": "player_choice",
+      "prompt": "試合開始。隣に座ったものの、何から入るか——",
+      "choices": [
+        {
+          "text": "お義父さんは、どっちの応援なんですか?",
+          "quality": "best",
+          "techniques": [
+            "答えやすい質問"
+          ],
+          "explanation": "観戦の雑談は「どっちを応援?」から。ひいきが分かれば、あとは同じ側で一喜一憂するだけで会話になる。",
+          "next": "p1"
+        },
+        {
+          "text": "今日は勝てそうですか?",
+          "quality": "ok",
+          "techniques": [
+            "答えやすい質問"
+          ],
+          "explanation": "悪くない入り。ひいきのチームを先に確認しておくと、この後のリアクションを合わせやすい。",
+          "next": "p1"
+        },
+        {
+          "text": "(とりあえず座って、スマホをちらちら見る)",
+          "quality": "ng",
+          "explanation": "誘われた場でのスマホは「興味がない」のサイン。ルールが分からなくても、画面を観る姿勢だけで「参加」になる。",
+          "next": "png1"
+        }
+      ]
+    },
+    "p1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 3,
+          "text": "わしは昔から◯◯一筋だ。今日は先発がいいぞ。",
+          "next": "n2e"
+        },
+        {
+          "category": "counter",
+          "weight": 2,
+          "text": "◯◯さんは、どこか応援しとるのか?",
+          "next": "n2c"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "まあ、観てりゃ分かる。",
+          "next": "n2s"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……(画面に集中している)",
+          "next": "n2f"
+        }
+      ]
+    },
+    "n2e": {
+      "type": "player_choice",
+      "prompt": "ひいきと注目ポイントを教えてくれた。",
+      "choices": [
+        {
+          "text": "じゃあ私も今日は◯◯側で。先発、そんなにいいんですか?",
+          "quality": "best",
+          "techniques": [
+            "教わる姿勢",
+            "相手の話題を拾う"
+          ],
+          "explanation": "同じ側について、教わる姿勢で質問する。詳しい人の隣は「解説付き観戦」という特等席になる。",
+          "next": "p2e"
+        },
+        {
+          "text": "そうなんですね。",
+          "quality": "ok",
+          "explanation": "相づちだけでも観戦は続くが、「教えてください」の一言があると義父の解説が始まる。",
+          "next": "p2e"
+        },
+        {
+          "text": "◯◯って、最近あんまり強くないですよね? ニュースで見ました。",
+          "quality": "ng",
+          "explanation": "相手のひいきを下げる一言は、事実でも冗談でも地雷。言うなら「だからこそ応援しがいがある」側から。",
+          "next": "png2"
+        }
+      ]
+    },
+    "p2e": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "おう。今年の先発陣はな……(嬉しそうに解説が始まる)",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "まあ、観てりゃ分かるさ。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2c": {
+      "type": "player_choice",
+      "prompt": "「どこか応援しとるのか」と聞かれた。",
+      "choices": [
+        {
+          "text": "にわかなんです。なので今日はお義父さんと同じ側で観ます。",
+          "quality": "best",
+          "techniques": [
+            "一問二答",
+            "自己開示"
+          ],
+          "explanation": "詳しくないことは正直に。そのうえで「同じ側で観る」と返せば、にわかはむしろ歓迎される。",
+          "next": "p2c"
+        },
+        {
+          "text": "特にないんですよね……。",
+          "quality": "ok",
+          "explanation": "正直だが、ここで止まると相手は画面に戻ってしまう。「今日はどっちを応援すれば?」まで返すと続く。",
+          "next": "p2c2"
+        }
+      ]
+    },
+    "p2c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "はっは、そうか。なら今日から◯◯ファンだな。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "そうか。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2c2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "そうか……。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2s": {
+      "type": "player_choice",
+      "prompt": "「観てりゃ分かる」。画面では試合が動き始めた。",
+      "choices": [
+        {
+          "text": "(いいプレーの瞬間に)おお! 今の、すごくないですか?",
+          "quality": "best",
+          "techniques": [
+            "場の共通話題"
+          ],
+          "explanation": "観戦の会話は、言葉より「同じ瞬間に反応する」こと。歓声のタイミングが合うだけで、一緒に観ている感覚になる。",
+          "next": "p2s"
+        },
+        {
+          "text": "(静かに観る)",
+          "quality": "ok",
+          "explanation": "沈黙も観戦のうち。ただ、いいプレーへのリアクションは出したほうが場があたたまる。",
+          "next": "p2s2"
+        }
+      ]
+    },
+    "p2s": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "お、いいところに気づいたな。今のはな……",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "おう。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2s2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……(画面を観ている)",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n2f": {
+      "type": "player_choice",
+      "prompt": "義父は画面に集中している。",
+      "choices": [
+        {
+          "text": "(プレーの区切りまで待って)お茶、淹れてきましょうか。",
+          "quality": "best",
+          "techniques": [
+            "撤退",
+            "小さな提案"
+          ],
+          "explanation": "集中している人には、言葉より行動の気遣い。話しかけるタイミングはプレーの区切りを待つのが観戦のマナー。",
+          "next": "p2f"
+        },
+        {
+          "text": "(黙って観る)",
+          "quality": "ok",
+          "explanation": "観戦中の沈黙はまったく問題ない。中継のある場の沈黙は、二人きりの沈黙よりずっと軽い。",
+          "next": "p2f2"
+        }
+      ]
+    },
+    "p2f": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "お、すまんな。CMの間でいいぞ。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "p2f2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "……(ときどき小さくうなずいている)",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n3": {
+      "type": "player_choice",
+      "prompt": "観ているうち、義父の解説に熱が入ってきた。",
+      "choices": [
+        {
+          "text": "昔は球場にも通ってたんですよね。生だと全然違いますか?",
+          "quality": "best",
+          "techniques": [
+            "相手の話題を拾う",
+            "きっかけを聞く"
+          ],
+          "explanation": "前回聞いた「昔は球場によく行った」を持ち出すコールバック。「覚えていてくれた」は何よりのもてなしになる。",
+          "next": "p3"
+        },
+        {
+          "text": "詳しいですね〜。",
+          "quality": "ok",
+          "explanation": "持ち上げは悪くないが、質問がないと解説が終わってしまう。せっかくの熱は質問で延長する。",
+          "next": "p3b"
+        }
+      ]
+    },
+    "p3": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "おう、通ったなあ。ビール片手にな……(遠い目で語り出す)",
+          "next": "n4"
+        }
+      ]
+    },
+    "p3b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "まあ、年季だけはな。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n4": {
+      "type": "player_choice",
+      "prompt": "球場の思い出話が続いている。",
+      "choices": [
+        {
+          "text": "今度、その球場に連れて行ってください。作法を教わりたいです。",
+          "quality": "best",
+          "techniques": [
+            "次につなげる",
+            "小さな提案",
+            "教わる姿勢"
+          ],
+          "explanation": "「今度連れて行って」は、相手の得意分野を丸ごと立てる最上級の提案。実現すれば関係はまた一段育つ。",
+          "next": "p4"
+        },
+        {
+          "text": "いいですねえ。",
+          "quality": "ok",
+          "explanation": "相づちとしては十分。思い出話が出たときは「今度ぜひ」まで踏み込める、数少ないチャンスでもある。",
+          "next": "p4b"
+        }
+      ]
+    },
+    "p4": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "お、いいのか? なら春先のいい時期にな。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "p4b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "まあ、昔の話だ。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "n_close": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "「春に球場」の約束ができた。玄関の方で物音がした。",
+      "choices": [
+        {
+          "text": "春の球場、楽しみにしてますね。お、帰ってきたみたいです。",
+          "quality": "best",
+          "techniques": [
+            "切り上げ",
+            "次につなげる"
+          ],
+          "explanation": "約束をもう一度口にしてから場の変化(帰宅)で区切る。「楽しみにしてます」が約束を本物にする。",
+          "next": "p_c"
+        },
+        {
+          "text": "(玄関の方を見る)",
+          "quality": "ok",
+          "explanation": "区切りとしては自然。約束に一言触れておくと「社交辞令でなく本気」だと伝わる。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "おう。……なんだ、もう帰ってきたのか。(少し残念そうだ)",
+          "next": "end_good"
+        }
+      ]
+    },
+    "n3s": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "試合は中盤へ。玄関の方で、配偶者が帰ってきた音がした。",
+      "choices": [
+        {
+          "text": "お、帰ってきたみたいですね。続きはご飯のあとにでも。",
+          "quality": "best",
+          "techniques": [
+            "切り上げ"
+          ],
+          "explanation": "場の変化(帰宅)に合わせて区切る。「続きはあとで」の一言があれば、中座もきれいな切り上げになる。",
+          "next": "p_ns"
+        },
+        {
+          "text": "(そっと立ち上がって玄関へ向かう)",
+          "quality": "ok",
+          "explanation": "静かな退出も失礼ではないが、一言あると観戦の続きに戻りやすくなる。",
+          "next": "end_quiet"
+        },
+        {
+          "text": "そういえば今年って、優勝狙えそうなんですか?",
+          "quality": "best",
+          "techniques": [
+            "教わる姿勢",
+            "答えやすい質問"
+          ],
+          "explanation": "会話が細くても、ひいきの今季の展望は野球好きがいちばん語りたい話題。もう一手で流れが変わることがある。",
+          "next": "p_more"
+        }
+      ]
+    },
+    "p_ns": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "おう、そうだな。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_more": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "いい質問だな。今年はいけるぞ。なにせ……(語り出す)",
+          "next": "end_good"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "さあな。野球は分からんよ。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "png1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……(ちらりとこちらを見た)",
+          "next": "nr1"
+        }
+      ]
+    },
+    "nr1": {
+      "type": "player_choice",
+      "prompt": "スマホを見ていたのが伝わった気がする。",
+      "choices": [
+        {
+          "text": "(しまって)すみません、ルール調べてました。どっち応援します?",
+          "quality": "best",
+          "techniques": [
+            "リカバリ",
+            "答えやすい質問"
+          ],
+          "explanation": "スマホは即しまい、観戦への質問で仕切り直す。「調べてました」は言い訳でも、参加の意思表示にはなる。",
+          "next": "p1"
+        },
+        {
+          "text": "(慌ててスマホをしまう)",
+          "quality": "ok",
+          "explanation": "しまうだけだと気まずさが残る。観戦への質問までがリカバリ。",
+          "next": "p_nr1b"
+        }
+      ]
+    },
+    "p_nr1b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "……始まったぞ。",
+          "next": "n3s"
+        }
+      ]
+    },
+    "png2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "…………(無言でテレビの音量を上げた)",
+          "next": "nr2"
+        }
+      ]
+    },
+    "nr2": {
+      "type": "player_choice",
+      "prompt": "これは、機嫌を損ねたかもしれない。",
+      "choices": [
+        {
+          "text": "すみません(笑)。弱い時期も応援してこそ、ですもんね。",
+          "quality": "best",
+          "techniques": [
+            "リカバリ"
+          ],
+          "explanation": "ひいきを下げてしまったら、「だからこそ応援」側に立場を移す。相手の好きなものの側に付き直すのが最短の挽回。",
+          "next": "p2e"
+        },
+        {
+          "text": "……(気まずくて画面を見る)",
+          "quality": "ok",
+          "explanation": "沈黙でやり過ごすと、否定の印象だけが残る。ひと言で相手の側に戻るのが正解だった。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "end_good": {
+      "type": "end",
+      "text": "同じ側で観て、同じ場面で沸いた。義父の隣が、少しずつ「自分の席」になっていく。",
+      "mood": "good"
+    },
+    "end_neutral": {
+      "type": "end",
+      "text": "観戦は無難にお開き。同じ画面を観る時間は、無理に話さなくても関係を進めてくれる。",
+      "mood": "neutral"
+    },
+    "end_quiet": {
+      "type": "end",
+      "text": "静かな観戦になった。それでも「誘われて、隣で観た」。前回より確実に一歩前進だ。",
+      "mood": "neutral"
+    },
+    "end_awkward": {
+      "type": "end",
+      "text": "気まずさを残したまま食卓へ。次は最初から同じ側で応援するところからやり直そう。",
+      "mood": "awkward"
+    }
+  }
+}

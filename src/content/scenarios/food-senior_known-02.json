@@ -1,0 +1,592 @@
+{
+  "id": "food-senior_known-02",
+  "topic": "食",
+  "scene": "senior_known",
+  "characterId": "fishing-boss",
+  "chapter": 2,
+  "title": "続・上司と外回り。駅北のラーメン屋のカウンターで",
+  "situation": "外回りの帰り、上司の方から「駅北にうまいラーメン屋があるらしいな。寄ってくか」と誘ってくれた。カウンターに並んで座り、注文を済ませたところ。",
+  "guide": "食事しながらの雑談は、食べる時間があるぶん沈黙が怖くない。店・味という「目の前の共通話題」と、前回の会話のコールバック(釣りの話)を使う練習。",
+  "partnerNote": "隣の課の上司。釣りが趣味で、今の時期はアジ釣り。この前の電車で初めて仕事以外の話をした。今日は向こうから誘ってくれた。",
+  "entry": "n1",
+  "nodes": {
+    "n1": {
+      "type": "player_choice",
+      "prompt": "注文を終えて、ラーメンが来るまでの間——",
+      "choices": [
+        {
+          "text": "お誘いありがとうございます。ここ、気になってたんです。",
+          "quality": "best",
+          "techniques": [
+            "お礼起点",
+            "場の共通話題"
+          ],
+          "explanation": "誘われた側の最初の一言は、素直なお礼が最強。店そのものが二人の共通話題になるので、食事の場は実は話しやすい。",
+          "next": "p1"
+        },
+        {
+          "text": "にぎわってますね。人気店なんですね。",
+          "quality": "ok",
+          "techniques": [
+            "場の共通話題"
+          ],
+          "explanation": "店内の様子は安全な入り。感想に「誘ってもらえてうれしい」を足すと、相手の顔がもっと立つ。",
+          "next": "p1"
+        },
+        {
+          "text": "実は私、ダイエット中なんですけどね……まあ今日は特別です(笑)",
+          "quality": "ng",
+          "explanation": "誘いに乗ったあとの「気乗りしなかった」風の一言は、相手の好意に水を差す。来たからには楽しむ姿勢を見せるのが礼儀。",
+          "next": "png1"
+        }
+      ]
+    },
+    "p1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 3,
+          "text": "釣り仲間から聞いたんだよ、ここ。煮干しの中華そばがうまいらしい。",
+          "next": "n2e"
+        },
+        {
+          "category": "counter",
+          "weight": 2,
+          "text": "◯◯さんはラーメン、よく食べるの?",
+          "next": "n2c"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "ああ。まあ、たまにはこういうのもな。",
+          "next": "n2s"
+        },
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……(壁の貼り紙メニューをじっと見ている)",
+          "next": "n2f"
+        }
+      ]
+    },
+    "n2e": {
+      "type": "player_choice",
+      "prompt": "店の情報源は釣り仲間らしい。",
+      "choices": [
+        {
+          "text": "釣り仲間の情報網、確かですね(笑)。煮干し、楽しみです。",
+          "quality": "best",
+          "techniques": [
+            "相手の話題を拾う",
+            "小さな笑い"
+          ],
+          "explanation": "相手が出したキーワード(釣り仲間)を軽く拾って返す。相手の世界を面白がる一言は、どんな話題でも使える。",
+          "next": "p2e"
+        },
+        {
+          "text": "へえ、煮干しですか。おいしそうですね。",
+          "quality": "ok",
+          "techniques": [
+            "共感・受け止め"
+          ],
+          "explanation": "受け止めとして十分。「釣り仲間」の方を拾うと、前回の話にもつながってもう一段広がる。",
+          "next": "p2e"
+        },
+        {
+          "text": "煮干しかあ……私、こってり豚骨派なんですよね。",
+          "quality": "ng",
+          "explanation": "相手が選んでくれた店を目の前で下げるのは、話の腰を折る一言。好みを言うなら「豚骨も好きですけど楽しみです」と足す形で。",
+          "next": "png2"
+        }
+      ]
+    },
+    "p2e": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "そうそう。釣りもラーメンも、情報はもっぱら仲間からでね。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "まあ、味は来てからのお楽しみだな。",
+          "next": "n3w"
+        }
+      ]
+    },
+    "n2c": {
+      "type": "player_choice",
+      "prompt": "聞かれた。ボールはこちら。",
+      "choices": [
+        {
+          "text": "週1では食べてます(笑)。◯◯さんは何派なんですか?",
+          "quality": "best",
+          "techniques": [
+            "一問二答"
+          ],
+          "explanation": "答え+聞き返しの一問二答。食の好みの話は上下関係に関係なく対等に盛り上がれる、貴重な話題。",
+          "next": "p2c"
+        },
+        {
+          "text": "まあ、人並みには。",
+          "quality": "ok",
+          "explanation": "失礼はないが、ここで止まると会話も止まる。聞き返しをセットにするのが定石。",
+          "next": "p2c2"
+        }
+      ]
+    },
+    "p2c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "ほう、週1(笑)。わしは昔から醤油一択だな。",
+          "next": "n3c"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "そうか。",
+          "next": "n3w"
+        }
+      ]
+    },
+    "p2c2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "そうか。",
+          "next": "n3w"
+        }
+      ]
+    },
+    "n2s": {
+      "type": "player_choice",
+      "prompt": "「たまにはこういうのも」と言っている。",
+      "choices": [
+        {
+          "text": "ですね。外回りの日の楽しみが増えました。",
+          "quality": "best",
+          "techniques": [
+            "共感・受け止め",
+            "次につなげる"
+          ],
+          "explanation": "「これからも楽しみ」と未来に向けて受け止めると、今日の一回が「恒例」に育ちやすくなる。",
+          "next": "p2s"
+        },
+        {
+          "text": "そうですね。",
+          "quality": "ok",
+          "explanation": "相づちだけでも食事の場は持つが、一言足すと「また誘おう」と思ってもらえる。",
+          "next": "p2s2"
+        }
+      ]
+    },
+    "p2s": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "そうだな。うまい店を知ってると、外回りも悪くない。",
+          "next": "n3"
+        },
+        {
+          "category": "short",
+          "weight": 2,
+          "text": "うん。",
+          "next": "n3w"
+        }
+      ]
+    },
+    "p2s2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……(お冷やを飲んでいる)",
+          "next": "n3w"
+        }
+      ]
+    },
+    "n2f": {
+      "type": "player_choice",
+      "prompt": "上司は貼り紙のメニューに集中している。",
+      "choices": [
+        {
+          "text": "(無理に話しかけず、店内を眺めて待つ)",
+          "quality": "best",
+          "techniques": [
+            "撤退"
+          ],
+          "explanation": "食事の場の沈黙は、電車の沈黙より軽い。料理が来れば話題は自動的に生まれるので、待つのも立派な一手。",
+          "next": "p2f"
+        },
+        {
+          "text": "(スマホを取り出す)",
+          "quality": "ok",
+          "explanation": "失礼ではないが、二人の食事でのスマホは「退屈している」サインに見えることがある。",
+          "next": "p2f2"
+        }
+      ]
+    },
+    "p2f": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "(こちらに気づいて)ああ、悪い。つい貼り紙を読み込んでた。",
+          "next": "n3"
+        }
+      ]
+    },
+    "p2f2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……。",
+          "next": "n3w"
+        }
+      ]
+    },
+    "n3": {
+      "type": "player_choice",
+      "prompt": "中華そばが二つ、届いた。",
+      "choices": [
+        {
+          "text": "(ひと口)……うまっ。これは当たりですね。",
+          "quality": "best",
+          "techniques": [
+            "場の共通話題",
+            "共感・受け止め"
+          ],
+          "explanation": "食事中の最高の雑談は「うまい」の共有。感想の一言は、同席の相手と店の両方への何よりのお返しになる。",
+          "next": "p3"
+        },
+        {
+          "text": "(黙々と食べる)",
+          "quality": "ok",
+          "explanation": "食事中の沈黙は自然でまったく問題ない。ただ「うまい」の一言があると、場があたたまる。",
+          "next": "p3b"
+        }
+      ]
+    },
+    "p3": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "だろう? ……そういえば、来週また釣りに行くんだ。",
+          "next": "n4"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "うん、うまいな。",
+          "next": "n3w"
+        }
+      ]
+    },
+    "p3b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "……うまいな、ここ。",
+          "next": "n3w"
+        }
+      ]
+    },
+    "n4": {
+      "type": "player_choice",
+      "prompt": "釣りの話が出た。前回、電車で聞いた話だ。",
+      "choices": [
+        {
+          "text": "アジ、まだ釣れる時期なんですか? 前におっしゃってた。",
+          "quality": "best",
+          "techniques": [
+            "相手の話題を拾う",
+            "きっかけを聞く"
+          ],
+          "explanation": "前回の会話を覚えていて持ち出す「コールバック」は、関係を育てる最強の一手。相手は「覚えていてくれた」と感じる。",
+          "next": "p4"
+        },
+        {
+          "text": "いいですね。気をつけて行ってきてください。",
+          "quality": "ok",
+          "explanation": "感じのいい返しだが、前回聞いた内容(アジ釣り)に触れるチャンスだった。覚えていることは口に出してこそ伝わる。",
+          "next": "p4b"
+        }
+      ]
+    },
+    "p4": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "お、よく覚えてるな(笑)。今度アジフライにして持ってきてやるよ。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "p4b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "おう、ありがとう。",
+          "next": "n3w"
+        }
+      ]
+    },
+    "n3c": {
+      "type": "player_choice",
+      "prompt": "「昔から醤油一択」らしい。",
+      "choices": [
+        {
+          "text": "醤油一筋、渋いです。おすすめの店ってあるんですか?",
+          "quality": "best",
+          "techniques": [
+            "教わる姿勢"
+          ],
+          "explanation": "こだわりを持つ人には「教わる側」で乗るのが一番。おすすめを聞いておけば、次に誘う口実にもなる。",
+          "next": "p3c"
+        },
+        {
+          "text": "渋いですね。",
+          "quality": "ok",
+          "explanation": "感想だけだと話が止まりやすい。「おすすめは?」の一問で、相手のこだわりが聞ける場面だった。",
+          "next": "p3c2"
+        }
+      ]
+    },
+    "p3c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 1,
+          "text": "あるぞ。今度の外回りで近くを通ったら教えてやるよ。",
+          "next": "n_close"
+        }
+      ]
+    },
+    "p3c2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "まあな。",
+          "next": "n3w"
+        }
+      ]
+    },
+    "n_close": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "「今度」の約束ができた。丼も空いてきた。",
+      "choices": [
+        {
+          "text": "楽しみにしてます! ごちそうさまでした。",
+          "quality": "best",
+          "techniques": [
+            "切り上げ",
+            "次につなげる"
+          ],
+          "explanation": "約束をもう一度口にして締める。「楽しみにしてます」の一言が、「今度」を社交辞令から本物の予定に変える。",
+          "next": "p_c"
+        },
+        {
+          "text": "ごちそうさまでした。",
+          "quality": "ok",
+          "explanation": "締めとして十分丁寧。約束に触れる一言があると、次への期待が伝わってなお良い。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_c": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "おう。また来よう、ここ。",
+          "next": "end_good"
+        }
+      ]
+    },
+    "n3w": {
+      "type": "player_choice",
+      "closing": true,
+      "prompt": "やがて丼も空いた。そろそろ出る流れだ。",
+      "choices": [
+        {
+          "text": "ごちそうさまでした。今日はありがとうございました。",
+          "quality": "best",
+          "techniques": [
+            "切り上げ",
+            "お礼起点"
+          ],
+          "explanation": "食事の締めはお礼が全部やってくれる。会話が伸びなかった日も、締めの一言で「感じのいい人」で終われる。",
+          "next": "p_ns"
+        },
+        {
+          "text": "(黙って食べ終える)",
+          "quality": "ok",
+          "explanation": "失礼ではないが、ごちそうさまの一言は誘ってくれた相手への最低限のお返し。",
+          "next": "end_quiet"
+        },
+        {
+          "text": "今度は私が、いい店見つけて誘いますね。",
+          "quality": "best",
+          "techniques": [
+            "次につなげる",
+            "小さな提案"
+          ],
+          "explanation": "誘われたら、次は誘い返す。「おごり・おごられ」ではなく「行きつけの交換」にすると、関係が対等に育っていく。",
+          "next": "p_more"
+        }
+      ]
+    },
+    "p_ns": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "おう、お疲れさん。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "p_more": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "expand",
+          "weight": 2,
+          "text": "お、いいね。期待してるよ。",
+          "next": "end_good"
+        },
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "はは、ほどほどにな。",
+          "next": "end_neutral"
+        }
+      ]
+    },
+    "png1": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……なんだ、無理に付き合わせたか?",
+          "next": "nr1"
+        }
+      ]
+    },
+    "nr1": {
+      "type": "player_choice",
+      "prompt": "気を遣わせてしまった。",
+      "choices": [
+        {
+          "text": "いえ、ラーメンは別腹です! ずっと気になってた店なので。",
+          "quality": "best",
+          "techniques": [
+            "リカバリ"
+          ],
+          "explanation": "水を差す一言を言ってしまったら、「来たかった」を具体で示して打ち消す。訂正は早いほどよく効く。",
+          "next": "p1"
+        },
+        {
+          "text": "すみません、変なこと言いました。",
+          "quality": "ok",
+          "explanation": "謝罪だけだと気遣いの空気が残る。「来たかった」と言い直すほうが空気が早く戻る。",
+          "next": "p_nr1b"
+        }
+      ]
+    },
+    "p_nr1b": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "short",
+          "weight": 1,
+          "text": "いや、いいんだけどな。",
+          "next": "n3w"
+        }
+      ]
+    },
+    "png2": {
+      "type": "partner_response",
+      "branches": [
+        {
+          "category": "flat",
+          "weight": 1,
+          "text": "……ま、まあ、好みは人それぞれだな。",
+          "next": "nr2"
+        }
+      ]
+    },
+    "nr2": {
+      "type": "player_choice",
+      "prompt": "せっかくの店選びに水を差してしまった。",
+      "choices": [
+        {
+          "text": "あ、でも煮干しはちゃんと食べたことがないので楽しみです。",
+          "quality": "best",
+          "techniques": [
+            "リカバリ",
+            "角度を変える"
+          ],
+          "explanation": "否定してしまったら「初めてだから楽しみ」に言い換えて前向きに戻す。好みは撤回しなくていい、向きだけ変える。",
+          "next": "p2e"
+        },
+        {
+          "text": "……すみません、つい。",
+          "quality": "ok",
+          "explanation": "謝るだけだと「連れてきて悪かったか」の空気が残る。「楽しみ」への言い換えまでがリカバリ。",
+          "next": "end_awkward"
+        }
+      ]
+    },
+    "end_good": {
+      "type": "end",
+      "text": "共通の店がひとつできた。「今度」の約束は、関係が続くいちばんのサインだ。",
+      "mood": "good"
+    },
+    "end_neutral": {
+      "type": "end",
+      "text": "ごちそうさまで締めて店を出た。誘われて、ちゃんと応じられた。それで十分。",
+      "mood": "neutral"
+    },
+    "end_quiet": {
+      "type": "end",
+      "text": "静かな食事になった。それでも「二人でラーメンを食べた」事実は残る。次はもう少し話せるはず。",
+      "mood": "neutral"
+    },
+    "end_awkward": {
+      "type": "end",
+      "text": "少しぎこちない空気のまま店を出た。次に誘われたら、今日の分まで楽しもう。",
+      "mood": "awkward"
+    }
+  }
+}

@@ -2,6 +2,8 @@
   "id": "food-first_casual-01",
   "topic": "食",
   "scene": "first_casual",
+  "characterId": "curry-gamer",
+  "chapter": 1,
   "title": "イベントの休憩時間、お昼の話で距離を縮める",
   "situation": "趣味のイベント(ボードゲーム会)の休憩時間。さっき同じ卓だった初対面の人と、飲み物コーナーで一緒になった。",
   "guide": "「食」はもっとも安全な話題。その場に関係する食べ物の話から入り、相手の反応に合わせて広げる練習。",
