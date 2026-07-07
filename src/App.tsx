@@ -8,8 +8,9 @@ import Review from './components/Review';
 import TreeView from './components/TreeView';
 import Zukan from './components/Zukan';
 import History from './components/History';
+import Companion from './components/Companion';
 
-type Tab = 'home' | 'zukan' | 'history';
+type Tab = 'home' | 'companion' | 'zukan' | 'history';
 
 type View =
   | { screen: Tab }
@@ -19,6 +20,7 @@ type View =
 
 const TABS: { id: Tab; label: string }[] = [
   { id: 'home', label: '練習' },
+  { id: 'companion', label: '伴走' },
   { id: 'zukan', label: '図鑑' },
   { id: 'history', label: '履歴' },
 ];
@@ -33,7 +35,8 @@ export default function App() {
     setView({ screen: 'review', scenarioId, session });
   };
 
-  const isTab = view.screen === 'home' || view.screen === 'zukan' || view.screen === 'history';
+  const isTab =
+    view.screen === 'home' || view.screen === 'companion' || view.screen === 'zukan' || view.screen === 'history';
 
   return (
     <div className="mx-auto min-h-dvh max-w-xl px-4 py-6">
@@ -59,6 +62,7 @@ export default function App() {
           onTree={(scenarioId) => setView({ screen: 'tree', scenarioId })}
         />
       )}
+      {view.screen === 'companion' && <Companion />}
       {view.screen === 'zukan' && <Zukan />}
       {view.screen === 'history' && <History onStart={(scenarioId) => setView({ screen: 'play', scenarioId })} />}
       {view.screen === 'tree' && (
